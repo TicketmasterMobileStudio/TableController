@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ExampleProject" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="src-OP-9wB">
+                                <rect key="frame" x="0.0" y="20" width="600" height="44"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="gWz-qd-ay5">
+                                        <rect key="frame" x="224" y="8" width="153" height="29"/>
+                                        <segments>
+                                            <segment title="Sectioned"/>
+                                            <segment title="Grouped"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="controlChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="OwX-jq-aPK"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="gWz-qd-ay5" firstAttribute="centerX" secondItem="src-OP-9wB" secondAttribute="centerX" id="SCQ-Nx-IuH"/>
+                                    <constraint firstItem="gWz-qd-ay5" firstAttribute="centerY" secondItem="src-OP-9wB" secondAttribute="centerY" id="bDU-EN-vXH"/>
+                                    <constraint firstAttribute="height" constant="44" id="fGb-yA-bWR"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tde-8E-aBv" userLabel="Sectioned Table View">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <tableView hidden="YES" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="seC-h0-5CW" userLabel="Grouped Table View">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="tde-8E-aBv" secondAttribute="trailing" id="48D-tb-wMH"/>
+                            <constraint firstItem="seC-h0-5CW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="CLP-Lm-u1N"/>
+                            <constraint firstAttribute="trailing" secondItem="seC-h0-5CW" secondAttribute="trailing" id="RSv-c8-NSy"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="seC-h0-5CW" secondAttribute="bottom" id="WXw-So-HxH"/>
+                            <constraint firstAttribute="trailing" secondItem="src-OP-9wB" secondAttribute="trailing" id="hxR-FY-nmt"/>
+                            <constraint firstItem="src-OP-9wB" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="lKw-QW-CV8"/>
+                            <constraint firstItem="tde-8E-aBv" firstAttribute="top" secondItem="src-OP-9wB" secondAttribute="bottom" id="pqJ-IL-RWY"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="tde-8E-aBv" secondAttribute="bottom" id="wdz-Yi-Hqe"/>
+                            <constraint firstItem="src-OP-9wB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="xiT-NI-dQK"/>
+                            <constraint firstItem="seC-h0-5CW" firstAttribute="top" secondItem="src-OP-9wB" secondAttribute="bottom" id="z4j-pB-VcL"/>
+                            <constraint firstItem="tde-8E-aBv" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="zaX-wO-gFi"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="groupedTableView" destination="seC-h0-5CW" id="hAL-mZ-29I"/>
+                        <outlet property="sectionedTableView" destination="tde-8E-aBv" id="sbq-xW-cke"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
+    </scenes>
+</document>
