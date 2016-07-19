@@ -20,9 +20,11 @@ public class TableViewSectionGroup: NSObject, UITableViewDelegate, UITableViewDa
     public var numberOfSections: Int { return self.sectionsDisplayControllers.count }
     
     private var visibleIndexPaths = Set<NSIndexPath>()
+    private let tableView: UITableView
     
-    public init(sections: [SectionDisplayControllerType]) {
+    public init(sections: [SectionDisplayControllerType], tableView: UITableView) {
         self.sectionsDisplayControllers = sections
+        self.tableView = tableView
     }
     
     public func registerCells(tableView: UITableView) {
