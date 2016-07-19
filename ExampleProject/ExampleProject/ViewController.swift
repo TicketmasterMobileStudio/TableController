@@ -38,8 +38,8 @@ class ViewController: UIViewController {
         self.sectionGroup = TableViewSectionGroup(sections: [sectionDisplayController, cellDisplayControllerGroup], tableView: self.sectionedTableView)
         self.sectionGroup2 = TableViewSectionGroup(sections: [sectionDisplayController, cellDisplayControllerGroup], tableView: self.groupedTableView)
         
-        self.sectionGroup?.registerCells(self.sectionedTableView)
-        self.sectionGroup2?.registerCells(self.groupedTableView)
+        self.sectionGroup?.registerCells()
+        self.sectionGroup2?.registerCells()
     }
     
     func showSectionedTable() {

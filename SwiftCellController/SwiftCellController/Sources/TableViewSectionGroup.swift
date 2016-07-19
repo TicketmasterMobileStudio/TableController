@@ -32,14 +32,14 @@ public class TableViewSectionGroup: NSObject, UITableViewDelegate, UITableViewDa
         self.tableView.dataSource = self
     }
     
-    public func registerCells(tableView: UITableView) {
+    public func registerCells() {
         sectionsDisplayControllers.forEach { section in
             section.cellTypes.forEach { cellType in
                 switch cellType {
                 case .Class(let cellClass, let identifier):
-                    tableView.registerClass(cellClass, forCellReuseIdentifier: identifier)
+                    self.tableView.registerClass(cellClass, forCellReuseIdentifier: identifier)
                 case .Nib(let nibName, let identifier):
-                    tableView.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: identifier)
+                    self.tableView.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: identifier)
                 }
             }
         }
