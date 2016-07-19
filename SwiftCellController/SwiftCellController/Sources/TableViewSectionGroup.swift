@@ -25,6 +25,11 @@ public class TableViewSectionGroup: NSObject, UITableViewDelegate, UITableViewDa
     public init(sections: [SectionDisplayControllerType], tableView: UITableView) {
         self.sectionsDisplayControllers = sections
         self.tableView = tableView
+        
+        super.init()
+        
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
     
     public func registerCells(tableView: UITableView) {

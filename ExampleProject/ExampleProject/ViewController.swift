@@ -36,16 +36,10 @@ class ViewController: UIViewController {
         let cellDisplayControllerGroup = self.setupCellDisplayControllerGroup()
         
         self.sectionGroup = TableViewSectionGroup(sections: [sectionDisplayController, cellDisplayControllerGroup], tableView: self.sectionedTableView)
-        
         self.sectionGroup2 = TableViewSectionGroup(sections: [sectionDisplayController, cellDisplayControllerGroup], tableView: self.groupedTableView)
         
         self.sectionGroup?.registerCells(self.sectionedTableView)
-        self.sectionedTableView.delegate = self.sectionGroup
-        self.sectionedTableView.dataSource = self.sectionGroup
-        
         self.sectionGroup2?.registerCells(self.groupedTableView)
-        self.groupedTableView.delegate = self.sectionGroup2
-        self.groupedTableView.dataSource = self.sectionGroup2
     }
     
     func showSectionedTable() {
