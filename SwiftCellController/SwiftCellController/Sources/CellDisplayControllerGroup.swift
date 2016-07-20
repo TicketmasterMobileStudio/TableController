@@ -35,8 +35,8 @@ public class CellDisplayControllerGroup: SectionDisplayControllerType {
         self.cellControllers = cellControllers
     }
     
-    public func cellIdentifierForIndexPath(indexPath: NSIndexPath) -> String {
-        return self.cellControllers[indexPath.item].cellType.identifer
+    public func cellType(forIndexPath indexPath: NSIndexPath) -> RegisterableCellType {
+        return self.cellControllers[indexPath.item].cellType
     }
     
     public func configureCell(cell: UITableViewCell, atIndex index: Int) {

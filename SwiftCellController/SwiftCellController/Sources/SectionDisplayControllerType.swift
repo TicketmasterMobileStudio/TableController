@@ -32,7 +32,7 @@ public protocol SectionDisplayControllerType {
     func willDisplayCell(cell: UITableViewCell, atIndex index: Int)
     func didDisplayCell(cell: UITableViewCell, atIndex index: Int)
     
-    func cellIdentifierForIndexPath(indexPath: NSIndexPath) -> String
+    func cellType(forIndexPath indexPath: NSIndexPath) -> RegisterableCellType
 }
 
 public extension SectionDisplayControllerType {
