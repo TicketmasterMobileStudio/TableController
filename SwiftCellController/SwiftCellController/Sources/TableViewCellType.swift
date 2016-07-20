@@ -28,6 +28,15 @@ public enum RegisterableCellType: Hashable {
             return identifier
         }
     }
+    
+    func register(inTableView tableView: UITableView) {
+        switch self {
+        case .Class(let cellClass, let identifier):
+            tableView.registerClass(cellClass, forCellReuseIdentifier: identifier)
+        case .Nib(let nibName, let identifier):
+            tableView.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: identifier)
+        }
+    }
 }
 
 public func ==(lhs: RegisterableCellType, rhs: RegisterableCellType) -> Bool {

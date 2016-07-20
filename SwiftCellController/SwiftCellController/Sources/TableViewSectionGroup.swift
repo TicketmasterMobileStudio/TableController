@@ -21,6 +21,7 @@ public class TableViewSectionGroup: NSObject, UITableViewDelegate, UITableViewDa
     
     private var visibleIndexPaths = Set<NSIndexPath>()
     private let tableView: UITableView
+    private var cellRegistrationTracker = CellRegistrationTracker()
     
     public init(sections: [SectionDisplayControllerType], tableView: UITableView) {
         self.sectionsDisplayControllers = sections
@@ -32,19 +33,6 @@ public class TableViewSectionGroup: NSObject, UITableViewDelegate, UITableViewDa
         self.tableView.dataSource = self
     }
     
-    public func registerCells() {
-        sectionsDisplayControllers.forEach { section in
-            section.cellTypes.forEach { cellType in
-                switch cellType {
-                case .Class(let cellClass, let identifier):
-                    self.tableView.registerClass(cellClass, forCellReuseIdentifier: identifier)
-                case .Nib(let nibName, let identifier):
-                    self.tableView.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: identifier)
-                }
-            }
-        }
-    }
-    
     public func reconfigureCellAtIndexPath(indexPath: NSIndexPath, inTableView tableView: UITableView) {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
             self.sectionsDisplayControllers[indexPath.section].configureCell(cell, atIndex: indexPath.item)
@@ -52,6 +40,31 @@ public class TableViewSectionGroup: NSObject, UITableViewDelegate, UITableViewDa
     }
 }
 
+
+// MARK: - Cell Registration
+
+extension TableViewSectionGroup {
+    
+    struct CellRegistrationTracker {
+        private var registeredCellTypes: [RegisterableCellType] = []
+        
+        func isRegistered(_ cellType: RegisterableCellType) -> Bool {
+            return registeredCellTypes.contains(cellType)
+        }
+        
+        mutating func markAsRegistered(_ cellType: RegisterableCellType) {
+            registeredCellTypes.append(cellType)
+        }
+    }
+    
+    func register(cellType: RegisterableCellType) {
+        if !self.cellRegistrationTracker.isRegistered(cellType) {
+            cellType.register(inTableView: self.tableView)
+            self.cellRegistrationTracker.markAsRegistered(cellType)
+        }
+    }
+    
+}
 
 // MARK: - UITableViewDataSource
 
@@ -68,7 +81,11 @@ public extension TableViewSectionGroup {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let section = self.sectionsDisplayControllers[indexPath.section]
-        let cell = tableView.dequeueReusableCellWithIdentifier(section.cellIdentifierForIndexPath(indexPath), forIndexPath: indexPath)
+        let cellType = section.cellType(forIndexPath: indexPath)
+        
+        self.register(cellType)
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellType.identifer, forIndexPath: indexPath)
+        
         section.configureCell(cell, atIndex: indexPath.item)
         return cell
     }

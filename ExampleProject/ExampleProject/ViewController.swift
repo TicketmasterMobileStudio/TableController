@@ -37,9 +37,6 @@ class ViewController: UIViewController {
         
         self.sectionGroup = TableViewSectionGroup(sections: [sectionDisplayController, cellDisplayControllerGroup], tableView: self.sectionedTableView)
         self.sectionGroup2 = TableViewSectionGroup(sections: [sectionDisplayController, cellDisplayControllerGroup], tableView: self.groupedTableView)
-        
-        self.sectionGroup?.registerCells()
-        self.sectionGroup2?.registerCells()
     }
     
     func showSectionedTable() {
@@ -81,7 +78,11 @@ class BasicCellDisplayController: CellDisplayControllerType {
 
 class BasicSectionDisplayController: SectionDisplayControllerType {
     
-    var cellTypes: Set<RegisterableCellType> = [ .Class(cellClass: UITableViewCell.self, identifier: "BasicSectionCell") ]
+    let basicCellType: RegisterableCellType = .Class(cellClass: UITableViewCell.self, identifier: "BasicSectionCell")
+    
+    var cellTypes: Set<RegisterableCellType> {
+        return [ self.basicCellType ]
+    }
     
     var numberOfItems: Int = 4
     
@@ -89,7 +90,7 @@ class BasicSectionDisplayController: SectionDisplayControllerType {
         cell.textLabel?.text = "Section Item: \(index)"
     }
     
-    func cellIdentifierForIndexPath(indexPath: NSIndexPath) -> String {
-        return "BasicSectionCell"
+    func cellType(forIndexPath indexPath: NSIndexPath) -> RegisterableCellType {
+        return self.basicCellType
     }
 }
