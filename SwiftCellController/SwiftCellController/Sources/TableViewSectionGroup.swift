@@ -53,7 +53,8 @@ public class TableViewSectionGroup: NSObject, UITableViewDelegate, UITableViewDa
 }
 
 
-//// MARK: UITableViewDataSource
+// MARK: - UITableViewDataSource
+
 public extension TableViewSectionGroup {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -73,7 +74,8 @@ public extension TableViewSectionGroup {
     }
 }
 
-////MARK: UITableViewDelegate
+// MARK: - UITableViewDelegate
+
 public extension TableViewSectionGroup {
     
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
