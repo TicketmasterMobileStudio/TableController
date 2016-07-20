@@ -43,11 +43,11 @@ public class CellDisplayControllerGroup: SectionDisplayControllerType {
         self.cellControllers[index].configureCell(cell)
     }
     
-    public func cellHeightAtIndex(index: Int) -> CGFloat? {
+    public func cellHeightAtIndex(index: Int) -> CGFloat {
         return self.cellControllers[index].cellHeight
     }
     
-    public func estimatedCellHeightAtIndex(index: Int) -> CGFloat? {
+    public func estimatedCellHeightAtIndex(index: Int) -> CGFloat {
         return self.cellControllers[index].estimatedCellHeight
     }
     
