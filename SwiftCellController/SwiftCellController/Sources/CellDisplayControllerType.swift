@@ -31,7 +31,7 @@ public protocol CellDisplayControllerType {
 public extension CellDisplayControllerType {
     var cellHeight: CGFloat { return UITableViewAutomaticDimension }
     var estimatedCellHeight: CGFloat { return UITableViewAutomaticDimension }
-    var selectable: Bool { return false }
+    var selectable: Bool { return true }
     func didSelectCell() { }
     func willDisplayCell(cell: UITableViewCell) { }
     func didDisplayCell(cell: UITableViewCell) { }

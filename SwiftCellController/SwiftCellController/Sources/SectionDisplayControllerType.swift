@@ -49,7 +49,7 @@ public extension SectionDisplayControllerType {
     }
     
     func canSelectCellAtIndex(index: Int) -> Bool {
-        return false
+        return true
     }
     
     func didSelectCellAtIndex(index: Int) { }
