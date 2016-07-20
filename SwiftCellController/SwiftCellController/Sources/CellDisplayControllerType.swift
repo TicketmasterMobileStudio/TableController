@@ -11,25 +11,26 @@ import UIKit
 
 /// A `CellDisplayControllerType` describes something that handles the display of
 /// of a single `UITableViewCell`
-
 public protocol CellDisplayControllerType {
     
-    var cellType: RegisterableCellType { get }
-
-    var estimatedCellHeight: CGFloat? { get }
-    var cellHeight: CGFloat? { get }
-    var selectable: Bool { get }
+    // MARK: Cell Sizing
+    var estimatedCellHeight: CGFloat { get }
+    var cellHeight: CGFloat { get }
     
-    func configureCell(cell: UITableViewCell)
+    // MARK: Selection
+    var selectable: Bool { get }
     func didSelectCell()
     
+    // MARK: Cell Configuration
+    var cellType: RegisterableCellType { get }
+    func configureCell(cell: UITableViewCell)
     func willDisplayCell(cell: UITableViewCell)
     func didDisplayCell(cell: UITableViewCell)
 }
 
 public extension CellDisplayControllerType {
-    var cellHeight: CGFloat? { return nil }
-    var estimatedCellHeight: CGFloat? { return self.cellHeight }
+    var cellHeight: CGFloat { return UITableViewAutomaticDimension }
+    var estimatedCellHeight: CGFloat { return UITableViewAutomaticDimension }
     var selectable: Bool { return false }
     func didSelectCell() { }
     func willDisplayCell(cell: UITableViewCell) { }

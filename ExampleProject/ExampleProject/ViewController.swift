@@ -73,7 +73,7 @@ class BasicCellDisplayController: CellDisplayControllerType {
     var title: String = "Default"
     
     var cellType: RegisterableCellType = .Class(cellClass: UITableViewCell.self, identifier: "BasicCell")
-    var cellHeight: CGFloat? = 60.0
+    var cellHeight: CGFloat = 60.0
     
     init(title: String) {
         self.title = title
