@@ -29,7 +29,7 @@ public enum TableReusableViewType: Hashable {
         }
     }
     
-    func register(inTableView tableView: UITableView) {
+    func register(asCellInTableView tableView: UITableView) {
         switch self {
         case .Class(let cellClass, let identifier):
             tableView.registerClass(cellClass, forCellReuseIdentifier: identifier)

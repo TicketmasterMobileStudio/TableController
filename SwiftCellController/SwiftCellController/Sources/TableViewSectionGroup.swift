@@ -59,7 +59,7 @@ extension TableViewSectionGroup {
     
     func register(cellType: TableReusableViewType) {
         if !self.cellRegistrationTracker.isRegistered(cellType) {
-            cellType.register(inTableView: self.tableView)
+            cellType.register(asCellInTableView: self.tableView)
             self.cellRegistrationTracker.markAsRegistered(cellType)
         }
     }
