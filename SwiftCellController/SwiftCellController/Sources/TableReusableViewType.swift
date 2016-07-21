@@ -1,5 +1,5 @@
 //
-//  TableViewCellType.swift
+//  TableReusableViewType.swift
 //  LiveNation
 //
 //  Created by Carmen Cerino on 2/2/16.
@@ -12,7 +12,7 @@ import UIKit
 /// A enum to encapsulate the different types of `UITableViewCells`
 /// that can be registered with a `UITableView`
 
-public enum RegisterableCellType: Hashable {
+public enum TableReusableViewType: Hashable {
     case Nib(nibName: String, identifier: String)
     case Class(cellClass: AnyClass, identifier: String)
     
@@ -39,7 +39,7 @@ public enum RegisterableCellType: Hashable {
     }
 }
 
-public func ==(lhs: RegisterableCellType, rhs: RegisterableCellType) -> Bool {
+public func ==(lhs: TableReusableViewType, rhs: TableReusableViewType) -> Bool {
     switch (lhs, rhs) {
     case (let .Class(cellClass1, identifier1), let .Class(cellClass2, indentifier2)):
         return cellClass1 == cellClass2 && identifier1 == indentifier2

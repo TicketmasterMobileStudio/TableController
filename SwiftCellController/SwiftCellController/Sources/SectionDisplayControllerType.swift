@@ -14,7 +14,7 @@ import UIKit
 
 public protocol SectionDisplayControllerType {
     
-    var cellTypes: Set<RegisterableCellType> { get }
+    var cellTypes: Set<TableReusableViewType> { get }
     
     var numberOfItems: Int { get }
     
@@ -32,7 +32,7 @@ public protocol SectionDisplayControllerType {
     func willDisplayCell(cell: UITableViewCell, atIndex index: Int)
     func didDisplayCell(cell: UITableViewCell, atIndex index: Int)
     
-    func cellType(forIndexPath indexPath: NSIndexPath) -> RegisterableCellType
+    func cellType(forIndexPath indexPath: NSIndexPath) -> TableReusableViewType
 }
 
 public extension SectionDisplayControllerType {

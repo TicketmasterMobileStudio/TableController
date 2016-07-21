@@ -46,18 +46,18 @@ public class TableViewSectionGroup: NSObject, UITableViewDelegate, UITableViewDa
 extension TableViewSectionGroup {
     
     struct CellRegistrationTracker {
-        private var registeredCellTypes: [RegisterableCellType] = []
+        private var registeredCellTypes: [TableReusableViewType] = []
         
-        func isRegistered(_ cellType: RegisterableCellType) -> Bool {
+        func isRegistered(_ cellType: TableReusableViewType) -> Bool {
             return registeredCellTypes.contains(cellType)
         }
         
-        mutating func markAsRegistered(_ cellType: RegisterableCellType) {
+        mutating func markAsRegistered(_ cellType: TableReusableViewType) {
             registeredCellTypes.append(cellType)
         }
     }
     
-    func register(cellType: RegisterableCellType) {
+    func register(cellType: TableReusableViewType) {
         if !self.cellRegistrationTracker.isRegistered(cellType) {
             cellType.register(inTableView: self.tableView)
             self.cellRegistrationTracker.markAsRegistered(cellType)

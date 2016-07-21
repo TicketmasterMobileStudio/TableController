@@ -11,7 +11,7 @@
 		130908571D3D420E007DB5D8 /* CellDisplayControllerGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908521D3D420E007DB5D8 /* CellDisplayControllerGroup.swift */; };
 		130908581D3D420E007DB5D8 /* CellDisplayControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908531D3D420E007DB5D8 /* CellDisplayControllerType.swift */; };
 		130908591D3D420E007DB5D8 /* SectionDisplayControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908541D3D420E007DB5D8 /* SectionDisplayControllerType.swift */; };
-		1309085A1D3D420E007DB5D8 /* TableViewCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908551D3D420E007DB5D8 /* TableViewCellType.swift */; };
+		1309085A1D3D420E007DB5D8 /* TableReusableViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908551D3D420E007DB5D8 /* TableReusableViewType.swift */; };
 		1309085B1D3D420E007DB5D8 /* TableViewSectionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908561D3D420E007DB5D8 /* TableViewSectionGroup.swift */; };
 /* End PBXBuildFile section */
 
@@ -22,7 +22,7 @@
 		130908521D3D420E007DB5D8 /* CellDisplayControllerGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDisplayControllerGroup.swift; sourceTree = "<group>"; };
 		130908531D3D420E007DB5D8 /* CellDisplayControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDisplayControllerType.swift; sourceTree = "<group>"; };
 		130908541D3D420E007DB5D8 /* SectionDisplayControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionDisplayControllerType.swift; sourceTree = "<group>"; };
-		130908551D3D420E007DB5D8 /* TableViewCellType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewCellType.swift; sourceTree = "<group>"; };
+		130908551D3D420E007DB5D8 /* TableReusableViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableReusableViewType.swift; sourceTree = "<group>"; };
 		130908561D3D420E007DB5D8 /* TableViewSectionGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSectionGroup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,7 +69,7 @@
 				130908521D3D420E007DB5D8 /* CellDisplayControllerGroup.swift */,
 				130908531D3D420E007DB5D8 /* CellDisplayControllerType.swift */,
 				130908541D3D420E007DB5D8 /* SectionDisplayControllerType.swift */,
-				130908551D3D420E007DB5D8 /* TableViewCellType.swift */,
+				130908551D3D420E007DB5D8 /* TableReusableViewType.swift */,
 				130908561D3D420E007DB5D8 /* TableViewSectionGroup.swift */,
 			);
 			path = Sources;
@@ -154,7 +154,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1309085B1D3D420E007DB5D8 /* TableViewSectionGroup.swift in Sources */,
-				1309085A1D3D420E007DB5D8 /* TableViewCellType.swift in Sources */,
+				1309085A1D3D420E007DB5D8 /* TableReusableViewType.swift in Sources */,
 				130908571D3D420E007DB5D8 /* CellDisplayControllerGroup.swift in Sources */,
 				130908581D3D420E007DB5D8 /* CellDisplayControllerType.swift in Sources */,
 				130908591D3D420E007DB5D8 /* SectionDisplayControllerType.swift in Sources */,
@@ -306,6 +306,7 @@
 				130908461D3D41D6007DB5D8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

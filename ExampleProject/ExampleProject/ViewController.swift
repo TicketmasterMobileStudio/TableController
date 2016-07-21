@@ -63,7 +63,7 @@ class BasicCellDisplayController: CellDisplayControllerType {
     
     var title: String = "Default"
     
-    var cellType: RegisterableCellType = .Class(cellClass: UITableViewCell.self, identifier: "BasicCell")
+    var cellType: TableReusableViewType = .Class(cellClass: UITableViewCell.self, identifier: "BasicCell")
     var cellHeight: CGFloat = 60.0
     
     init(title: String) {
@@ -78,9 +78,9 @@ class BasicCellDisplayController: CellDisplayControllerType {
 
 class BasicSectionDisplayController: SectionDisplayControllerType {
     
-    let basicCellType: RegisterableCellType = .Class(cellClass: UITableViewCell.self, identifier: "BasicSectionCell")
+    let basicCellType: TableReusableViewType = .Class(cellClass: UITableViewCell.self, identifier: "BasicSectionCell")
     
-    var cellTypes: Set<RegisterableCellType> {
+    var cellTypes: Set<TableReusableViewType> {
         return [ self.basicCellType ]
     }
     
@@ -90,7 +90,7 @@ class BasicSectionDisplayController: SectionDisplayControllerType {
         cell.textLabel?.text = "Section Item: \(index)"
     }
     
-    func cellType(forIndexPath indexPath: NSIndexPath) -> RegisterableCellType {
+    func cellType(forIndexPath indexPath: NSIndexPath) -> TableReusableViewType {
         return self.basicCellType
     }
 }

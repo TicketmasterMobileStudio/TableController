@@ -19,8 +19,8 @@ public class CellDisplayControllerGroup: SectionDisplayControllerType {
     
     var cellControllers: [CellDisplayControllerType]
 
-    public var cellTypes: Set<RegisterableCellType> {
-        return Set<RegisterableCellType>(cellControllers.map { $0.cellType })
+    public var cellTypes: Set<TableReusableViewType> {
+        return Set<TableReusableViewType>(cellControllers.map { $0.cellType })
     }
 
     public var numberOfItems: Int {
@@ -35,7 +35,7 @@ public class CellDisplayControllerGroup: SectionDisplayControllerType {
         self.cellControllers = cellControllers
     }
     
-    public func cellType(forIndexPath indexPath: NSIndexPath) -> RegisterableCellType {
+    public func cellType(forIndexPath indexPath: NSIndexPath) -> TableReusableViewType {
         return self.cellControllers[indexPath.item].cellType
     }
     
