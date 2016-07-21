@@ -37,6 +37,15 @@ public enum TableReusableViewType: Hashable {
             tableView.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: identifier)
         }
     }
+    
+    func register(asHeaderFooterInTableView tableView: UITableView) {
+        switch self {
+        case .Class(let headerFooterClass, let identifier):
+            tableView.registerClass(headerFooterClass, forHeaderFooterViewReuseIdentifier: identifer)
+        case .Nib(let nibName, let identifier):
+            tableView.registerNib(UINib(nibName: nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: identifer)
+        }
+    }
 }
 
 public func ==(lhs: TableReusableViewType, rhs: TableReusableViewType) -> Bool {
