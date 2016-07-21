@@ -13,6 +13,7 @@
 		130908591D3D420E007DB5D8 /* SectionDisplayControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908541D3D420E007DB5D8 /* SectionDisplayControllerType.swift */; };
 		1309085A1D3D420E007DB5D8 /* TableReusableViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908551D3D420E007DB5D8 /* TableReusableViewType.swift */; };
 		1309085B1D3D420E007DB5D8 /* TableViewSectionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908561D3D420E007DB5D8 /* TableViewSectionGroup.swift */; };
+		9970AC481D40F50D004FF260 /* HeaderFooterDisplayControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9970AC471D40F50D004FF260 /* HeaderFooterDisplayControllerType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		130908541D3D420E007DB5D8 /* SectionDisplayControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionDisplayControllerType.swift; sourceTree = "<group>"; };
 		130908551D3D420E007DB5D8 /* TableReusableViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableReusableViewType.swift; sourceTree = "<group>"; };
 		130908561D3D420E007DB5D8 /* TableViewSectionGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSectionGroup.swift; sourceTree = "<group>"; };
+		9970AC471D40F50D004FF260 /* HeaderFooterDisplayControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderFooterDisplayControllerType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				130908541D3D420E007DB5D8 /* SectionDisplayControllerType.swift */,
 				130908551D3D420E007DB5D8 /* TableReusableViewType.swift */,
 				130908561D3D420E007DB5D8 /* TableViewSectionGroup.swift */,
+				9970AC471D40F50D004FF260 /* HeaderFooterDisplayControllerType.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 			files = (
 				1309085B1D3D420E007DB5D8 /* TableViewSectionGroup.swift in Sources */,
 				1309085A1D3D420E007DB5D8 /* TableReusableViewType.swift in Sources */,
+				9970AC481D40F50D004FF260 /* HeaderFooterDisplayControllerType.swift in Sources */,
 				130908571D3D420E007DB5D8 /* CellDisplayControllerGroup.swift in Sources */,
 				130908581D3D420E007DB5D8 /* CellDisplayControllerType.swift in Sources */,
 				130908591D3D420E007DB5D8 /* SectionDisplayControllerType.swift in Sources */,
