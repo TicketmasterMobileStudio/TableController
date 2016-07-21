@@ -78,6 +78,9 @@ class BasicCellDisplayController: CellDisplayControllerType {
 
 class BasicSectionDisplayController: SectionDisplayControllerType {
     
+    let footerController: HeaderFooterDisplayControllerType? = nil
+    let headerController: HeaderFooterDisplayControllerType? = nil
+    
     let basicCellType: TableReusableViewType = .Class(cellClass: UITableViewCell.self, identifier: "BasicSectionCell")
     
     var cellTypes: Set<TableReusableViewType> {

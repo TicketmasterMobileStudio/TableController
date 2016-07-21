@@ -14,11 +14,11 @@ import UIKit
 
 public class CellDisplayControllerGroup: SectionDisplayControllerType {
     
-    public var headerHeight: CGFloat?
-    public var footerHeight: CGFloat?
-    
     var cellControllers: [CellDisplayControllerType]
 
+    public let headerController: HeaderFooterDisplayControllerType?
+    public let footerController: HeaderFooterDisplayControllerType?
+    
     public var cellTypes: Set<TableReusableViewType> {
         return Set<TableReusableViewType>(cellControllers.map { $0.cellType })
     }
@@ -31,8 +31,10 @@ public class CellDisplayControllerGroup: SectionDisplayControllerType {
         self.init(cellControllers: [cellController])
     }
     
-    public init(cellControllers: [CellDisplayControllerType]) {
+    public init(cellControllers: [CellDisplayControllerType], headerController: HeaderFooterDisplayControllerType? = nil, footerController: HeaderFooterDisplayControllerType? = nil) {
         self.cellControllers = cellControllers
+        self.headerController = headerController
+        self.footerController = footerController
     }
     
     public func cellType(forIndexPath indexPath: NSIndexPath) -> TableReusableViewType {

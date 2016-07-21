@@ -95,6 +95,8 @@ public extension TableViewSectionGroup {
 
 public extension TableViewSectionGroup {
     
+    // MARK: Cell Selection
+    
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         let section = self.sectionsDisplayControllers[indexPath.section]
         return section.canSelectCellAtIndex(indexPath.item) ? indexPath : nil
@@ -104,6 +106,8 @@ public extension TableViewSectionGroup {
         let section = self.sectionsDisplayControllers[indexPath.section]
         return section.didSelectCellAtIndex(indexPath.item)
     }
+    
+    // MARK: Cell Display
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         let section = self.sectionsDisplayControllers[indexPath.section]
@@ -118,23 +122,42 @@ public extension TableViewSectionGroup {
         self.visibleIndexPaths.remove(indexPath)
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let section = self.sectionsDisplayControllers[indexPath.section]
-        return section.cellHeightAtIndex(indexPath.item) ?? tableView.rowHeight
-    }
+    // MARK: Cell Height
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = self.sectionsDisplayControllers[indexPath.section]
         return section.estimatedCellHeightAtIndex(indexPath.item) ?? tableView.rowHeight
     }
     
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let section = self.sectionsDisplayControllers[indexPath.section]
+        return section.cellHeightAtIndex(indexPath.item) ?? tableView.rowHeight
+    }
+
+
+    // MARK: Header Height
+    
+    public func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        let section = self.sectionsDisplayControllers[section]
+        return section.headerController?.estimatedHeight ?? tableView.estimatedSectionHeaderHeight
+        
+    }
+
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let section = self.sectionsDisplayControllers[section]
-        return section.headerHeight ?? tableView.sectionHeaderHeight
+        return section.headerController?.height ?? tableView.sectionHeaderHeight
+    }
+    
+    // MARK: Footer Height
+    
+    public func tableView(tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+        let section = self.sectionsDisplayControllers[section]
+        return section.footerController?.estimatedHeight ?? tableView.estimatedSectionFooterHeight
+        
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         let section = self.sectionsDisplayControllers[section]
-        return section.footerHeight ?? tableView.sectionFooterHeight
+        return section.footerController?.height ?? tableView.sectionFooterHeight
     }
 }
