@@ -160,4 +160,63 @@ public extension TableViewSectionGroup {
         let section = self.sectionsDisplayControllers[section]
         return section.footerController?.height ?? tableView.sectionFooterHeight
     }
+    
+    // MARK: Header Display
+    
+    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let section = self.sectionsDisplayControllers[section]
+        guard let controller = section.headerController else { return nil }
+        return self.viewForController(controller, inTableView: tableView)
+    }
+    
+    public func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let section = self.sectionsDisplayControllers[section]
+        section.headerController?.willDisplayView(view)
+    }
+    
+    public func tableView(tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+        let section = self.sectionsDisplayControllers[section]
+        section.headerController?.didDisplayView(view)
+    }
+    
+    // MARK: Footer Display
+    
+    public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let section = self.sectionsDisplayControllers[section]
+        guard let controller = section.footerController else { return nil }
+        return self.viewForController(controller, inTableView: tableView)
+    }
+    
+    public func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        let section = self.sectionsDisplayControllers[section]
+        section.footerController?.willDisplayView(view)
+
+    }
+    
+    public func tableView(tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
+        let section = self.sectionsDisplayControllers[section]
+        section.footerController?.didDisplayView(view)
+    }
+}
+
+// MARK: - Header/Footer Helpers
+private extension TableViewSectionGroup {
+    
+    func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterDisplayControllerType, inTableView tableView: UITableView) -> UIView? {
+        if let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(controller.type.identifer) {
+            controller.configureView(view)
+            return view
+        }
+        
+        return nil
+    }
+    
+    func viewForController(controller: HeaderFooterDisplayControllerType, inTableView tableView: UITableView) -> UIView? {
+        if let view = self.dequeue(reusableHeaderFooterViewForController: controller, inTableView: tableView) {
+            return view
+        }
+        
+        controller.type.register(asHeaderFooterInTableView: tableView)
+        return self.dequeue(reusableHeaderFooterViewForController: controller, inTableView: tableView)
+    }
 }
