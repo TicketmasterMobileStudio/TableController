@@ -171,12 +171,14 @@ public extension TableViewSectionGroup {
     
     public func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let section = self.sectionsDisplayControllers[section]
-        section.headerController?.willDisplayView(view)
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        section.headerController?.willDisplayView(header)
     }
     
     public func tableView(tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
         let section = self.sectionsDisplayControllers[section]
-        section.headerController?.didDisplayView(view)
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        section.headerController?.didDisplayView(header)
     }
     
     // MARK: Footer Display
@@ -189,13 +191,15 @@ public extension TableViewSectionGroup {
     
     public func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         let section = self.sectionsDisplayControllers[section]
-        section.footerController?.willDisplayView(view)
+        guard let footer = view as? UITableViewHeaderFooterView else { return }
+        section.footerController?.willDisplayView(footer)
 
     }
     
     public func tableView(tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
         let section = self.sectionsDisplayControllers[section]
-        section.footerController?.didDisplayView(view)
+        guard let footer = view as? UITableViewHeaderFooterView else { return }
+        section.footerController?.didDisplayView(footer)
     }
 }
 
@@ -204,6 +208,7 @@ private extension TableViewSectionGroup {
     
     func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterDisplayControllerType, inTableView tableView: UITableView) -> UIView? {
         if let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(controller.type.identifer) {
+            guard let view = view as? UITableViewHeaderFooterView else { return nil }
             controller.configureView(view)
             return view
         }
