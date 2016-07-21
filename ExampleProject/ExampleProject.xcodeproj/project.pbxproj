@@ -13,6 +13,7 @@
 		130908031D3D2FDA007DB5D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 130908021D3D2FDA007DB5D8 /* Assets.xcassets */; };
 		130908061D3D2FDA007DB5D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130908041D3D2FDA007DB5D8 /* LaunchScreen.storyboard */; };
 		133579A81D3D5D1D00A66286 /* SwiftCellController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 133579A71D3D5D1D00A66286 /* SwiftCellController.framework */; };
+		9970AC501D410BEB004FF260 /* TestHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9970AC4F1D410BEB004FF260 /* TestHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		130908051D3D2FDA007DB5D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		130908071D3D2FDA007DB5D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		133579A71D3D5D1D00A66286 /* SwiftCellController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftCellController.framework; path = "../SwiftCellController/build/Debug-iphoneos/SwiftCellController.framework"; sourceTree = "<group>"; };
+		9970AC4F1D410BEB004FF260 /* TestHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +66,7 @@
 				130908021D3D2FDA007DB5D8 /* Assets.xcassets */,
 				130908041D3D2FDA007DB5D8 /* LaunchScreen.storyboard */,
 				130908071D3D2FDA007DB5D8 /* Info.plist */,
+				9970AC4F1D410BEB004FF260 /* TestHeaderView.swift */,
 			);
 			path = ExampleProject;
 			sourceTree = "<group>";
@@ -139,6 +142,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9970AC501D410BEB004FF260 /* TestHeaderView.swift in Sources */,
 				130907FE1D3D2FDA007DB5D8 /* ViewController.swift in Sources */,
 				130907FC1D3D2FDA007DB5D8 /* AppDelegate.swift in Sources */,
 			);
