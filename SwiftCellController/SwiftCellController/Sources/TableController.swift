@@ -47,7 +47,7 @@ extension TableController {
     
     func register(cellType: TableReusableViewType) {
         if !self.registeredCellTypes.contains(cellType) {
-            cellType.register(asCellInTableView: self.tableView)
+            cellType.registerAsCell(inTableView: self.tableView)
             self.registeredCellTypes.append(cellType)
         }
     }
@@ -209,7 +209,7 @@ private extension TableController {
             return view
         }
         
-        controller.type.register(asHeaderFooterInTableView: tableView)
+        controller.type.registerAsHeaderFooter(inTableView: tableView)
         return self.dequeue(reusableHeaderFooterViewForController: controller, inTableView: tableView)
     }
 }
