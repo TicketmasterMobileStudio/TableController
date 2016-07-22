@@ -1,5 +1,5 @@
 //
-//  TableViewSectionGroup.swift
+//  TableController.swift
 //  LiveNation
 //
 //  Created by Carmen Cerino on 2/2/16.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class TableViewSectionGroup: NSObject, UITableViewDelegate, UITableViewDataSource {
+public class TableController: NSObject, UITableViewDelegate, UITableViewDataSource {
     
     public var sectionsDisplayControllers: [SectionControllerType] {
         didSet {
@@ -43,7 +43,7 @@ public class TableViewSectionGroup: NSObject, UITableViewDelegate, UITableViewDa
 
 // MARK: - Cell Registration
 
-extension TableViewSectionGroup {
+extension TableController {
     
     struct CellRegistrationTracker {
         private var registeredCellTypes: [TableReusableViewType] = []
@@ -68,7 +68,7 @@ extension TableViewSectionGroup {
 
 // MARK: - UITableViewDataSource
 
-public extension TableViewSectionGroup {
+public extension TableController {
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.sectionsDisplayControllers.count
@@ -93,7 +93,7 @@ public extension TableViewSectionGroup {
 
 // MARK: - UITableViewDelegate
 
-public extension TableViewSectionGroup {
+public extension TableController {
     
     // MARK: Cell Selection
     
@@ -204,7 +204,7 @@ public extension TableViewSectionGroup {
 }
 
 // MARK: - Header/Footer Helpers
-private extension TableViewSectionGroup {
+private extension TableController {
     
     func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterDisplayControllerType, inTableView tableView: UITableView) -> UIView? {
         if let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(controller.type.identifer) {
