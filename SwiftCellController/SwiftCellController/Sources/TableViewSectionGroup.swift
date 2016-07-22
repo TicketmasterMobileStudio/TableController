@@ -11,7 +11,7 @@ import UIKit
 
 public class TableViewSectionGroup: NSObject, UITableViewDelegate, UITableViewDataSource {
     
-    public var sectionsDisplayControllers: [SectionDisplayControllerType] {
+    public var sectionsDisplayControllers: [SectionControllerType] {
         didSet {
             self.visibleIndexPaths = Set<NSIndexPath>()
         }
@@ -23,7 +23,7 @@ public class TableViewSectionGroup: NSObject, UITableViewDelegate, UITableViewDa
     private let tableView: UITableView
     private var cellRegistrationTracker = CellRegistrationTracker()
     
-    public init(sections: [SectionDisplayControllerType], tableView: UITableView) {
+    public init(sections: [SectionControllerType], tableView: UITableView) {
         self.sectionsDisplayControllers = sections
         self.tableView = tableView
         

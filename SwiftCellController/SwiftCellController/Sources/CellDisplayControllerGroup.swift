@@ -12,7 +12,7 @@ import UIKit
 /// A `CellDisplayControllerGroup` manages displaying a group of
 /// `CellDisplayControllers` in a give section of a `UITableView`
 
-public class CellDisplayControllerGroup: SectionDisplayControllerType {
+public class CellDisplayControllerGroup: SectionControllerType {
     
     var cellControllers: [CellDisplayControllerType]
 

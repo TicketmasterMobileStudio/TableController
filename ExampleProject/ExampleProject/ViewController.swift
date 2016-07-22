@@ -76,7 +76,7 @@ class BasicCellDisplayController: CellDisplayControllerType {
     
 }
 
-class BasicSectionDisplayController: SectionDisplayControllerType {
+class BasicSectionDisplayController: SectionControllerType {
     
     let footerController: HeaderFooterDisplayControllerType? = nil
     let headerController: HeaderFooterDisplayControllerType? = TestHeaderDisplayController()

@@ -1,5 +1,5 @@
 //
-//  SectionDisplayControllerType.swift
+//  SectionControllerType.swift
 //  LiveNation
 //
 //  Created by Carmen Cerino on 2/2/16.
@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-/// A `SectionDisplayControllerType` describes something that handles the display of 
+/// A `SectionControllerType` describes something that handles the display of 
 /// `UITableView` cells in a give section
 
-public protocol SectionDisplayControllerType {
+public protocol SectionControllerType {
     
     var cellTypes: Set<TableReusableViewType> { get }
     
@@ -35,7 +35,7 @@ public protocol SectionDisplayControllerType {
     func cellType(forIndexPath indexPath: NSIndexPath) -> TableReusableViewType
 }
 
-public extension SectionDisplayControllerType {
+public extension SectionControllerType {
     
     func estimatedCellHeightAtIndex(index: Int) -> CGFloat {
         return UITableViewAutomaticDimension
