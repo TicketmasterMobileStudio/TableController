@@ -32,11 +32,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.sectionedTableView.backgroundColor = UIColor.groupTableViewBackgroundColor()
         
-        let sectionDisplayController = BasicSectionDisplayController()
-        let sectionController = self.setupSectionController()
+        let firstSectionController = BasicSectionController()
+        let secondSectionController = self.setupSectionController()
         
-        self.sectionGroup = TableController(sections: [sectionDisplayController, sectionController], tableView: self.sectionedTableView)
-        self.sectionGroup2 = TableController(sections: [sectionDisplayController, sectionController], tableView: self.groupedTableView)
+        self.sectionGroup = TableController(sections: [firstSectionController, secondSectionController], tableView: self.sectionedTableView)
+        self.sectionGroup2 = TableController(sections: [firstSectionController, secondSectionController], tableView: self.groupedTableView)
     }
     
     func showSectionedTable() {
@@ -50,8 +50,8 @@ class ViewController: UIViewController {
     }
     
     func setupSectionController() -> SectionController {
-        let basicItem1 = BasicCellDisplayController(title: "Item 1")
-        let basicItem2 = BasicCellDisplayController(title: "Item 2")
+        let basicItem1 = BasicCellController(title: "Item 1")
+        let basicItem2 = BasicCellController(title: "Item 2")
         
         let group = SectionController(cellControllers: [basicItem1, basicItem2])
         return group
@@ -59,7 +59,7 @@ class ViewController: UIViewController {
 
 }
 
-class BasicCellDisplayController: CellControllerType {
+class BasicCellController: CellControllerType {
     
     var title: String = "Default"
     
@@ -76,10 +76,10 @@ class BasicCellDisplayController: CellControllerType {
     
 }
 
-class BasicSectionDisplayController: SectionControllerType {
+class BasicSectionController: SectionControllerType {
     
     let footerController: HeaderFooterControllerType? = nil
-    let headerController: HeaderFooterControllerType? = TestHeaderDisplayController()
+    let headerController: HeaderFooterControllerType? = TestHeaderController()
     
     let basicCellType: TableReusableViewType = .Class(viewClass: UITableViewCell.self, identifier: "BasicSectionCell")
     
@@ -98,7 +98,7 @@ class BasicSectionDisplayController: SectionControllerType {
     }
 }
 
-class TestHeaderDisplayController: HeaderFooterControllerType {
+class TestHeaderController: HeaderFooterControllerType {
     
     let height: CGFloat = 30.0
     let type: TableReusableViewType = .Class(viewClass: TestHeaderView.self, identifier: "TestHeader")
