@@ -45,19 +45,19 @@ public class SectionController: SectionControllerType {
         self.cellControllers[index].configure(cell: cell)
     }
     
-    public func cellHeightAtIndex(index: Int) -> CGFloat {
+    public func cellHeight(atIndex index: Int) -> CGFloat {
         return self.cellControllers[index].cellHeight
     }
     
-    public func estimatedCellHeightAtIndex(index: Int) -> CGFloat {
+    public func estimatedCellHeight(atIndex index: Int) -> CGFloat {
         return self.cellControllers[index].estimatedCellHeight
     }
     
-    public func canSelectCellAtIndex(index: Int) -> Bool {
+    public func canSelectCell(atIndex index: Int) -> Bool {
         return self.cellControllers[index].selectable
     }
     
-    public func didSelectCellAtIndex(index: Int) {
+    public func didSelectCell(atIndex index: Int) {
         self.cellControllers[index].performSelectionAction()
     }
     
