@@ -63,7 +63,7 @@ class BasicCellDisplayController: CellDisplayControllerType {
     
     var title: String = "Default"
     
-    var cellType: TableReusableViewType = .Class(cellClass: UITableViewCell.self, identifier: "BasicCell")
+    var cellType: TableReusableViewType = .Class(viewClass: UITableViewCell.self, identifier: "BasicCell")
     var cellHeight: CGFloat = 60.0
     
     init(title: String) {
@@ -81,7 +81,7 @@ class BasicSectionDisplayController: SectionDisplayControllerType {
     let footerController: HeaderFooterDisplayControllerType? = nil
     let headerController: HeaderFooterDisplayControllerType? = TestHeaderDisplayController()
     
-    let basicCellType: TableReusableViewType = .Class(cellClass: UITableViewCell.self, identifier: "BasicSectionCell")
+    let basicCellType: TableReusableViewType = .Class(viewClass: UITableViewCell.self, identifier: "BasicSectionCell")
     
     var cellTypes: Set<TableReusableViewType> {
         return [ self.basicCellType ]
@@ -101,7 +101,7 @@ class BasicSectionDisplayController: SectionDisplayControllerType {
 class TestHeaderDisplayController: HeaderFooterDisplayControllerType {
     
     let height: CGFloat = 30.0
-    let type: TableReusableViewType = .Class(cellClass: TestHeaderView.self, identifier: "TestHeader")
+    let type: TableReusableViewType = .Class(viewClass: TestHeaderView.self, identifier: "TestHeader")
     
     func configureView(view: UITableViewHeaderFooterView) {
         guard let header = view as? TestHeaderView else { return }

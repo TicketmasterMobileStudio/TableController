@@ -14,7 +14,7 @@ import UIKit
 
 public enum TableReusableViewType: Hashable {
     case Nib(nibName: String, identifier: String)
-    case Class(cellClass: AnyClass, identifier: String)
+    case Class(viewClass: AnyClass, identifier: String)
     
     public var hashValue: Int {
         return self.identifer.hashValue
