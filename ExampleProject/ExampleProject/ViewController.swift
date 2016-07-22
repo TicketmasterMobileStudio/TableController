@@ -78,8 +78,8 @@ class BasicCellDisplayController: CellControllerType {
 
 class BasicSectionDisplayController: SectionControllerType {
     
-    let footerController: HeaderFooterDisplayControllerType? = nil
-    let headerController: HeaderFooterDisplayControllerType? = TestHeaderDisplayController()
+    let footerController: HeaderFooterControllerType? = nil
+    let headerController: HeaderFooterControllerType? = TestHeaderDisplayController()
     
     let basicCellType: TableReusableViewType = .Class(viewClass: UITableViewCell.self, identifier: "BasicSectionCell")
     
@@ -98,7 +98,7 @@ class BasicSectionDisplayController: SectionControllerType {
     }
 }
 
-class TestHeaderDisplayController: HeaderFooterDisplayControllerType {
+class TestHeaderDisplayController: HeaderFooterControllerType {
     
     let height: CGFloat = 30.0
     let type: TableReusableViewType = .Class(viewClass: TestHeaderView.self, identifier: "TestHeader")

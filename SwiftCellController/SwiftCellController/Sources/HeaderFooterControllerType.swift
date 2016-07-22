@@ -1,5 +1,5 @@
 //
-//  HeaderFooterDisplayControllerType.swift
+//  HeaderFooterControllerType.swift
 //  SwiftCellController
 //
 //  Created by Carmen Cerino on 7/21/16.
@@ -8,9 +8,9 @@
 
 import Foundation
 
-/// A `HeaderFooterDisplayControllerType` describes something that handles the display of
+/// A `HeaderFooterControllerType` describes something that handles the display of
 /// of a single `UIView` that represents a `UITableView` header or footer.
-public protocol HeaderFooterDisplayControllerType {
+public protocol HeaderFooterControllerType {
     
     // MARK: Sizing
     var estimatedHeight: CGFloat { get }
@@ -23,7 +23,7 @@ public protocol HeaderFooterDisplayControllerType {
     func didDisplayView(view: UITableViewHeaderFooterView)
 }
 
-public extension HeaderFooterDisplayControllerType {
+public extension HeaderFooterControllerType {
     var height: CGFloat { return UITableViewAutomaticDimension }
     var estimatedHeight: CGFloat { return self.height }
     func willDisplayView(view: UITableViewHeaderFooterView) { }

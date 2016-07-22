@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 /// A `SectionController` manages displaying a group of
-/// `CellDisplayControllers` in a give section of a `UITableView`
+/// `CellControllerTypes` in a given section of a `UITableView`
 
 public class SectionController: SectionControllerType {
     
     var cellControllers: [CellControllerType]
 
-    public let headerController: HeaderFooterDisplayControllerType?
-    public let footerController: HeaderFooterDisplayControllerType?
+    public let headerController: HeaderFooterControllerType?
+    public let footerController: HeaderFooterControllerType?
     
     public var cellTypes: Set<TableReusableViewType> {
         return Set<TableReusableViewType>(cellControllers.map { $0.cellType })
@@ -31,7 +31,7 @@ public class SectionController: SectionControllerType {
         self.init(cellControllers: [cellController])
     }
     
-    public init(cellControllers: [CellControllerType], headerController: HeaderFooterDisplayControllerType? = nil, footerController: HeaderFooterDisplayControllerType? = nil) {
+    public init(cellControllers: [CellControllerType], headerController: HeaderFooterControllerType? = nil, footerController: HeaderFooterControllerType? = nil) {
         self.cellControllers = cellControllers
         self.headerController = headerController
         self.footerController = footerController

@@ -18,8 +18,8 @@ public protocol SectionControllerType {
     
     var numberOfItems: Int { get }
 
-    var headerController: HeaderFooterDisplayControllerType? { get }
-    var footerController: HeaderFooterDisplayControllerType? { get }
+    var headerController: HeaderFooterControllerType? { get }
+    var footerController: HeaderFooterControllerType? { get }
     
     func configureCell(cell: UITableViewCell, atIndex index: Int)
     
