@@ -23,8 +23,8 @@ public protocol SectionDisplayControllerType {
     
     func configureCell(cell: UITableViewCell, atIndex index: Int)
     
-    func estimatedCellHeightAtIndex(index: Int) -> CGFloat?
-    func cellHeightAtIndex(index: Int) -> CGFloat?
+    func estimatedCellHeightAtIndex(index: Int) -> CGFloat
+    func cellHeightAtIndex(index: Int) -> CGFloat
     
     func canSelectCellAtIndex(index: Int) -> Bool
     func didSelectCellAtIndex(index: Int)
@@ -40,16 +40,16 @@ public extension SectionDisplayControllerType {
     var headerHeight: CGFloat? { return nil }
     var footerHeight: CGFloat? { return nil }
 
-    func estimatedCellHeightAtIndex(index: Int) -> CGFloat? {
-        return self.cellHeightAtIndex(index)
+    func estimatedCellHeightAtIndex(index: Int) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
-    func cellHeightAtIndex(index: Int) -> CGFloat? {
-        return nil
+    func cellHeightAtIndex(index: Int) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
     
     func canSelectCellAtIndex(index: Int) -> Bool {
-        return false
+        return true
     }
     
     func didSelectCellAtIndex(index: Int) { }
