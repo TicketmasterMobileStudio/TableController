@@ -11,17 +11,17 @@ import UIKit
 
 public class TableController: NSObject, UITableViewDelegate, UITableViewDataSource {
     
-    public var sectionsControllers: [SectionControllerType] {
+    public var numberOfSections: Int { return self.sectionsControllers.count }
+    
+    private var sectionsControllers: [SectionControllerType] {
         didSet {
             self.visibleIndexPaths = Set<NSIndexPath>()
         }
     }
     
-    public var numberOfSections: Int { return self.sectionsControllers.count }
-    
     private var visibleIndexPaths = Set<NSIndexPath>()
     private let tableView: UITableView
-    private var cellRegistrationTracker = CellRegistrationTracker()
+    private var registeredCellTypes: [TableReusableViewType] = []
     
     public init(sections: [SectionControllerType], tableView: UITableView) {
         self.sectionsControllers = sections
@@ -33,10 +33,11 @@ public class TableController: NSObject, UITableViewDelegate, UITableViewDataSour
         self.tableView.dataSource = self
     }
     
-    public func reconfigureCellAtIndexPath(indexPath: NSIndexPath, inTableView tableView: UITableView) {
+    public func update(cellAt indexPath: NSIndexPath, in tableView: UITableView) {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
             self.sectionsControllers[indexPath.section].configureCell(cell, atIndex: indexPath.item)
         }
+        self.update(cellAt: indexPath, in: tableView)
     }
 }
 
@@ -45,22 +46,10 @@ public class TableController: NSObject, UITableViewDelegate, UITableViewDataSour
 
 extension TableController {
     
-    struct CellRegistrationTracker {
-        private var registeredCellTypes: [TableReusableViewType] = []
-        
-        func isRegistered(_ cellType: TableReusableViewType) -> Bool {
-            return registeredCellTypes.contains(cellType)
-        }
-        
-        mutating func markAsRegistered(_ cellType: TableReusableViewType) {
-            registeredCellTypes.append(cellType)
-        }
-    }
-    
     func register(cellType: TableReusableViewType) {
-        if !self.cellRegistrationTracker.isRegistered(cellType) {
+        if !self.registeredCellTypes.contains(cellType) {
             cellType.register(asCellInTableView: self.tableView)
-            self.cellRegistrationTracker.markAsRegistered(cellType)
+            self.registeredCellTypes.append(cellType)
         }
     }
     
@@ -166,7 +155,7 @@ public extension TableController {
     public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let section = self.sectionsControllers[section]
         guard let controller = section.headerController else { return nil }
-        return self.viewForController(controller, inTableView: tableView)
+        return self.headerFooterView(forController: controller, in: tableView)
     }
     
     public func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -186,7 +175,7 @@ public extension TableController {
     public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let section = self.sectionsControllers[section]
         guard let controller = section.footerController else { return nil }
-        return self.viewForController(controller, inTableView: tableView)
+        return self.headerFooterView(forController: controller, in: tableView)
     }
     
     public func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
@@ -206,7 +195,7 @@ public extension TableController {
 // MARK: - Header/Footer Helpers
 private extension TableController {
     
-    func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterControllerType, inTableView tableView: UITableView) -> UIView? {
+    func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterControllerType, inTableView tableView: UITableView) -> UITableViewHeaderFooterView? {
         if let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(controller.type.identifer) {
             guard let view = view as? UITableViewHeaderFooterView else { return nil }
             controller.configureView(view)
@@ -216,7 +205,7 @@ private extension TableController {
         return nil
     }
     
-    func viewForController(controller: HeaderFooterControllerType, inTableView tableView: UITableView) -> UIView? {
+    func headerFooterView(forController controller: HeaderFooterControllerType, in tableView: UITableView) -> UITableViewHeaderFooterView? {
         if let view = self.dequeue(reusableHeaderFooterViewForController: controller, inTableView: tableView) {
             return view
         }
