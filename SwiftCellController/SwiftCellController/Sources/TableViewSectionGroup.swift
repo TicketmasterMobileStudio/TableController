@@ -126,7 +126,7 @@ public extension TableViewSectionGroup {
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = self.sectionsDisplayControllers[indexPath.section]
-        return section.estimatedCellHeightAtIndex(indexPath.item) ?? tableView.rowHeight
+        return section.estimatedCellHeightAtIndex(indexPath.item) ?? tableView.estimatedRowHeight
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
