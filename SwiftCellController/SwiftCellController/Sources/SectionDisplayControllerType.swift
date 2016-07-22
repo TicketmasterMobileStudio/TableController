@@ -14,12 +14,12 @@ import UIKit
 
 public protocol SectionDisplayControllerType {
     
-    var cellTypes: Set<RegisterableCellType> { get }
+    var cellTypes: Set<TableReusableViewType> { get }
     
     var numberOfItems: Int { get }
-    
-    var headerHeight: CGFloat? { get }
-    var footerHeight: CGFloat? { get }
+
+    var headerController: HeaderFooterDisplayControllerType? { get }
+    var footerController: HeaderFooterDisplayControllerType? { get }
     
     func configureCell(cell: UITableViewCell, atIndex index: Int)
     
@@ -32,14 +32,11 @@ public protocol SectionDisplayControllerType {
     func willDisplayCell(cell: UITableViewCell, atIndex index: Int)
     func didDisplayCell(cell: UITableViewCell, atIndex index: Int)
     
-    func cellType(forIndexPath indexPath: NSIndexPath) -> RegisterableCellType
+    func cellType(forIndexPath indexPath: NSIndexPath) -> TableReusableViewType
 }
 
 public extension SectionDisplayControllerType {
     
-    var headerHeight: CGFloat? { return nil }
-    var footerHeight: CGFloat? { return nil }
-
     func estimatedCellHeightAtIndex(index: Int) -> CGFloat {
         return UITableViewAutomaticDimension
     }

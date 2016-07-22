@@ -1,5 +1,5 @@
 //
-//  TableViewCellType.swift
+//  TableReusableViewType.swift
 //  LiveNation
 //
 //  Created by Carmen Cerino on 2/2/16.
@@ -12,9 +12,9 @@ import UIKit
 /// A enum to encapsulate the different types of `UITableViewCells`
 /// that can be registered with a `UITableView`
 
-public enum RegisterableCellType: Hashable {
+public enum TableReusableViewType: Hashable {
     case Nib(nibName: String, identifier: String)
-    case Class(cellClass: AnyClass, identifier: String)
+    case Class(viewClass: AnyClass, identifier: String)
     
     public var hashValue: Int {
         return self.identifer.hashValue
@@ -29,7 +29,7 @@ public enum RegisterableCellType: Hashable {
         }
     }
     
-    func register(inTableView tableView: UITableView) {
+    func register(asCellInTableView tableView: UITableView) {
         switch self {
         case .Class(let cellClass, let identifier):
             tableView.registerClass(cellClass, forCellReuseIdentifier: identifier)
@@ -37,9 +37,18 @@ public enum RegisterableCellType: Hashable {
             tableView.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: identifier)
         }
     }
+    
+    func register(asHeaderFooterInTableView tableView: UITableView) {
+        switch self {
+        case .Class(let headerFooterClass, let identifier):
+            tableView.registerClass(headerFooterClass, forHeaderFooterViewReuseIdentifier: identifer)
+        case .Nib(let nibName, let identifier):
+            tableView.registerNib(UINib(nibName: nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: identifer)
+        }
+    }
 }
 
-public func ==(lhs: RegisterableCellType, rhs: RegisterableCellType) -> Bool {
+public func ==(lhs: TableReusableViewType, rhs: TableReusableViewType) -> Bool {
     switch (lhs, rhs) {
     case (let .Class(cellClass1, identifier1), let .Class(cellClass2, indentifier2)):
         return cellClass1 == cellClass2 && identifier1 == indentifier2

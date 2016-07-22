@@ -22,7 +22,7 @@ public protocol CellDisplayControllerType {
     func didSelectCell()
     
     // MARK: Cell Configuration
-    var cellType: RegisterableCellType { get }
+    var cellType: TableReusableViewType { get }
     func configureCell(cell: UITableViewCell)
     func willDisplayCell(cell: UITableViewCell)
     func didDisplayCell(cell: UITableViewCell)

@@ -46,20 +46,20 @@ public class TableViewSectionGroup: NSObject, UITableViewDelegate, UITableViewDa
 extension TableViewSectionGroup {
     
     struct CellRegistrationTracker {
-        private var registeredCellTypes: [RegisterableCellType] = []
+        private var registeredCellTypes: [TableReusableViewType] = []
         
-        func isRegistered(_ cellType: RegisterableCellType) -> Bool {
+        func isRegistered(_ cellType: TableReusableViewType) -> Bool {
             return registeredCellTypes.contains(cellType)
         }
         
-        mutating func markAsRegistered(_ cellType: RegisterableCellType) {
+        mutating func markAsRegistered(_ cellType: TableReusableViewType) {
             registeredCellTypes.append(cellType)
         }
     }
     
-    func register(cellType: RegisterableCellType) {
+    func register(cellType: TableReusableViewType) {
         if !self.cellRegistrationTracker.isRegistered(cellType) {
-            cellType.register(inTableView: self.tableView)
+            cellType.register(asCellInTableView: self.tableView)
             self.cellRegistrationTracker.markAsRegistered(cellType)
         }
     }
@@ -95,6 +95,8 @@ public extension TableViewSectionGroup {
 
 public extension TableViewSectionGroup {
     
+    // MARK: Cell Selection
+    
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         let section = self.sectionsDisplayControllers[indexPath.section]
         return section.canSelectCellAtIndex(indexPath.item) ? indexPath : nil
@@ -104,6 +106,8 @@ public extension TableViewSectionGroup {
         let section = self.sectionsDisplayControllers[indexPath.section]
         return section.didSelectCellAtIndex(indexPath.item)
     }
+    
+    // MARK: Cell Display
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         let section = self.sectionsDisplayControllers[indexPath.section]
@@ -118,23 +122,106 @@ public extension TableViewSectionGroup {
         self.visibleIndexPaths.remove(indexPath)
     }
     
+    // MARK: Cell Height
+    
+    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        let section = self.sectionsDisplayControllers[indexPath.section]
+        return section.estimatedCellHeightAtIndex(indexPath.item) ?? tableView.estimatedRowHeight
+    }
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = self.sectionsDisplayControllers[indexPath.section]
         return section.cellHeightAtIndex(indexPath.item) ?? tableView.rowHeight
     }
+
+
+    // MARK: Header Height
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        let section = self.sectionsDisplayControllers[indexPath.section]
-        return section.estimatedCellHeightAtIndex(indexPath.item) ?? tableView.rowHeight
+    public func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        let section = self.sectionsDisplayControllers[section]
+        return section.headerController?.estimatedHeight ?? tableView.estimatedSectionHeaderHeight
+        
     }
-    
+
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let section = self.sectionsDisplayControllers[section]
-        return section.headerHeight ?? tableView.sectionHeaderHeight
+        return section.headerController?.height ?? tableView.sectionHeaderHeight
+    }
+    
+    // MARK: Footer Height
+    
+    public func tableView(tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+        let section = self.sectionsDisplayControllers[section]
+        return section.footerController?.estimatedHeight ?? tableView.estimatedSectionFooterHeight
+        
     }
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         let section = self.sectionsDisplayControllers[section]
-        return section.footerHeight ?? tableView.sectionFooterHeight
+        return section.footerController?.height ?? tableView.sectionFooterHeight
+    }
+    
+    // MARK: Header Display
+    
+    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let section = self.sectionsDisplayControllers[section]
+        guard let controller = section.headerController else { return nil }
+        return self.viewForController(controller, inTableView: tableView)
+    }
+    
+    public func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let section = self.sectionsDisplayControllers[section]
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        section.headerController?.willDisplayView(header)
+    }
+    
+    public func tableView(tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+        let section = self.sectionsDisplayControllers[section]
+        guard let header = view as? UITableViewHeaderFooterView else { return }
+        section.headerController?.didDisplayView(header)
+    }
+    
+    // MARK: Footer Display
+    
+    public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let section = self.sectionsDisplayControllers[section]
+        guard let controller = section.footerController else { return nil }
+        return self.viewForController(controller, inTableView: tableView)
+    }
+    
+    public func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+        let section = self.sectionsDisplayControllers[section]
+        guard let footer = view as? UITableViewHeaderFooterView else { return }
+        section.footerController?.willDisplayView(footer)
+
+    }
+    
+    public func tableView(tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
+        let section = self.sectionsDisplayControllers[section]
+        guard let footer = view as? UITableViewHeaderFooterView else { return }
+        section.footerController?.didDisplayView(footer)
+    }
+}
+
+// MARK: - Header/Footer Helpers
+private extension TableViewSectionGroup {
+    
+    func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterDisplayControllerType, inTableView tableView: UITableView) -> UIView? {
+        if let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(controller.type.identifer) {
+            guard let view = view as? UITableViewHeaderFooterView else { return nil }
+            controller.configureView(view)
+            return view
+        }
+        
+        return nil
+    }
+    
+    func viewForController(controller: HeaderFooterDisplayControllerType, inTableView tableView: UITableView) -> UIView? {
+        if let view = self.dequeue(reusableHeaderFooterViewForController: controller, inTableView: tableView) {
+            return view
+        }
+        
+        controller.type.register(asHeaderFooterInTableView: tableView)
+        return self.dequeue(reusableHeaderFooterViewForController: controller, inTableView: tableView)
     }
 }

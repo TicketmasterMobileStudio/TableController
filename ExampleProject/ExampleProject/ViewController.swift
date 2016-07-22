@@ -63,7 +63,7 @@ class BasicCellDisplayController: CellDisplayControllerType {
     
     var title: String = "Default"
     
-    var cellType: RegisterableCellType = .Class(cellClass: UITableViewCell.self, identifier: "BasicCell")
+    var cellType: TableReusableViewType = .Class(viewClass: UITableViewCell.self, identifier: "BasicCell")
     var cellHeight: CGFloat = 60.0
     
     init(title: String) {
@@ -78,9 +78,12 @@ class BasicCellDisplayController: CellDisplayControllerType {
 
 class BasicSectionDisplayController: SectionDisplayControllerType {
     
-    let basicCellType: RegisterableCellType = .Class(cellClass: UITableViewCell.self, identifier: "BasicSectionCell")
+    let footerController: HeaderFooterDisplayControllerType? = nil
+    let headerController: HeaderFooterDisplayControllerType? = TestHeaderDisplayController()
     
-    var cellTypes: Set<RegisterableCellType> {
+    let basicCellType: TableReusableViewType = .Class(viewClass: UITableViewCell.self, identifier: "BasicSectionCell")
+    
+    var cellTypes: Set<TableReusableViewType> {
         return [ self.basicCellType ]
     }
     
@@ -90,7 +93,22 @@ class BasicSectionDisplayController: SectionDisplayControllerType {
         cell.textLabel?.text = "Section Item: \(index)"
     }
     
-    func cellType(forIndexPath indexPath: NSIndexPath) -> RegisterableCellType {
+    func cellType(forIndexPath indexPath: NSIndexPath) -> TableReusableViewType {
         return self.basicCellType
     }
+}
+
+class TestHeaderDisplayController: HeaderFooterDisplayControllerType {
+    
+    let height: CGFloat = 30.0
+    let type: TableReusableViewType = .Class(viewClass: TestHeaderView.self, identifier: "TestHeader")
+    
+    func configureView(view: UITableViewHeaderFooterView) {
+        guard let header = view as? TestHeaderView else { return }
+        
+        header.primaryLabel.text = "Hi"
+        header.secondaryLabel.text = "Bye"
+    }
+    
+    
 }
