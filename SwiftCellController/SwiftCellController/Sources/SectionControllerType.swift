@@ -6,7 +6,6 @@
 //  Copyright © 2016 Live Nation Entertainment. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 /// A `SectionControllerType` describes something that handles the display of 
@@ -21,36 +20,36 @@ public protocol SectionControllerType {
     var headerController: HeaderFooterControllerType? { get }
     var footerController: HeaderFooterControllerType? { get }
     
-    func configureCell(cell: UITableViewCell, atIndex index: Int)
+    func configure(cell cell: UITableViewCell, atIndex index: Int)
     
-    func estimatedCellHeightAtIndex(index: Int) -> CGFloat
-    func cellHeightAtIndex(index: Int) -> CGFloat
+    func estimatedCellHeight(atIndex index: Int) -> CGFloat
+    func cellHeight(atIndex index: Int) -> CGFloat
     
-    func canSelectCellAtIndex(index: Int) -> Bool
-    func didSelectCellAtIndex(index: Int)
+    func canSelectCell(atIndex index: Int) -> Bool
+    func didSelectCell(atIndex index: Int)
     
-    func willDisplayCell(cell: UITableViewCell, atIndex index: Int)
-    func didDisplayCell(cell: UITableViewCell, atIndex index: Int)
+    func willDisplay(cell cell: UITableViewCell, atIndex index: Int)
+    func didDisplay(cell cell: UITableViewCell, atIndex index: Int)
     
     func cellType(forIndexPath indexPath: NSIndexPath) -> TableReusableViewType
 }
 
 public extension SectionControllerType {
     
-    func estimatedCellHeightAtIndex(index: Int) -> CGFloat {
+    func estimatedCellHeight(atIndex index: Int) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func cellHeightAtIndex(index: Int) -> CGFloat {
+    func cellHeight(atIndex index: Int) -> CGFloat {
         return UITableViewAutomaticDimension
     }
     
-    func canSelectCellAtIndex(index: Int) -> Bool {
+    func canSelectCell(atIndex index: Int) -> Bool {
         return true
     }
     
-    func didSelectCellAtIndex(index: Int) { }
-    func willDisplayCell(cell: UITableViewCell, atIndex index: Int) { }
-    func didDisplayCell(cell: UITableViewCell, atIndex index: Int) { }
+    func didSelectCell(atIndex index: Int) { }
+    func willDisplay(cell cell: UITableViewCell, atIndex index: Int) { }
+    func didDisplay(cell cell: UITableViewCell, atIndex index: Int) { }
     
 }

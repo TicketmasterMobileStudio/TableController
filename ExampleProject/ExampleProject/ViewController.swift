@@ -89,7 +89,7 @@ class BasicSectionController: SectionControllerType {
     
     var numberOfItems: Int = 4
     
-    func configureCell(cell: UITableViewCell, atIndex index: Int) {
+    func configure(cell cell: UITableViewCell, atIndex index: Int) {
         cell.textLabel?.text = "Section Item: \(index)"
     }
     

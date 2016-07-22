@@ -6,7 +6,6 @@
 //  Copyright © 2016 Live Nation Entertainment. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 public class TableController: NSObject, UITableViewDelegate, UITableViewDataSource {
@@ -35,7 +34,7 @@ public class TableController: NSObject, UITableViewDelegate, UITableViewDataSour
     
     public func update(cellAt indexPath: NSIndexPath, in tableView: UITableView) {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) {
-            self.sectionsControllers[indexPath.section].configureCell(cell, atIndex: indexPath.item)
+            self.sectionsControllers[indexPath.section].configure(cell: cell, atIndex: indexPath.row)
         }
         self.update(cellAt: indexPath, in: tableView)
     }
@@ -75,7 +74,7 @@ public extension TableController {
         self.register(cellType)
         let cell = tableView.dequeueReusableCellWithIdentifier(cellType.identifer, forIndexPath: indexPath)
         
-        section.configureCell(cell, atIndex: indexPath.item)
+        section.configure(cell: cell, atIndex: indexPath.row)
         return cell
     }
 }
@@ -88,26 +87,26 @@ public extension TableController {
     
     func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         let section = self.sectionsControllers[indexPath.section]
-        return section.canSelectCellAtIndex(indexPath.item) ? indexPath : nil
+        return section.canSelectCell(atIndex: indexPath.item) ? indexPath : nil
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let section = self.sectionsControllers[indexPath.section]
-        return section.didSelectCellAtIndex(indexPath.item)
+        return section.didSelectCell(atIndex: indexPath.item)
     }
     
     // MARK: Cell Display
     
     func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         let section = self.sectionsControllers[indexPath.section]
-        section.willDisplayCell(cell, atIndex: indexPath.item)
+        section.willDisplay(cell: cell, atIndex: indexPath.item)
         self.visibleIndexPaths.insert(indexPath)
     }
     
     func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
         guard self.visibleIndexPaths.contains(indexPath) else { return }
         let section = self.sectionsControllers[indexPath.section]
-        section.didDisplayCell(cell, atIndex: indexPath.item)
+        section.didDisplay(cell: cell, atIndex: indexPath.item)
         self.visibleIndexPaths.remove(indexPath)
     }
     
@@ -115,12 +114,12 @@ public extension TableController {
     
     func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = self.sectionsControllers[indexPath.section]
-        return section.estimatedCellHeightAtIndex(indexPath.item) ?? tableView.estimatedRowHeight
+        return section.estimatedCellHeight(atIndex: indexPath.item) ?? tableView.estimatedRowHeight
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         let section = self.sectionsControllers[indexPath.section]
-        return section.cellHeightAtIndex(indexPath.item) ?? tableView.rowHeight
+        return section.cellHeight(atIndex: indexPath.item) ?? tableView.rowHeight
     }
 
 

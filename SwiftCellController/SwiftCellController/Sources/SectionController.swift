@@ -41,7 +41,7 @@ public class SectionController: SectionControllerType {
         return self.cellControllers[indexPath.item].cellType
     }
     
-    public func configureCell(cell: UITableViewCell, atIndex index: Int) {
+    public func configure(cell cell: UITableViewCell, atIndex index: Int) {
         self.cellControllers[index].configureCell(cell)
     }
     
@@ -61,11 +61,11 @@ public class SectionController: SectionControllerType {
         self.cellControllers[index].didSelectCell()
     }
     
-    public func willDisplayCell(cell: UITableViewCell, atIndex index: Int) {
+    public func willDisplay(cell cell: UITableViewCell, atIndex index: Int) {
         self.cellControllers[index].willDisplayCell(cell)
     }
     
-    public func didDisplayCell(cell: UITableViewCell, atIndex index: Int) {
+    public func didDisplay(cell cell: UITableViewCell, atIndex index: Int) {
         self.cellControllers[index].didDisplayCell(cell)
     }
 }
