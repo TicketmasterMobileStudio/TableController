@@ -1,5 +1,5 @@
 //
-//  CellDisplayControllerType.swift
+//  CellControllerType.swift
 //  LiveNation
 //
 //  Created by Carmen Cerino on 2/2/16.
@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-/// A `CellDisplayControllerType` describes something that handles the display of
+/// A `CellControllerType` describes something that handles the display of
 /// of a single `UITableViewCell`
-public protocol CellDisplayControllerType {
+public protocol CellControllerType {
     
     // MARK: Cell Sizing
     var estimatedCellHeight: CGFloat { get }
@@ -28,7 +28,7 @@ public protocol CellDisplayControllerType {
     func didDisplayCell(cell: UITableViewCell)
 }
 
-public extension CellDisplayControllerType {
+public extension CellControllerType {
     var cellHeight: CGFloat { return UITableViewAutomaticDimension }
     var estimatedCellHeight: CGFloat { return UITableViewAutomaticDimension }
     var selectable: Bool { return true }

@@ -14,7 +14,7 @@ import UIKit
 
 public class CellDisplayControllerGroup: SectionControllerType {
     
-    var cellControllers: [CellDisplayControllerType]
+    var cellControllers: [CellControllerType]
 
     public let headerController: HeaderFooterDisplayControllerType?
     public let footerController: HeaderFooterDisplayControllerType?
@@ -27,11 +27,11 @@ public class CellDisplayControllerGroup: SectionControllerType {
         return self.cellControllers.count
     }
     
-    public convenience init(cellController: CellDisplayControllerType) {
+    public convenience init(cellController: CellControllerType) {
         self.init(cellControllers: [cellController])
     }
     
-    public init(cellControllers: [CellDisplayControllerType], headerController: HeaderFooterDisplayControllerType? = nil, footerController: HeaderFooterDisplayControllerType? = nil) {
+    public init(cellControllers: [CellControllerType], headerController: HeaderFooterDisplayControllerType? = nil, footerController: HeaderFooterDisplayControllerType? = nil) {
         self.cellControllers = cellControllers
         self.headerController = headerController
         self.footerController = footerController

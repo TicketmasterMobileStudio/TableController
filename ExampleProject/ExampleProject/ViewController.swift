@@ -59,7 +59,7 @@ class ViewController: UIViewController {
 
 }
 
-class BasicCellDisplayController: CellDisplayControllerType {
+class BasicCellDisplayController: CellControllerType {
     
     var title: String = "Default"
     
