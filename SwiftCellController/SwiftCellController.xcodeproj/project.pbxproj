@@ -8,8 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		130908401D3D41D6007DB5D8 /* SwiftCellController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1309083F1D3D41D6007DB5D8 /* SwiftCellController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		130908571D3D420E007DB5D8 /* CellDisplayControllerGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908521D3D420E007DB5D8 /* CellDisplayControllerGroup.swift */; };
-		130908581D3D420E007DB5D8 /* CellDisplayControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908531D3D420E007DB5D8 /* CellDisplayControllerType.swift */; };
+		130908571D3D420E007DB5D8 /* SectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908521D3D420E007DB5D8 /* SectionController.swift */; };
+		130908581D3D420E007DB5D8 /* CellControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908531D3D420E007DB5D8 /* CellControllerType.swift */; };
 		130908591D3D420E007DB5D8 /* SectionControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908541D3D420E007DB5D8 /* SectionControllerType.swift */; };
 		1309085A1D3D420E007DB5D8 /* TableReusableViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908551D3D420E007DB5D8 /* TableReusableViewType.swift */; };
 		1309085B1D3D420E007DB5D8 /* TableViewSectionGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908561D3D420E007DB5D8 /* TableViewSectionGroup.swift */; };
@@ -20,8 +20,8 @@
 		1309083C1D3D41D6007DB5D8 /* SwiftCellController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCellController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1309083F1D3D41D6007DB5D8 /* SwiftCellController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftCellController.h; sourceTree = "<group>"; };
 		130908411D3D41D6007DB5D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		130908521D3D420E007DB5D8 /* CellDisplayControllerGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = CellDisplayControllerGroup.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		130908531D3D420E007DB5D8 /* CellDisplayControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellDisplayControllerType.swift; sourceTree = "<group>"; };
+		130908521D3D420E007DB5D8 /* SectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SectionController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		130908531D3D420E007DB5D8 /* CellControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellControllerType.swift; sourceTree = "<group>"; };
 		130908541D3D420E007DB5D8 /* SectionControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SectionControllerType.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		130908551D3D420E007DB5D8 /* TableReusableViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableReusableViewType.swift; sourceTree = "<group>"; };
 		130908561D3D420E007DB5D8 /* TableViewSectionGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TableViewSectionGroup.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -68,8 +68,8 @@
 		130908511D3D420E007DB5D8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				130908521D3D420E007DB5D8 /* CellDisplayControllerGroup.swift */,
-				130908531D3D420E007DB5D8 /* CellDisplayControllerType.swift */,
+				130908521D3D420E007DB5D8 /* SectionController.swift */,
+				130908531D3D420E007DB5D8 /* CellControllerType.swift */,
 				130908541D3D420E007DB5D8 /* SectionControllerType.swift */,
 				130908551D3D420E007DB5D8 /* TableReusableViewType.swift */,
 				130908561D3D420E007DB5D8 /* TableViewSectionGroup.swift */,
@@ -159,8 +159,8 @@
 				1309085B1D3D420E007DB5D8 /* TableViewSectionGroup.swift in Sources */,
 				1309085A1D3D420E007DB5D8 /* TableReusableViewType.swift in Sources */,
 				9970AC481D40F50D004FF260 /* HeaderFooterDisplayControllerType.swift in Sources */,
-				130908571D3D420E007DB5D8 /* CellDisplayControllerGroup.swift in Sources */,
-				130908581D3D420E007DB5D8 /* CellDisplayControllerType.swift in Sources */,
+				130908571D3D420E007DB5D8 /* SectionController.swift in Sources */,
+				130908581D3D420E007DB5D8 /* CellControllerType.swift in Sources */,
 				130908591D3D420E007DB5D8 /* SectionControllerType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,5 +1,5 @@
 //
-//  CellDisplayControllerGroup.swift
+//  SectionController.swift
 //  LiveNation
 //
 //  Created by Carmen Cerino on 2/2/16.
@@ -9,10 +9,10 @@
 import Foundation
 import UIKit
 
-/// A `CellDisplayControllerGroup` manages displaying a group of
+/// A `SectionController` manages displaying a group of
 /// `CellDisplayControllers` in a give section of a `UITableView`
 
-public class CellDisplayControllerGroup: SectionControllerType {
+public class SectionController: SectionControllerType {
     
     var cellControllers: [CellControllerType]
 

@@ -33,10 +33,10 @@ class ViewController: UIViewController {
         self.sectionedTableView.backgroundColor = UIColor.groupTableViewBackgroundColor()
         
         let sectionDisplayController = BasicSectionDisplayController()
-        let cellDisplayControllerGroup = self.setupCellDisplayControllerGroup()
+        let sectionController = self.setupSectionController()
         
-        self.sectionGroup = TableViewSectionGroup(sections: [sectionDisplayController, cellDisplayControllerGroup], tableView: self.sectionedTableView)
-        self.sectionGroup2 = TableViewSectionGroup(sections: [sectionDisplayController, cellDisplayControllerGroup], tableView: self.groupedTableView)
+        self.sectionGroup = TableViewSectionGroup(sections: [sectionDisplayController, sectionController], tableView: self.sectionedTableView)
+        self.sectionGroup2 = TableViewSectionGroup(sections: [sectionDisplayController, sectionController], tableView: self.groupedTableView)
     }
     
     func showSectionedTable() {
@@ -49,11 +49,11 @@ class ViewController: UIViewController {
         self.groupedTableView.hidden = false
     }
     
-    func setupCellDisplayControllerGroup() -> CellDisplayControllerGroup {
+    func setupSectionController() -> SectionController {
         let basicItem1 = BasicCellDisplayController(title: "Item 1")
         let basicItem2 = BasicCellDisplayController(title: "Item 2")
         
-        let group = CellDisplayControllerGroup(cellControllers: [basicItem1, basicItem2])
+        let group = SectionController(cellControllers: [basicItem1, basicItem2])
         return group
     }
 
