@@ -14,8 +14,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var sectionedTableView: UITableView!
     @IBOutlet weak var groupedTableView: UITableView!
     
-    var sectionGroup: TableViewSectionGroup?
-    var sectionGroup2: TableViewSectionGroup?
+    var sectionGroup: TableController?
+    var sectionGroup2: TableController?
     
     @IBAction func controlChanged(sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -32,11 +32,11 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         self.sectionedTableView.backgroundColor = UIColor.groupTableViewBackgroundColor()
         
-        let sectionDisplayController = BasicSectionDisplayController()
-        let cellDisplayControllerGroup = self.setupCellDisplayControllerGroup()
+        let firstSectionController = BasicSectionController()
+        let secondSectionController = self.setupSectionController()
         
-        self.sectionGroup = TableViewSectionGroup(sections: [sectionDisplayController, cellDisplayControllerGroup], tableView: self.sectionedTableView)
-        self.sectionGroup2 = TableViewSectionGroup(sections: [sectionDisplayController, cellDisplayControllerGroup], tableView: self.groupedTableView)
+        self.sectionGroup = TableController(sections: [firstSectionController, secondSectionController], tableView: self.sectionedTableView)
+        self.sectionGroup2 = TableController(sections: [firstSectionController, secondSectionController], tableView: self.groupedTableView)
     }
     
     func showSectionedTable() {
@@ -49,17 +49,17 @@ class ViewController: UIViewController {
         self.groupedTableView.hidden = false
     }
     
-    func setupCellDisplayControllerGroup() -> CellDisplayControllerGroup {
-        let basicItem1 = BasicCellDisplayController(title: "Item 1")
-        let basicItem2 = BasicCellDisplayController(title: "Item 2")
+    func setupSectionController() -> SectionController {
+        let basicItem1 = BasicCellController(title: "Item 1")
+        let basicItem2 = BasicCellController(title: "Item 2")
         
-        let group = CellDisplayControllerGroup(cellControllers: [basicItem1, basicItem2])
+        let group = SectionController(cellControllers: [basicItem1, basicItem2])
         return group
     }
 
 }
 
-class BasicCellDisplayController: CellDisplayControllerType {
+class BasicCellController: CellControllerType {
     
     var title: String = "Default"
     
@@ -70,16 +70,16 @@ class BasicCellDisplayController: CellDisplayControllerType {
         self.title = title
     }
     
-    func configureCell(cell: UITableViewCell) {
+    func configure(cell cell: UITableViewCell) {
         cell.textLabel?.text = title
     }
     
 }
 
-class BasicSectionDisplayController: SectionDisplayControllerType {
+class BasicSectionController: SectionControllerType {
     
-    let footerController: HeaderFooterDisplayControllerType? = nil
-    let headerController: HeaderFooterDisplayControllerType? = TestHeaderDisplayController()
+    let footerController: HeaderFooterControllerType? = nil
+    let headerController: HeaderFooterControllerType? = TestHeaderController()
     
     let basicCellType: TableReusableViewType = .Class(viewClass: UITableViewCell.self, identifier: "BasicSectionCell")
     
@@ -89,7 +89,7 @@ class BasicSectionDisplayController: SectionDisplayControllerType {
     
     var numberOfItems: Int = 4
     
-    func configureCell(cell: UITableViewCell, atIndex index: Int) {
+    func configure(cell cell: UITableViewCell, atIndex index: Int) {
         cell.textLabel?.text = "Section Item: \(index)"
     }
     
@@ -98,12 +98,12 @@ class BasicSectionDisplayController: SectionDisplayControllerType {
     }
 }
 
-class TestHeaderDisplayController: HeaderFooterDisplayControllerType {
+class TestHeaderController: HeaderFooterControllerType {
     
     let height: CGFloat = 30.0
     let type: TableReusableViewType = .Class(viewClass: TestHeaderView.self, identifier: "TestHeader")
     
-    func configureView(view: UITableViewHeaderFooterView) {
+    func configure(view view: UITableViewHeaderFooterView) {
         guard let header = view as? TestHeaderView else { return }
         
         header.primaryLabel.text = "Hi"

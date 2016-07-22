@@ -1,17 +1,16 @@
 //
-//  CellDisplayControllerType.swift
+//  CellControllerType.swift
 //  LiveNation
 //
 //  Created by Carmen Cerino on 2/2/16.
 //  Copyright © 2016 Live Nation Entertainment. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-/// A `CellDisplayControllerType` describes something that handles the display of
+/// A `CellControllerType` describes something that handles the display of
 /// of a single `UITableViewCell`
-public protocol CellDisplayControllerType {
+public protocol CellControllerType {
     
     // MARK: Cell Sizing
     var estimatedCellHeight: CGFloat { get }
@@ -19,20 +18,20 @@ public protocol CellDisplayControllerType {
     
     // MARK: Selection
     var selectable: Bool { get }
-    func didSelectCell()
+    func performSelectionAction()
     
     // MARK: Cell Configuration
     var cellType: TableReusableViewType { get }
-    func configureCell(cell: UITableViewCell)
-    func willDisplayCell(cell: UITableViewCell)
-    func didDisplayCell(cell: UITableViewCell)
+    func configure(cell cell: UITableViewCell)
+    func willDisplay(cell cell: UITableViewCell)
+    func didDisplay(cell cell: UITableViewCell)
 }
 
-public extension CellDisplayControllerType {
+public extension CellControllerType {
     var cellHeight: CGFloat { return UITableViewAutomaticDimension }
     var estimatedCellHeight: CGFloat { return UITableViewAutomaticDimension }
     var selectable: Bool { return true }
-    func didSelectCell() { }
-    func willDisplayCell(cell: UITableViewCell) { }
-    func didDisplayCell(cell: UITableViewCell) { }
+    func performSelectionAction() { }
+    func willDisplay(cell cell: UITableViewCell) { }
+    func didDisplay(cell cell: UITableViewCell) { }
 }
