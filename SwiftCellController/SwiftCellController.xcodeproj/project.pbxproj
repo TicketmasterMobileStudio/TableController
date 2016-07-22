@@ -68,12 +68,12 @@
 		130908511D3D420E007DB5D8 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				130908521D3D420E007DB5D8 /* SectionController.swift */,
-				130908531D3D420E007DB5D8 /* CellControllerType.swift */,
-				130908541D3D420E007DB5D8 /* SectionControllerType.swift */,
-				130908551D3D420E007DB5D8 /* TableReusableViewType.swift */,
 				130908561D3D420E007DB5D8 /* TableController.swift */,
+				130908541D3D420E007DB5D8 /* SectionControllerType.swift */,
+				130908531D3D420E007DB5D8 /* CellControllerType.swift */,
+				130908551D3D420E007DB5D8 /* TableReusableViewType.swift */,
 				9970AC471D40F50D004FF260 /* HeaderFooterControllerType.swift */,
+				130908521D3D420E007DB5D8 /* SectionController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
