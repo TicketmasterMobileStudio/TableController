@@ -160,13 +160,13 @@ public extension TableController {
     public func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let section = self.sectionsControllers[section]
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        section.headerController?.willDisplayView(header)
+        section.headerController?.willDisplay(view: header)
     }
     
     public func tableView(tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
         let section = self.sectionsControllers[section]
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        section.headerController?.didDisplayView(header)
+        section.headerController?.didDisplay(view: header)
     }
     
     // MARK: Footer Display
@@ -180,14 +180,14 @@ public extension TableController {
     public func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         let section = self.sectionsControllers[section]
         guard let footer = view as? UITableViewHeaderFooterView else { return }
-        section.footerController?.willDisplayView(footer)
+        section.footerController?.willDisplay(view: footer)
 
     }
     
     public func tableView(tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
         let section = self.sectionsControllers[section]
         guard let footer = view as? UITableViewHeaderFooterView else { return }
-        section.footerController?.didDisplayView(footer)
+        section.footerController?.didDisplay(view: footer)
     }
 }
 
@@ -197,7 +197,7 @@ private extension TableController {
     func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterControllerType, inTableView tableView: UITableView) -> UITableViewHeaderFooterView? {
         if let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(controller.type.identifer) {
             guard let view = view as? UITableViewHeaderFooterView else { return nil }
-            controller.configureView(view)
+            controller.configure(view: view)
             return view
         }
         

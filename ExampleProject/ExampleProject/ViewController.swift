@@ -103,7 +103,7 @@ class TestHeaderController: HeaderFooterControllerType {
     let height: CGFloat = 30.0
     let type: TableReusableViewType = .Class(viewClass: TestHeaderView.self, identifier: "TestHeader")
     
-    func configureView(view: UITableViewHeaderFooterView) {
+    func configure(view view: UITableViewHeaderFooterView) {
         guard let header = view as? TestHeaderView else { return }
         
         header.primaryLabel.text = "Hi"
