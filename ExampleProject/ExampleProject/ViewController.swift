@@ -70,7 +70,7 @@ class BasicCellController: CellControllerType {
         self.title = title
     }
     
-    func configureCell(cell: UITableViewCell) {
+    func configure(cell cell: UITableViewCell) {
         cell.textLabel?.text = title
     }
     

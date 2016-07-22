@@ -42,7 +42,7 @@ public class SectionController: SectionControllerType {
     }
     
     public func configure(cell cell: UITableViewCell, atIndex index: Int) {
-        self.cellControllers[index].configureCell(cell)
+        self.cellControllers[index].configure(cell: cell)
     }
     
     public func cellHeightAtIndex(index: Int) -> CGFloat {
@@ -58,14 +58,14 @@ public class SectionController: SectionControllerType {
     }
     
     public func didSelectCellAtIndex(index: Int) {
-        self.cellControllers[index].didSelectCell()
+        self.cellControllers[index].performSelectionAction()
     }
     
     public func willDisplay(cell cell: UITableViewCell, atIndex index: Int) {
-        self.cellControllers[index].willDisplayCell(cell)
+        self.cellControllers[index].willDisplay(cell: cell)
     }
     
     public func didDisplay(cell cell: UITableViewCell, atIndex index: Int) {
-        self.cellControllers[index].didDisplayCell(cell)
+        self.cellControllers[index].didDisplay(cell: cell)
     }
 }

@@ -6,7 +6,6 @@
 //  Copyright © 2016 Live Nation Entertainment. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
 /// A `CellControllerType` describes something that handles the display of
@@ -19,20 +18,20 @@ public protocol CellControllerType {
     
     // MARK: Selection
     var selectable: Bool { get }
-    func didSelectCell()
+    func performSelectionAction()
     
     // MARK: Cell Configuration
     var cellType: TableReusableViewType { get }
-    func configureCell(cell: UITableViewCell)
-    func willDisplayCell(cell: UITableViewCell)
-    func didDisplayCell(cell: UITableViewCell)
+    func configure(cell cell: UITableViewCell)
+    func willDisplay(cell cell: UITableViewCell)
+    func didDisplay(cell cell: UITableViewCell)
 }
 
 public extension CellControllerType {
     var cellHeight: CGFloat { return UITableViewAutomaticDimension }
     var estimatedCellHeight: CGFloat { return UITableViewAutomaticDimension }
     var selectable: Bool { return true }
-    func didSelectCell() { }
-    func willDisplayCell(cell: UITableViewCell) { }
-    func didDisplayCell(cell: UITableViewCell) { }
+    func performSelectionAction() { }
+    func willDisplay(cell cell: UITableViewCell) { }
+    func didDisplay(cell cell: UITableViewCell) { }
 }
