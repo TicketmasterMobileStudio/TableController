@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SwiftCellController/SwiftCellController.xcodeproj">
+      location = "group:TableController/TableController.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:ExampleProject/ExampleProject.xcodeproj">

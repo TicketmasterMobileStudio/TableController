@@ -9,11 +9,9 @@
 #import <UIKit/UIKit.h>
 
 //! Project version number for SwiftCellController.
-FOUNDATION_EXPORT double SwiftCellControllerVersionNumber;
+FOUNDATION_EXPORT double TableControllerVersionNumber;
 
 //! Project version string for SwiftCellController.
-FOUNDATION_EXPORT const unsigned char SwiftCellControllerVersionString[];
+FOUNDATION_EXPORT const unsigned char TableControllerVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <SwiftCellController/PublicHeader.h>
-
-
+// In this header, you should import all the public headers of your framework using statements like #import <TableController/PublicHeader.h>
