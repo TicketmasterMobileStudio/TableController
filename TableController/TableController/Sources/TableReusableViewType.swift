@@ -17,10 +17,10 @@ public enum TableReusableViewType: Hashable {
     case Class(viewClass: AnyClass, identifier: String)
     
     public var hashValue: Int {
-        return self.identifer.hashValue
+        return self.identifier.hashValue
     }
     
-    var identifer: String {
+    var identifier: String {
         switch self {
         case .Class(_, let identifier):
             return identifier
@@ -41,9 +41,9 @@ public enum TableReusableViewType: Hashable {
     func registerAsHeaderFooter(inTableView tableView: UITableView) {
         switch self {
         case .Class(let headerFooterClass, let identifier):
-            tableView.registerClass(headerFooterClass, forHeaderFooterViewReuseIdentifier: identifer)
+            tableView.registerClass(headerFooterClass, forHeaderFooterViewReuseIdentifier: identifier)
         case .Nib(let nibName, let identifier):
-            tableView.registerNib(UINib(nibName: nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: identifer)
+            tableView.registerNib(UINib(nibName: nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: identifier)
         }
     }
 }

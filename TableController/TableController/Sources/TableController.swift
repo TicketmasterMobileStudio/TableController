@@ -72,7 +72,7 @@ public extension TableController {
         let cellType = section.cellType(forIndexPath: indexPath)
         
         self.register(cellType)
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellType.identifer, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellType.identifier, forIndexPath: indexPath)
         
         section.configure(cell: cell, atIndex: indexPath.row)
         return cell
@@ -195,7 +195,7 @@ public extension TableController {
 private extension TableController {
     
     func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterControllerType, inTableView tableView: UITableView) -> UITableViewHeaderFooterView? {
-        if let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(controller.type.identifer) {
+        if let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(controller.type.identifier) {
             controller.configure(view: view)
             return view
         }
