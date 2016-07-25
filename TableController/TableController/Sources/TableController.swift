@@ -196,7 +196,6 @@ private extension TableController {
     
     func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterControllerType, inTableView tableView: UITableView) -> UITableViewHeaderFooterView? {
         if let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(controller.type.identifer) {
-            guard let view = view as? UITableViewHeaderFooterView else { return nil }
             controller.configure(view: view)
             return view
         }
