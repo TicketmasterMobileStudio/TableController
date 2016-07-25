@@ -55,6 +55,9 @@ public protocol SectionControllerType {
 
 public extension SectionControllerType {
     
+    var headerController: HeaderFooterControllerType? { return nil }
+    var footerController: HeaderFooterControllerType? { return nil }
+    
     func estimatedCellHeight(atIndex index: Int) -> CGFloat {
         return UITableViewAutomaticDimension
     }

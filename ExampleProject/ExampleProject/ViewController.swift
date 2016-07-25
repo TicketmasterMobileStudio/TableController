@@ -78,7 +78,6 @@ class BasicCellController: CellControllerType {
 
 class BasicSectionController: SectionControllerType {
     
-    let footerController: HeaderFooterControllerType? = nil
     let headerController: HeaderFooterControllerType? = TestHeaderController()
     
     let basicCellType: TableReusableViewType = .Class(viewClass: UITableViewCell.self, identifier: "BasicSectionCell")
