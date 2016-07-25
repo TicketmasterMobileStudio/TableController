@@ -34,10 +34,14 @@ public class TableController: NSObject, UITableViewDelegate, UITableViewDataSour
     private var sectionsControllers: [SectionControllerType] {
         didSet {
             self.visibleIndexPaths = Set<NSIndexPath>()
+            self.visibleHeaders = NSMutableIndexSet()
+            self.visibleFooters = NSMutableIndexSet()
         }
     }
     
     private var visibleIndexPaths = Set<NSIndexPath>()
+    private var visibleHeaders = NSMutableIndexSet()
+    private var visibleFooters = NSMutableIndexSet()
     private let tableView: UITableView
     private var registeredCellTypes: [TableReusableViewType] = []
     
@@ -177,15 +181,18 @@ public extension TableController {
     }
     
     public func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let section = self.sectionsControllers[section]
+        let sectionController = self.sectionsControllers[section]
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        section.headerController?.willDisplay(view: header)
+        sectionController.headerController?.willDisplay(view: header)
+        self.visibleHeaders.addIndex(section)
     }
     
     public func tableView(tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
-        let section = self.sectionsControllers[section]
+        guard self.visibleHeaders.contains(section) else { return }
+        let sectionController = self.sectionsControllers[section]
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        section.headerController?.didDisplay(view: header)
+        sectionController.headerController?.didDisplay(view: header)
+        self.visibleHeaders.removeIndex(section)
     }
     
     // MARK: Footer Display
@@ -197,16 +204,18 @@ public extension TableController {
     }
     
     public func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
-        let section = self.sectionsControllers[section]
+        let sectionController = self.sectionsControllers[section]
         guard let footer = view as? UITableViewHeaderFooterView else { return }
-        section.footerController?.willDisplay(view: footer)
-
+        sectionController.footerController?.willDisplay(view: footer)
+        self.visibleFooters.addIndex(section)
     }
     
     public func tableView(tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
-        let section = self.sectionsControllers[section]
+        guard self.visibleFooters.contains(section) else { return }
+        let sectionController = self.sectionsControllers[section]
         guard let footer = view as? UITableViewHeaderFooterView else { return }
-        section.footerController?.didDisplay(view: footer)
+        sectionController.footerController?.didDisplay(view: footer)
+        self.visibleFooters.removeIndex(section)
     }
 }
 
