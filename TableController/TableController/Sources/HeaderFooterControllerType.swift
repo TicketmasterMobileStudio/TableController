@@ -1,6 +1,6 @@
 //
 //  HeaderFooterControllerType.swift
-//  SwiftCellController
+//  TableController
 //
 //  Created by Carmen Cerino on 7/21/16.
 //  Copyright © 2016 Duncan Lewis. All rights reserved.

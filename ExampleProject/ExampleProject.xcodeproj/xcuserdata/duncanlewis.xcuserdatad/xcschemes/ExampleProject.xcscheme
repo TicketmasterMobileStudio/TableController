@@ -20,6 +20,20 @@
                ReferencedContainer = "container:ExampleProject.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1309083B1D3D41D6007DB5D8"
+               BuildableName = "TableController.framework"
+               BlueprintName = "TableController"
+               ReferencedContainer = "container:../TableController/TableController.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction

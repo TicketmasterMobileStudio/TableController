@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import SwiftCellController
+import TableController
 
 class ViewController: UIViewController {
 

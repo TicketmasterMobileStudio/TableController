@@ -7,25 +7,25 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		130908401D3D41D6007DB5D8 /* SwiftCellController.h in Headers */ = {isa = PBXBuildFile; fileRef = 1309083F1D3D41D6007DB5D8 /* SwiftCellController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		130908571D3D420E007DB5D8 /* SectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908521D3D420E007DB5D8 /* SectionController.swift */; };
-		130908581D3D420E007DB5D8 /* CellControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908531D3D420E007DB5D8 /* CellControllerType.swift */; };
-		130908591D3D420E007DB5D8 /* SectionControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908541D3D420E007DB5D8 /* SectionControllerType.swift */; };
-		1309085A1D3D420E007DB5D8 /* TableReusableViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908551D3D420E007DB5D8 /* TableReusableViewType.swift */; };
-		1309085B1D3D420E007DB5D8 /* TableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 130908561D3D420E007DB5D8 /* TableController.swift */; };
-		9970AC481D40F50D004FF260 /* HeaderFooterControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9970AC471D40F50D004FF260 /* HeaderFooterControllerType.swift */; };
+		13DBD8951D458B6200B2616C /* CellControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DBD88D1D458B6200B2616C /* CellControllerType.swift */; };
+		13DBD8961D458B6200B2616C /* HeaderFooterControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DBD88E1D458B6200B2616C /* HeaderFooterControllerType.swift */; };
+		13DBD8971D458B6200B2616C /* SectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DBD88F1D458B6200B2616C /* SectionController.swift */; };
+		13DBD8981D458B6200B2616C /* SectionControllerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DBD8901D458B6200B2616C /* SectionControllerType.swift */; };
+		13DBD8991D458B6200B2616C /* TableController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DBD8911D458B6200B2616C /* TableController.swift */; };
+		13DBD89A1D458B6200B2616C /* TableReusableViewType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13DBD8921D458B6200B2616C /* TableReusableViewType.swift */; };
+		13DBD89B1D458B6200B2616C /* TableController.h in Headers */ = {isa = PBXBuildFile; fileRef = 13DBD8931D458B6200B2616C /* TableController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1309083C1D3D41D6007DB5D8 /* SwiftCellController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftCellController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1309083F1D3D41D6007DB5D8 /* SwiftCellController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SwiftCellController.h; sourceTree = "<group>"; };
-		130908411D3D41D6007DB5D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		130908521D3D420E007DB5D8 /* SectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SectionController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		130908531D3D420E007DB5D8 /* CellControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellControllerType.swift; sourceTree = "<group>"; };
-		130908541D3D420E007DB5D8 /* SectionControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = SectionControllerType.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		130908551D3D420E007DB5D8 /* TableReusableViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableReusableViewType.swift; sourceTree = "<group>"; };
-		130908561D3D420E007DB5D8 /* TableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TableController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		9970AC471D40F50D004FF260 /* HeaderFooterControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderFooterControllerType.swift; sourceTree = "<group>"; };
+		1309083C1D3D41D6007DB5D8 /* TableController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TableController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		13DBD88B1D458B6200B2616C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13DBD88D1D458B6200B2616C /* CellControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellControllerType.swift; sourceTree = "<group>"; };
+		13DBD88E1D458B6200B2616C /* HeaderFooterControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderFooterControllerType.swift; sourceTree = "<group>"; };
+		13DBD88F1D458B6200B2616C /* SectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionController.swift; sourceTree = "<group>"; };
+		13DBD8901D458B6200B2616C /* SectionControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SectionControllerType.swift; sourceTree = "<group>"; };
+		13DBD8911D458B6200B2616C /* TableController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableController.swift; sourceTree = "<group>"; };
+		13DBD8921D458B6200B2616C /* TableReusableViewType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableReusableViewType.swift; sourceTree = "<group>"; };
+		13DBD8931D458B6200B2616C /* TableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,7 +42,7 @@
 		130908321D3D41D6007DB5D8 = {
 			isa = PBXGroup;
 			children = (
-				1309083E1D3D41D6007DB5D8 /* SwiftCellController */,
+				13DBD88A1D458B6200B2616C /* TableController */,
 				1309083D1D3D41D6007DB5D8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -50,30 +50,30 @@
 		1309083D1D3D41D6007DB5D8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1309083C1D3D41D6007DB5D8 /* SwiftCellController.framework */,
+				1309083C1D3D41D6007DB5D8 /* TableController.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		1309083E1D3D41D6007DB5D8 /* SwiftCellController */ = {
+		13DBD88A1D458B6200B2616C /* TableController */ = {
 			isa = PBXGroup;
 			children = (
-				1309083F1D3D41D6007DB5D8 /* SwiftCellController.h */,
-				130908411D3D41D6007DB5D8 /* Info.plist */,
-				130908511D3D420E007DB5D8 /* Sources */,
+				13DBD88B1D458B6200B2616C /* Info.plist */,
+				13DBD8931D458B6200B2616C /* TableController.h */,
+				13DBD88C1D458B6200B2616C /* Sources */,
 			);
-			path = SwiftCellController;
+			path = TableController;
 			sourceTree = "<group>";
 		};
-		130908511D3D420E007DB5D8 /* Sources */ = {
+		13DBD88C1D458B6200B2616C /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				130908561D3D420E007DB5D8 /* TableController.swift */,
-				130908541D3D420E007DB5D8 /* SectionControllerType.swift */,
-				130908531D3D420E007DB5D8 /* CellControllerType.swift */,
-				130908551D3D420E007DB5D8 /* TableReusableViewType.swift */,
-				9970AC471D40F50D004FF260 /* HeaderFooterControllerType.swift */,
-				130908521D3D420E007DB5D8 /* SectionController.swift */,
+				13DBD88D1D458B6200B2616C /* CellControllerType.swift */,
+				13DBD88E1D458B6200B2616C /* HeaderFooterControllerType.swift */,
+				13DBD88F1D458B6200B2616C /* SectionController.swift */,
+				13DBD8901D458B6200B2616C /* SectionControllerType.swift */,
+				13DBD8911D458B6200B2616C /* TableController.swift */,
+				13DBD8921D458B6200B2616C /* TableReusableViewType.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -85,16 +85,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				130908401D3D41D6007DB5D8 /* SwiftCellController.h in Headers */,
+				13DBD89B1D458B6200B2616C /* TableController.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		1309083B1D3D41D6007DB5D8 /* SwiftCellController */ = {
+		1309083B1D3D41D6007DB5D8 /* TableController */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 130908441D3D41D6007DB5D8 /* Build configuration list for PBXNativeTarget "SwiftCellController" */;
+			buildConfigurationList = 130908441D3D41D6007DB5D8 /* Build configuration list for PBXNativeTarget "TableController" */;
 			buildPhases = (
 				130908371D3D41D6007DB5D8 /* Sources */,
 				130908381D3D41D6007DB5D8 /* Frameworks */,
@@ -105,9 +105,9 @@
 			);
 			dependencies = (
 			);
-			name = SwiftCellController;
-			productName = SwiftCellController;
-			productReference = 1309083C1D3D41D6007DB5D8 /* SwiftCellController.framework */;
+			name = TableController;
+			productName = TableController;
+			productReference = 1309083C1D3D41D6007DB5D8 /* TableController.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -124,7 +124,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 130908361D3D41D6007DB5D8 /* Build configuration list for PBXProject "SwiftCellController" */;
+			buildConfigurationList = 130908361D3D41D6007DB5D8 /* Build configuration list for PBXProject "TableController" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -136,7 +136,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1309083B1D3D41D6007DB5D8 /* SwiftCellController */,
+				1309083B1D3D41D6007DB5D8 /* TableController */,
 			);
 		};
 /* End PBXProject section */
@@ -156,12 +156,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1309085B1D3D420E007DB5D8 /* TableController.swift in Sources */,
-				1309085A1D3D420E007DB5D8 /* TableReusableViewType.swift in Sources */,
-				9970AC481D40F50D004FF260 /* HeaderFooterControllerType.swift in Sources */,
-				130908571D3D420E007DB5D8 /* SectionController.swift in Sources */,
-				130908581D3D420E007DB5D8 /* CellControllerType.swift in Sources */,
-				130908591D3D420E007DB5D8 /* SectionControllerType.swift in Sources */,
+				13DBD89A1D458B6200B2616C /* TableReusableViewType.swift in Sources */,
+				13DBD8991D458B6200B2616C /* TableController.swift in Sources */,
+				13DBD8961D458B6200B2616C /* HeaderFooterControllerType.swift in Sources */,
+				13DBD8981D458B6200B2616C /* SectionControllerType.swift in Sources */,
+				13DBD8971D458B6200B2616C /* SectionController.swift in Sources */,
+				13DBD8951D458B6200B2616C /* CellControllerType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,10 +266,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SwiftCellController/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TableController/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.SwiftCellController;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.TableController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -282,10 +282,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = SwiftCellController/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/TableController/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.SwiftCellController;
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.TableController;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -294,7 +294,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		130908361D3D41D6007DB5D8 /* Build configuration list for PBXProject "SwiftCellController" */ = {
+		130908361D3D41D6007DB5D8 /* Build configuration list for PBXProject "TableController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				130908421D3D41D6007DB5D8 /* Debug */,
@@ -303,7 +303,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		130908441D3D41D6007DB5D8 /* Build configuration list for PBXNativeTarget "SwiftCellController" */ = {
+		130908441D3D41D6007DB5D8 /* Build configuration list for PBXNativeTarget "TableController" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				130908451D3D41D6007DB5D8 /* Debug */,
