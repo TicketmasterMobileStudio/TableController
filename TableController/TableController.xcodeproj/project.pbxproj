@@ -19,8 +19,6 @@
 
 /* Begin PBXFileReference section */
 		1309083C1D3D41D6007DB5D8 /* TableController.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TableController.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1314FB661D458D5E000E40A4 /* DupController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DupController.h; sourceTree = "<group>"; };
-		1314FB681D458D5E000E40A4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13DBD88B1D458B6200B2616C /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13DBD88D1D458B6200B2616C /* CellControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellControllerType.swift; sourceTree = "<group>"; };
 		13DBD88E1D458B6200B2616C /* HeaderFooterControllerType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeaderFooterControllerType.swift; sourceTree = "<group>"; };
@@ -46,7 +44,6 @@
 			isa = PBXGroup;
 			children = (
 				13DBD88A1D458B6200B2616C /* TableController */,
-				1314FB651D458D5E000E40A4 /* DupController */,
 				1309083D1D3D41D6007DB5D8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -57,15 +54,6 @@
 				1309083C1D3D41D6007DB5D8 /* TableController.framework */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		1314FB651D458D5E000E40A4 /* DupController */ = {
-			isa = PBXGroup;
-			children = (
-				1314FB661D458D5E000E40A4 /* DupController.h */,
-				1314FB681D458D5E000E40A4 /* Info.plist */,
-			);
-			path = DupController;
 			sourceTree = "<group>";
 		};
 		13DBD88A1D458B6200B2616C /* TableController */ = {
@@ -119,7 +107,7 @@
 			dependencies = (
 			);
 			name = TableController;
-			productName = SwiftCellController;
+			productName = TableController;
 			productReference = 1309083C1D3D41D6007DB5D8 /* TableController.framework */;
 			productType = "com.apple.product-type.framework";
 		};
