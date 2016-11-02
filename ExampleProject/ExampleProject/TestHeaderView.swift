@@ -13,14 +13,14 @@ class TestHeaderView: UITableViewHeaderFooterView {
     let primaryLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.greenColor()
+        label.textColor = UIColor.green
         return label
     }()
 
     let secondaryLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.textColor = UIColor.blueColor()
+        label.textColor = UIColor.blue
         return label
     }()
     
@@ -30,16 +30,16 @@ class TestHeaderView: UITableViewHeaderFooterView {
         
         self.contentView.addSubview(primaryLabel)
         self.contentView.addSubview(secondaryLabel)
-        self.contentView.backgroundColor = UIColor.redColor()
+        self.contentView.backgroundColor = UIColor.red
 
         let margins = contentView.layoutMarginsGuide
         
-        primaryLabel.leadingAnchor.constraintEqualToAnchor(margins.leadingAnchor).active = true
-        primaryLabel.trailingAnchor.constraintGreaterThanOrEqualToAnchor(secondaryLabel.leadingAnchor, constant: 8.0)
-        secondaryLabel.trailingAnchor.constraintEqualToAnchor(margins.trailingAnchor).active = true
+        primaryLabel.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
+        primaryLabel.trailingAnchor.constraint(greaterThanOrEqualTo: secondaryLabel.leadingAnchor, constant: 8.0)
+        secondaryLabel.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
         
-        primaryLabel.centerYAnchor.constraintEqualToAnchor(self.contentView.centerYAnchor).active = true
-        secondaryLabel.centerYAnchor.constraintEqualToAnchor(self.contentView.centerYAnchor).active = true
+        primaryLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
+        secondaryLabel.centerYAnchor.constraint(equalTo: self.contentView.centerYAnchor).isActive = true
     }
     
     

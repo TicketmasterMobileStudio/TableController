@@ -32,8 +32,13 @@ import UIKit
 /// that can be registered with a `UITableView`
 
 public enum TableReusableViewType: Hashable {
+<<<<<<< HEAD
+    case Nib(nibName: String, identifier: String)
+    case Class(viewClass: AnyClass, identifier: String)
+=======
     case nib(nibName: String, bundle: Bundle, identifier: String)
     case `class`(viewClass: AnyClass, identifier: String)
+>>>>>>> 305d1e2... Merge branch 'specify-bundle' into 'master'
     
     public var hashValue: Int {
         return self.identifier.hashValue
@@ -41,39 +46,62 @@ public enum TableReusableViewType: Hashable {
     
     var identifier: String {
         switch self {
-        case .class(_, let identifier):
+        case .Class(_, let identifier):
             return identifier
+<<<<<<< HEAD
+        case .Nib(_, let identifier):
+=======
         case .nib(_, _, let identifier):
+>>>>>>> 305d1e2... Merge branch 'specify-bundle' into 'master'
             return identifier
         }
     }
     
     func registerAsCell(inTableView tableView: UITableView) {
         switch self {
+<<<<<<< HEAD
+        case .Class(let cellClass, let identifier):
+            tableView.registerClass(cellClass, forCellReuseIdentifier: identifier)
+        case .Nib(let nibName, let identifier):
+            tableView.registerNib(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: identifier)
+=======
         case .class(let cellClass, let identifier):
             tableView.register(cellClass, forCellReuseIdentifier: identifier)
         case .nib(let nibName, let bundle, let identifier):
             tableView.register(UINib(nibName: nibName, bundle: bundle), forCellReuseIdentifier: identifier)
+>>>>>>> 305d1e2... Merge branch 'specify-bundle' into 'master'
         }
     }
     
     func registerAsHeaderFooter(inTableView tableView: UITableView) {
         switch self {
+<<<<<<< HEAD
+        case .Class(let headerFooterClass, let identifier):
+            tableView.registerClass(headerFooterClass, forHeaderFooterViewReuseIdentifier: identifier)
+        case .Nib(let nibName, let identifier):
+            tableView.registerNib(UINib(nibName: nibName, bundle: nil), forHeaderFooterViewReuseIdentifier: identifier)
+=======
         case .class(let headerFooterClass, let identifier):
             tableView.register(headerFooterClass, forHeaderFooterViewReuseIdentifier: identifier)
         case .nib(let nibName, let bundle, let identifier):
             tableView.register(UINib(nibName: nibName, bundle: bundle), forHeaderFooterViewReuseIdentifier: identifier)
+>>>>>>> 305d1e2... Merge branch 'specify-bundle' into 'master'
         }
     }
 }
 
 public func ==(lhs: TableReusableViewType, rhs: TableReusableViewType) -> Bool {
     switch (lhs, rhs) {
-    case (let .class(cellClass1, identifier1), let .class(cellClass2, indentifier2)):
+    case (let .Class(cellClass1, identifier1), let .Class(cellClass2, indentifier2)):
         return cellClass1 == cellClass2 && identifier1 == indentifier2
         
+<<<<<<< HEAD
+    case (let .Nib(nibName1, identifier1), let .Nib(nibName2, identifier2)):
+        return nibName1 == nibName2 && identifier1 == identifier2
+=======
     case (let .nib(nibName1, bundle1, identifier1), let .nib(nibName2, bundle2, identifier2)):
         return nibName1 == nibName2 && identifier1 == identifier2 && bundle1 == bundle2
+>>>>>>> 305d1e2... Merge branch 'specify-bundle' into 'master'
     default:
         return false
     }

@@ -41,9 +41,9 @@ public protocol CellControllerType {
     
     // MARK: Cell Configuration
     var cellType: TableReusableViewType { get }
-    func configure(cell cell: UITableViewCell)
-    func willDisplay(cell cell: UITableViewCell)
-    func didDisplay(cell cell: UITableViewCell)
+    func configure(cell: UITableViewCell)
+    func willDisplay(cell: UITableViewCell)
+    func didDisplay(cell: UITableViewCell)
 }
 
 public extension CellControllerType {
