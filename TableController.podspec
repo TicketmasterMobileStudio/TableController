@@ -25,10 +25,11 @@ Pod::Spec.new do |s|
   #   * Write the description between the DESC delimiters below.
   #   * Finally, don't worry about the indent, CocoaPods strips it!
   s.description  = <<-DESC
-  An object oriented approach at managing UITableViews.
+  A modual, object oriented approach at managing UITableViews. Create section- and cell controllers
+  to configure your table controller with, and avoid the UITableViewDelegate/DataSource mess!
                    DESC
 
-  # s.homepage     = "http://EXAMPLE/TableController"
+  s.homepage     = "https://github.com/TicketmasterMobileStudio/TableController"
   # s.screenshots  = "www.example.com/screenshots_1.gif", "www.example.com/screenshots_2.gif"
 
 
@@ -63,7 +64,7 @@ Pod::Spec.new do |s|
   #  the deployment target. You can optionally include the target after the platform.
   #
 
-  # s.platform     = :ios
+  s.platform     = :ios, "9.3"
   # s.platform     = :ios, "5.0"
 
   #  When using multiple platforms
@@ -79,7 +80,7 @@ Pod::Spec.new do |s|
   #  Supports git, hg, bzr, svn and HTTP.
   #
 
-  s.source       = { :git => "https://github.com/TicketmasterMobileStudio/Shortlist-iOS.git", :tag => "#{s.version}" }
+  s.source       = { :git => "https://github.com/TicketmasterMobileStudio/TableController.git", :tag => "#{s.version}" }
 
 
   # ――― Source Code ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――― #
@@ -117,6 +118,8 @@ Pod::Spec.new do |s|
 
   # s.framework  = "SomeFramework"
   # s.frameworks = "SomeFramework", "AnotherFramework"
+
+  s.frameworks = 'UIKit'
 
   # s.library   = "iconv"
   # s.libraries = "iconv", "xml2"
