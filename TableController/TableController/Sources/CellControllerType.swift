@@ -41,9 +41,9 @@ public protocol CellControllerType {
     
     // MARK: Cell Configuration
     var cellType: TableReusableViewType { get }
-    func configure(cell: UITableViewCell)
-    func willDisplay(cell: UITableViewCell)
-    func didDisplay(cell: UITableViewCell)
+    func configure(_ cell: UITableViewCell)
+    func willDisplay(_ cell: UITableViewCell)
+    func didEndDisplaying(_ cell: UITableViewCell)
 }
 
 public extension CellControllerType {
@@ -51,6 +51,6 @@ public extension CellControllerType {
     var estimatedCellHeight: CGFloat { return UITableViewAutomaticDimension }
     var selectable: Bool { return true }
     func performSelectionAction() { }
-    func willDisplay(cell cell: UITableViewCell) { }
-    func didDisplay(cell cell: UITableViewCell) { }
+    func willDisplay(cell: UITableViewCell) { }
+    func didEndDisplaying(cell: UITableViewCell) { }
 }

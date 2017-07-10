@@ -39,18 +39,18 @@ public protocol SectionControllerType {
     var headerController: HeaderFooterControllerType? { get }
     var footerController: HeaderFooterControllerType? { get }
     
-    func configure(cell cell: UITableViewCell, atIndex index: Int)
+    func configure(cell: UITableViewCell, atIndex index: Int)
     
-    func estimatedCellHeight(atIndex index: Int) -> CGFloat
-    func cellHeight(atIndex index: Int) -> CGFloat
+    func estimatedCellHeight(atIndex index: Int) -> CGFloat?
+    func cellHeight(atIndex index: Int) -> CGFloat?
     
     func canSelectCell(atIndex index: Int) -> Bool
     func didSelectCell(atIndex index: Int)
     
-    func willDisplay(cell cell: UITableViewCell, atIndex index: Int)
-    func didDisplay(cell cell: UITableViewCell, atIndex index: Int)
+    func willDisplay(cell: UITableViewCell, atIndex index: Int)
+    func didEndDisplaying(cell: UITableViewCell, atIndex index: Int)
     
-    func cellType(forIndexPath indexPath: NSIndexPath) -> TableReusableViewType
+    func cellType(forIndexPath indexPath: IndexPath) -> TableReusableViewType
 }
 
 public extension SectionControllerType {
@@ -58,11 +58,11 @@ public extension SectionControllerType {
     var headerController: HeaderFooterControllerType? { return nil }
     var footerController: HeaderFooterControllerType? { return nil }
     
-    func estimatedCellHeight(atIndex index: Int) -> CGFloat {
+    func estimatedCellHeight(atIndex index: Int) -> CGFloat? {
         return UITableViewAutomaticDimension
     }
     
-    func cellHeight(atIndex index: Int) -> CGFloat {
+    func cellHeight(atIndex index: Int) -> CGFloat? {
         return UITableViewAutomaticDimension
     }
     
@@ -71,7 +71,7 @@ public extension SectionControllerType {
     }
     
     func didSelectCell(atIndex index: Int) { }
-    func willDisplay(cell cell: UITableViewCell, atIndex index: Int) { }
-    func didDisplay(cell cell: UITableViewCell, atIndex index: Int) { }
+    func willDisplay(cell: UITableViewCell, atIndex index: Int) { }
+    func didDisplay(cell: UITableViewCell, atIndex index: Int) { }
     
 }

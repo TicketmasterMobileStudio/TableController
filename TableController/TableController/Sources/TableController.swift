@@ -27,23 +27,23 @@
 
 import UIKit
 
-public class TableController: NSObject, UITableViewDelegate, UITableViewDataSource {
+open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource {
     
-    public var numberOfSections: Int { return self.sectionsControllers.count }
+    open var numberOfSections: Int { return self.sectionsControllers.count }
     
-    private var sectionsControllers: [SectionControllerType] {
+    fileprivate var sectionsControllers: [SectionControllerType] {
         didSet {
-            self.visibleIndexPaths = Set<NSIndexPath>()
+            self.visibleIndexPaths = Set<IndexPath>()
             self.visibleHeaders = NSMutableIndexSet()
             self.visibleFooters = NSMutableIndexSet()
         }
     }
     
-    private var visibleIndexPaths = Set<NSIndexPath>()
-    private var visibleHeaders = NSMutableIndexSet()
-    private var visibleFooters = NSMutableIndexSet()
-    private let tableView: UITableView
-    private var registeredCellTypes: [TableReusableViewType] = []
+    fileprivate var visibleIndexPaths = Set<IndexPath>()
+    fileprivate var visibleHeaders = NSMutableIndexSet()
+    fileprivate var visibleFooters = NSMutableIndexSet()
+    fileprivate let tableView: UITableView
+    fileprivate var registeredCellTypes: [TableReusableViewType] = []
     
     public init(sections: [SectionControllerType], tableView: UITableView) {
         self.sectionsControllers = sections
@@ -55,8 +55,8 @@ public class TableController: NSObject, UITableViewDelegate, UITableViewDataSour
         self.tableView.dataSource = self
     }
     
-    public func update(cellAt indexPath: NSIndexPath, in tableView: UITableView) {
-        if let cell = tableView.cellForRowAtIndexPath(indexPath) {
+    open func update(cellAt indexPath: IndexPath, in tableView: UITableView) {
+        if let cell = tableView.cellForRow(at: indexPath) {
             self.sectionsControllers[indexPath.section].configure(cell: cell, atIndex: indexPath.row)
         }
         self.update(cellAt: indexPath, in: tableView)
@@ -68,7 +68,7 @@ public class TableController: NSObject, UITableViewDelegate, UITableViewDataSour
 
 extension TableController {
     
-    func register(cellType: TableReusableViewType) {
+    func register(_ cellType: TableReusableViewType) {
         if !self.registeredCellTypes.contains(cellType) {
             cellType.registerAsCell(inTableView: self.tableView)
             self.registeredCellTypes.append(cellType)
@@ -81,21 +81,21 @@ extension TableController {
 
 public extension TableController {
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return self.sectionsControllers.count
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let section = self.sectionsControllers[section]
         return section.numberOfItems
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let section = self.sectionsControllers[indexPath.section]
         let cellType = section.cellType(forIndexPath: indexPath)
         
         self.register(cellType)
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellType.identifier, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellType.identifier, for: indexPath)
         
         section.configure(cell: cell, atIndex: indexPath.row)
         return cell
@@ -108,39 +108,39 @@ public extension TableController {
     
     // MARK: Cell Selection
     
-    func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         let section = self.sectionsControllers[indexPath.section]
         return section.canSelectCell(atIndex: indexPath.item) ? indexPath : nil
     }
     
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let section = self.sectionsControllers[indexPath.section]
         return section.didSelectCell(atIndex: indexPath.item)
     }
     
     // MARK: Cell Display
     
-    func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let section = self.sectionsControllers[indexPath.section]
         section.willDisplay(cell: cell, atIndex: indexPath.item)
         self.visibleIndexPaths.insert(indexPath)
     }
     
-    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard self.visibleIndexPaths.contains(indexPath) else { return }
         let section = self.sectionsControllers[indexPath.section]
-        section.didDisplay(cell: cell, atIndex: indexPath.item)
+        section.didEndDisplaying(cell: cell, atIndex: indexPath.item)
         self.visibleIndexPaths.remove(indexPath)
     }
     
     // MARK: Cell Height
     
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = self.sectionsControllers[indexPath.section]
         return section.estimatedCellHeight(atIndex: indexPath.item) ?? tableView.estimatedRowHeight
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = self.sectionsControllers[indexPath.section]
         return section.cellHeight(atIndex: indexPath.item) ?? tableView.rowHeight
     }
@@ -148,74 +148,74 @@ public extension TableController {
 
     // MARK: Header Height
     
-    public func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         let section = self.sectionsControllers[section]
         return section.headerController?.estimatedHeight ?? tableView.estimatedSectionHeaderHeight
         
     }
 
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         let section = self.sectionsControllers[section]
         return section.headerController?.height ?? tableView.sectionHeaderHeight
     }
     
     // MARK: Footer Height
     
-    public func tableView(tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+    public func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
         let section = self.sectionsControllers[section]
         return section.footerController?.estimatedHeight ?? tableView.estimatedSectionFooterHeight
         
     }
     
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         let section = self.sectionsControllers[section]
         return section.footerController?.height ?? tableView.sectionFooterHeight
     }
     
     // MARK: Header Display
     
-    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let section = self.sectionsControllers[section]
         guard let controller = section.headerController else { return nil }
         return self.headerFooterView(forController: controller, in: tableView)
     }
     
-    public func tableView(tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let sectionController = self.sectionsControllers[section]
         guard let header = view as? UITableViewHeaderFooterView else { return }
         sectionController.headerController?.willDisplay(view: header)
-        self.visibleHeaders.addIndex(section)
+        self.visibleHeaders.add(section)
     }
     
-    public func tableView(tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
+    public func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
         guard self.visibleHeaders.contains(section) else { return }
         let sectionController = self.sectionsControllers[section]
         guard let header = view as? UITableViewHeaderFooterView else { return }
         sectionController.headerController?.didDisplay(view: header)
-        self.visibleHeaders.removeIndex(section)
+        self.visibleHeaders.remove(section)
     }
     
     // MARK: Footer Display
     
-    public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let section = self.sectionsControllers[section]
         guard let controller = section.footerController else { return nil }
         return self.headerFooterView(forController: controller, in: tableView)
     }
     
-    public func tableView(tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
+    public func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         let sectionController = self.sectionsControllers[section]
         guard let footer = view as? UITableViewHeaderFooterView else { return }
         sectionController.footerController?.willDisplay(view: footer)
-        self.visibleFooters.addIndex(section)
+        self.visibleFooters.add(section)
     }
     
-    public func tableView(tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
+    public func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
         guard self.visibleFooters.contains(section) else { return }
         let sectionController = self.sectionsControllers[section]
         guard let footer = view as? UITableViewHeaderFooterView else { return }
         sectionController.footerController?.didDisplay(view: footer)
-        self.visibleFooters.removeIndex(section)
+        self.visibleFooters.remove(section)
     }
 }
 
@@ -223,7 +223,7 @@ public extension TableController {
 private extension TableController {
     
     func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterControllerType, inTableView tableView: UITableView) -> UITableViewHeaderFooterView? {
-        if let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(controller.type.identifier) {
+        if let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: controller.type.identifier) {
             controller.configure(view: view)
             return view
         }

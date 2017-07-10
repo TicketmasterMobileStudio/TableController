@@ -31,18 +31,18 @@ import UIKit
 /// A `SectionController` manages displaying a group of
 /// `CellControllerTypes` in a given section of a `UITableView`
 
-public class SectionController: SectionControllerType {
+open class SectionController: SectionControllerType {
     
-    var cellControllers: [CellControllerType]
+    open var cellControllers: [CellControllerType]
 
-    public let headerController: HeaderFooterControllerType?
-    public let footerController: HeaderFooterControllerType?
+    open let headerController: HeaderFooterControllerType?
+    open let footerController: HeaderFooterControllerType?
     
-    public var cellTypes: Set<TableReusableViewType> {
+    open var cellTypes: Set<TableReusableViewType> {
         return Set<TableReusableViewType>(cellControllers.map { $0.cellType })
     }
 
-    public var numberOfItems: Int {
+    open var numberOfItems: Int {
         return self.cellControllers.count
     }
     
@@ -56,35 +56,35 @@ public class SectionController: SectionControllerType {
         self.footerController = footerController
     }
     
-    public func cellType(forIndexPath indexPath: NSIndexPath) -> TableReusableViewType {
+    open func cellType(forIndexPath indexPath: IndexPath) -> TableReusableViewType {
         return self.cellControllers[indexPath.item].cellType
     }
     
-    public func configure(cell cell: UITableViewCell, atIndex index: Int) {
-        self.cellControllers[index].configure(cell: cell)
+    open func configure(cell: UITableViewCell, atIndex index: Int) {
+        self.cellControllers[index].configure(cell)
     }
     
-    public func cellHeight(atIndex index: Int) -> CGFloat {
+    open func cellHeight(atIndex index: Int) -> CGFloat {
         return self.cellControllers[index].cellHeight
     }
     
-    public func estimatedCellHeight(atIndex index: Int) -> CGFloat {
+    open func estimatedCellHeight(atIndex index: Int) -> CGFloat {
         return self.cellControllers[index].estimatedCellHeight
     }
     
-    public func canSelectCell(atIndex index: Int) -> Bool {
+    open func canSelectCell(atIndex index: Int) -> Bool {
         return self.cellControllers[index].selectable
     }
     
-    public func didSelectCell(atIndex index: Int) {
+    open func didSelectCell(atIndex index: Int) {
         self.cellControllers[index].performSelectionAction()
     }
     
-    public func willDisplay(cell cell: UITableViewCell, atIndex index: Int) {
+    open func willDisplay(cell: UITableViewCell, atIndex index: Int) {
         self.cellControllers[index].willDisplay(cell: cell)
     }
     
-    public func didDisplay(cell cell: UITableViewCell, atIndex index: Int) {
-        self.cellControllers[index].didDisplay(cell: cell)
+    open func didEndDisplaying(cell: UITableViewCell, atIndex index: Int) {
+        self.cellControllers[index].didEndDisplaying(cell: cell)
     }
 }
