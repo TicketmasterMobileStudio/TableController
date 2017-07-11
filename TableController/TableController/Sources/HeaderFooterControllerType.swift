@@ -37,14 +37,14 @@ public protocol HeaderFooterControllerType {
     
     // MARK: Configuration
     var type: TableReusableViewType { get }
-    func configure(view: UITableViewHeaderFooterView)
-    func willDisplay(view: UITableViewHeaderFooterView)
-    func didEndDisplaying(view: UITableViewHeaderFooterView)
+    func configure(view: UIView)
+    func willDisplay(view: UIView)
+    func didEndDisplaying(view: UIView)
 }
 
 public extension HeaderFooterControllerType {
     var height: CGFloat { return UITableViewAutomaticDimension }
     var estimatedHeight: CGFloat { return self.height }
-    func willDisplay(view: UITableViewHeaderFooterView) { }
-    func didEndDisplaying(view: UITableViewHeaderFooterView) { }
+    func willDisplay(view: UIView) { }
+    func didEndDisplaying(view: UIView) { }
 }

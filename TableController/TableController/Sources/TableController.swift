@@ -182,16 +182,14 @@ public extension TableController {
     
     public func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let sectionController = self.sectionsControllers[section]
-        guard let header = view as? UITableViewHeaderFooterView else { return }
-        sectionController.headerController?.willDisplay(view: header)
+        sectionController.headerController?.willDisplay(view: view)
         self.visibleHeaders.add(section)
     }
     
     public func tableView(_ tableView: UITableView, didEndDisplayingHeaderView view: UIView, forSection section: Int) {
         guard self.visibleHeaders.contains(section) else { return }
         let sectionController = self.sectionsControllers[section]
-        guard let header = view as? UITableViewHeaderFooterView else { return }
-        sectionController.headerController?.didEndDisplaying(view: header)
+        sectionController.headerController?.didEndDisplaying(view: view)
         self.visibleHeaders.remove(section)
     }
     
@@ -205,16 +203,14 @@ public extension TableController {
     
     public func tableView(_ tableView: UITableView, willDisplayFooterView view: UIView, forSection section: Int) {
         let sectionController = self.sectionsControllers[section]
-        guard let footer = view as? UITableViewHeaderFooterView else { return }
-        sectionController.footerController?.willDisplay(view: footer)
+        sectionController.footerController?.willDisplay(view: view)
         self.visibleFooters.add(section)
     }
     
     public func tableView(_ tableView: UITableView, didEndDisplayingFooterView view: UIView, forSection section: Int) {
         guard self.visibleFooters.contains(section) else { return }
         let sectionController = self.sectionsControllers[section]
-        guard let footer = view as? UITableViewHeaderFooterView else { return }
-        sectionController.footerController?.didEndDisplaying(view: footer)
+        sectionController.footerController?.didEndDisplaying(view: view)
         self.visibleFooters.remove(section)
     }
 }
@@ -222,7 +218,7 @@ public extension TableController {
 // MARK: - Header/Footer Helpers
 private extension TableController {
     
-    func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterControllerType, inTableView tableView: UITableView) -> UITableViewHeaderFooterView? {
+    func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterControllerType, inTableView tableView: UITableView) -> UIView? {
         if let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: controller.type.identifier) {
             controller.configure(view: view)
             return view
@@ -231,7 +227,7 @@ private extension TableController {
         return nil
     }
     
-    func headerFooterView(forController controller: HeaderFooterControllerType, in tableView: UITableView) -> UITableViewHeaderFooterView? {
+    func headerFooterView(forController controller: HeaderFooterControllerType, in tableView: UITableView) -> UIView? {
         if let view = self.dequeue(reusableHeaderFooterViewForController: controller, inTableView: tableView) {
             return view
         }
