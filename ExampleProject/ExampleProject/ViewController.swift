@@ -72,7 +72,7 @@ class BasicCellController: CellControllerType {
         self.title = title
     }
     
-    func configure(cell: UITableViewCell) {
+    func configure(_ cell: UITableViewCell) {
         cell.textLabel?.text = title
     }
     
@@ -84,7 +84,7 @@ class NibCellController: CellControllerType {
     
     var cellType: TableReusableViewType = .nib(nibName: "NibCell", bundle: Bundle.main, identifier: "NibCell")
     
-    func configure(cell: UITableViewCell) {
+    func configure(_ cell: UITableViewCell) {
         cell.textLabel?.text = title
     }
     
@@ -102,7 +102,7 @@ class BasicSectionController: SectionControllerType {
     
     var numberOfItems: Int = 4
     
-    func configure(cell: UITableViewCell, atIndex index: Int) {
+    func configure(_ cell: UITableViewCell, atIndex index: Int) {
         cell.textLabel?.text = "Section Item: \(index)"
     }
     

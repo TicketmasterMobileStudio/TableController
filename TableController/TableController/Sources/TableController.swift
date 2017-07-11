@@ -57,7 +57,7 @@ open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource
     
     open func update(cellAt indexPath: IndexPath, in tableView: UITableView) {
         if let cell = tableView.cellForRow(at: indexPath) {
-            self.sectionsControllers[indexPath.section].configure(cell: cell, atIndex: indexPath.row)
+            self.sectionsControllers[indexPath.section].configure(cell, atIndex: indexPath.row)
         }
         self.update(cellAt: indexPath, in: tableView)
     }
@@ -97,7 +97,7 @@ public extension TableController {
         self.register(cellType)
         let cell = tableView.dequeueReusableCell(withIdentifier: cellType.identifier, for: indexPath)
         
-        section.configure(cell: cell, atIndex: indexPath.row)
+        section.configure(cell, atIndex: indexPath.row)
         return cell
     }
 }
@@ -122,14 +122,14 @@ public extension TableController {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let section = self.sectionsControllers[indexPath.section]
-        section.willDisplay(cell: cell, atIndex: indexPath.item)
+        section.willDisplay(cell, atIndex: indexPath.item)
         self.visibleIndexPaths.insert(indexPath)
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard self.visibleIndexPaths.contains(indexPath) else { return }
         let section = self.sectionsControllers[indexPath.section]
-        section.didEndDisplaying(cell: cell, atIndex: indexPath.item)
+        section.didEndDisplaying(cell, atIndex: indexPath.item)
         self.visibleIndexPaths.remove(indexPath)
     }
     
@@ -137,12 +137,12 @@ public extension TableController {
     
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = self.sectionsControllers[indexPath.section]
-        return section.estimatedCellHeight(atIndex: indexPath.item) ?? tableView.estimatedRowHeight
+        return section.estimatedCellHeight(atIndex: indexPath.item)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let section = self.sectionsControllers[indexPath.section]
-        return section.cellHeight(atIndex: indexPath.item) ?? tableView.rowHeight
+        return section.cellHeight(atIndex: indexPath.item)
     }
 
 
@@ -191,7 +191,7 @@ public extension TableController {
         guard self.visibleHeaders.contains(section) else { return }
         let sectionController = self.sectionsControllers[section]
         guard let header = view as? UITableViewHeaderFooterView else { return }
-        sectionController.headerController?.didDisplay(view: header)
+        sectionController.headerController?.didEndDisplaying(view: header)
         self.visibleHeaders.remove(section)
     }
     
@@ -214,7 +214,7 @@ public extension TableController {
         guard self.visibleFooters.contains(section) else { return }
         let sectionController = self.sectionsControllers[section]
         guard let footer = view as? UITableViewHeaderFooterView else { return }
-        sectionController.footerController?.didDisplay(view: footer)
+        sectionController.footerController?.didEndDisplaying(view: footer)
         self.visibleFooters.remove(section)
     }
 }

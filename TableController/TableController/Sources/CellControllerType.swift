@@ -51,6 +51,6 @@ public extension CellControllerType {
     var estimatedCellHeight: CGFloat { return UITableViewAutomaticDimension }
     var selectable: Bool { return true }
     func performSelectionAction() { }
-    func willDisplay(cell: UITableViewCell) { }
-    func didEndDisplaying(cell: UITableViewCell) { }
+    func willDisplay(_ cell: UITableViewCell) { }
+    func didEndDisplaying(_ cell: UITableViewCell) { }
 }

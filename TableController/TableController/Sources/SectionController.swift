@@ -60,7 +60,7 @@ open class SectionController: SectionControllerType {
         return self.cellControllers[indexPath.item].cellType
     }
     
-    open func configure(cell: UITableViewCell, atIndex index: Int) {
+    open func configure(_ cell: UITableViewCell, atIndex index: Int) {
         self.cellControllers[index].configure(cell)
     }
     
@@ -80,11 +80,11 @@ open class SectionController: SectionControllerType {
         self.cellControllers[index].performSelectionAction()
     }
     
-    open func willDisplay(cell: UITableViewCell, atIndex index: Int) {
-        self.cellControllers[index].willDisplay(cell: cell)
+    open func willDisplay(_ cell: UITableViewCell, atIndex index: Int) {
+        self.cellControllers[index].willDisplay(cell)
     }
     
-    open func didEndDisplaying(cell: UITableViewCell, atIndex index: Int) {
-        self.cellControllers[index].didEndDisplaying(cell: cell)
+    open func didEndDisplaying(_ cell: UITableViewCell, atIndex index: Int) {
+        self.cellControllers[index].didEndDisplaying(cell)
     }
 }
