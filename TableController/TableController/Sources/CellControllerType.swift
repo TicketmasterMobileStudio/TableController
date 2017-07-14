@@ -29,8 +29,8 @@ import UIKit
 
 /// A `CellControllerType` describes something that handles the display of
 /// of a single `UITableViewCell`
-public protocol CellControllerType {
-    
+public protocol CellControllerType: class {
+
     // MARK: Cell Sizing
     var estimatedCellHeight: CGFloat { get }
     var cellHeight: CGFloat { get }
@@ -44,6 +44,9 @@ public protocol CellControllerType {
     func configure(_ cell: UITableViewCell)
     func willDisplay(_ cell: UITableViewCell)
     func didEndDisplaying(_ cell: UITableViewCell)
+
+    // MARK: Update/Animation Helpers
+    weak var delegate: CellControllerDelegate? { get set }
 }
 
 public extension CellControllerType {
@@ -53,4 +56,9 @@ public extension CellControllerType {
     func performSelectionAction() { }
     func willDisplay(_ cell: UITableViewCell) { }
     func didEndDisplaying(_ cell: UITableViewCell) { }
+}
+
+public protocol CellControllerDelegate: class {
+    func cellControllerNeedsReload(_ cellController: CellControllerType)
+    func cellControllerNeedsAnimatedHeightChange(_ cellController: CellControllerType)
 }

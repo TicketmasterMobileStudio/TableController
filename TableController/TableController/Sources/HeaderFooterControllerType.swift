@@ -29,8 +29,10 @@ import Foundation
 
 /// A `HeaderFooterControllerType` describes something that handles the display of
 /// of a single `UIView` that represents a `UITableView` header or footer.
-public protocol HeaderFooterControllerType {
-    
+public protocol HeaderFooterControllerType: class {
+
+    weak var delegate: HeaderFooterControllerDelegate? { get set }
+
     // MARK: Sizing
     var estimatedHeight: CGFloat { get }
     var height: CGFloat { get }
@@ -47,4 +49,9 @@ public extension HeaderFooterControllerType {
     var estimatedHeight: CGFloat { return self.height }
     func willDisplay(view: UITableViewHeaderFooterView) { }
     func didEndDisplaying(view: UITableViewHeaderFooterView) { }
+}
+
+public protocol HeaderFooterControllerDelegate: class {
+    func headerFooterControllerNeedsReload(_ headerFooterController: HeaderFooterControllerType)
+    func headerFooterControllerNeedsAnimatedHeightChange()
 }

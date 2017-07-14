@@ -15,6 +15,10 @@
 		13DBD89D1D458C2900B2616C /* TableController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13DBD89C1D458C2900B2616C /* TableController.framework */; };
 		13F2C8E21DCA679400CB0FC8 /* NibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F2C8E11DCA679400CB0FC8 /* NibCell.xib */; };
 		9970AC501D410BEB004FF260 /* TestHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9970AC4F1D410BEB004FF260 /* TestHeaderView.swift */; };
+		DE6CBEEA1F1915D3004A59AA /* CountingCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CBEE91F1915D3004A59AA /* CountingCellController.swift */; };
+		DE6CBEEE1F191640004A59AA /* CountingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE6CBEEC1F191640004A59AA /* CountingCell.xib */; };
+		DE6CBEF01F194AFF004A59AA /* ResizingCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CBEEF1F194AFF004A59AA /* ResizingCellController.swift */; };
+		DE6CBEF21F19564E004A59AA /* ResizingHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6CBEF11F19564E004A59AA /* ResizingHeaderController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +32,10 @@
 		13DBD89C1D458C2900B2616C /* TableController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TableController.framework; path = "../../../../Library/Developer/Xcode/DerivedData/TableController-cxnnheuzrmsbwqeqqlxqnsyfiqec/Build/Products/Debug-iphonesimulator/TableController.framework"; sourceTree = "<group>"; };
 		13F2C8E11DCA679400CB0FC8 /* NibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NibCell.xib; sourceTree = "<group>"; };
 		9970AC4F1D410BEB004FF260 /* TestHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHeaderView.swift; sourceTree = "<group>"; };
+		DE6CBEE91F1915D3004A59AA /* CountingCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountingCellController.swift; sourceTree = "<group>"; };
+		DE6CBEEC1F191640004A59AA /* CountingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountingCell.xib; sourceTree = "<group>"; };
+		DE6CBEEF1F194AFF004A59AA /* ResizingCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingCellController.swift; sourceTree = "<group>"; };
+		DE6CBEF11F19564E004A59AA /* ResizingHeaderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingHeaderController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +78,10 @@
 				130908071D3D2FDA007DB5D8 /* Info.plist */,
 				9970AC4F1D410BEB004FF260 /* TestHeaderView.swift */,
 				13F2C8E11DCA679400CB0FC8 /* NibCell.xib */,
+				DE6CBEE91F1915D3004A59AA /* CountingCellController.swift */,
+				DE6CBEEC1F191640004A59AA /* CountingCell.xib */,
+				DE6CBEEF1F194AFF004A59AA /* ResizingCellController.swift */,
+				DE6CBEF11F19564E004A59AA /* ResizingHeaderController.swift */,
 			);
 			path = ExampleProject;
 			sourceTree = "<group>";
@@ -136,6 +148,7 @@
 				130908061D3D2FDA007DB5D8 /* LaunchScreen.storyboard in Resources */,
 				13F2C8E21DCA679400CB0FC8 /* NibCell.xib in Resources */,
 				130908031D3D2FDA007DB5D8 /* Assets.xcassets in Resources */,
+				DE6CBEEE1F191640004A59AA /* CountingCell.xib in Resources */,
 				130908011D3D2FDA007DB5D8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -149,7 +162,10 @@
 			files = (
 				9970AC501D410BEB004FF260 /* TestHeaderView.swift in Sources */,
 				130907FE1D3D2FDA007DB5D8 /* ViewController.swift in Sources */,
+				DE6CBEEA1F1915D3004A59AA /* CountingCellController.swift in Sources */,
+				DE6CBEF01F194AFF004A59AA /* ResizingCellController.swift in Sources */,
 				130907FC1D3D2FDA007DB5D8 /* AppDelegate.swift in Sources */,
+				DE6CBEF21F19564E004A59AA /* ResizingHeaderController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

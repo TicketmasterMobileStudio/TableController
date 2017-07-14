@@ -30,8 +30,10 @@ import UIKit
 /// A `SectionControllerType` describes something that handles the display of 
 /// `UITableView` cells in a give section
 
-public protocol SectionControllerType {
-    
+public protocol SectionControllerType: class {
+
+    weak var delegate: SectionControllerDelegate? { get set }
+
     var cellTypes: Set<TableReusableViewType> { get }
     
     var numberOfItems: Int { get }
@@ -73,5 +75,12 @@ public extension SectionControllerType {
     func didSelectCell(atIndex index: Int) { }
     func willDisplay(_ cell: UITableViewCell, atIndex index: Int) { }
     func didEndDisplaying(_ cell: UITableViewCell, atIndex index: Int) { }
-    
+
+}
+
+public protocol SectionControllerDelegate: class {
+    func sectionControllerNeedsReload(_ sectionController: SectionControllerType, atIndex index: Int)
+    func sectionControllerHeaderNeedsReload(_ sectionController: SectionControllerType)
+    func sectionControllerFooterNeedsReload(_ sectionController: SectionControllerType)
+    func sectionControllerNeedsAnimatedHeightChange()
 }
