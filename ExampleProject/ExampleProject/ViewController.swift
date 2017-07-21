@@ -85,8 +85,11 @@ class BasicCellController: CellController {
         super.init()
 
         self.title = title
-        self.cellType = .class(viewClass: UITableViewCell.self, identifier: "BasicCell")
         self.cellHeight = 60.0
+    }
+
+    override var cellType: TableReusableViewType {
+        return .class(viewClass: UITableViewCell.self, identifier: "BasicCell")
     }
     
     override func configure(_ cell: UITableViewCell) {
@@ -99,9 +102,8 @@ class NibCellController: CellController {
     
     var title: String = "From Nib"
 
-    override init() {
-        super.init()
-        self.cellType = .nib(nibName: "NibCell", bundle: Bundle.main, identifier: "NibCell")
+    override var cellType: TableReusableViewType {
+        return .nib(nibName: "NibCell", bundle: Bundle.main, identifier: "NibCell")
     }
     
     override func configure(_ cell: UITableViewCell) {
@@ -115,7 +117,10 @@ class TestHeaderController: HeaderFooterController {
     override init() {
         super.init()
         self.height = 30.0
-        self.type = .class(viewClass: TestHeaderView.self, identifier: "TestHeader")
+    }
+
+    override var type: TableReusableViewType {
+        return .class(viewClass: TestHeaderView.self, identifier: "TestHeader")
     }
 
     override func configure(view: UITableViewHeaderFooterView) {

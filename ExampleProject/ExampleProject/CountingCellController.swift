@@ -16,7 +16,10 @@ class CountingCellController: CellController {
     override init() {
         super.init()
         self.cellHeight = 44.0
-        self.cellType = .nib(nibName: "CountingCell", bundle: Bundle.main, identifier: "CountingCell")
+    }
+
+    override var cellType: TableReusableViewType {
+        return .nib(nibName: "CountingCell", bundle: Bundle.main, identifier: "CountingCell")
     }
 
     override func configure(_ cell: UITableViewCell) {

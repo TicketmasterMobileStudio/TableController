@@ -40,7 +40,10 @@ open class HeaderFooterController {
     open var height: CGFloat = UITableViewAutomaticDimension
     
     // MARK: Configuration
-    open var type: TableReusableViewType = .class(viewClass: UITableViewHeaderFooterView.self, identifier: "HeaderFooterController")
+    open var type: TableReusableViewType {
+        return .class(viewClass: UITableViewHeaderFooterView.self, identifier: "HeaderFooterController")
+    }
+
     open func configure(view: UITableViewHeaderFooterView) { }
     open func willDisplay(view: UITableViewHeaderFooterView) { }
     open func didEndDisplaying(view: UITableViewHeaderFooterView) { }

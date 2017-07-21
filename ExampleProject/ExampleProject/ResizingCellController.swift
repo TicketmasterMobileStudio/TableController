@@ -13,7 +13,10 @@ class ResizingCellController: CellController {
     override init() {
         super.init()
         self.cellHeight = 44.0
-        self.cellType = .class(viewClass: UITableViewCell.self, identifier: "ResizingCellController")
+    }
+
+    override var cellType: TableReusableViewType {
+        return .class(viewClass: UITableViewCell.self, identifier: "ResizingCellController")
     }
 
     override func configure(_ cell: UITableViewCell) {

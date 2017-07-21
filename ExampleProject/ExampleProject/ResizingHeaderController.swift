@@ -12,8 +12,11 @@ class ResizingHeaderController: HeaderFooterController {
 
     override init() {
         super.init()
-        self.type = .class(viewClass: UITableViewHeaderFooterView.self, identifier: "ResizingHeaderView")
         self.height = 44.0
+    }
+
+    override var type: TableReusableViewType {
+        return .class(viewClass: UITableViewHeaderFooterView.self, identifier: "ResizingHeaderView")
     }
 
     override func configure(view: UITableViewHeaderFooterView) {

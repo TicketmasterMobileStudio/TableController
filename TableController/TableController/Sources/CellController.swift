@@ -47,7 +47,9 @@ open class CellController {
     }
     
     // MARK: Cell Configuration
-    open var cellType: TableReusableViewType = .class(viewClass: UITableViewCell.self, identifier: "CellController")
+    open var cellType: TableReusableViewType {
+        return .class(viewClass: UITableViewCell.self, identifier: "CellController")
+    }
 
     open func configure(_ cell: UITableViewCell) { }
     open func willDisplay(_ cell: UITableViewCell) { }
