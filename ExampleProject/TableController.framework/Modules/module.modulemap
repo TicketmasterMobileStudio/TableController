@@ -1,0 +1,10 @@
+framework module TableController {
+  umbrella header "TableController.h"
+
+  export *
+  module * { export * }
+}
+
+module TableController.Swift {
+    header "TableController-Swift.h"
+}
