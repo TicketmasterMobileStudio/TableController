@@ -15,6 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var groupedTableView: UITableView!
     
     var tableController: TableController?
+    var groupedController: TableController?
     
     @IBAction func controlChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
@@ -55,6 +56,7 @@ class ViewController: UIViewController {
         }
 
         self.tableController = TableController(sections: sections, tableView: self.sectionedTableView)
+        self.groupedController = TableController(sections: sections, tableView: self.groupedTableView)
     }
     
     func showSectionedTable() {

@@ -30,7 +30,7 @@ import UIKit
 /// A `SectionControllerType` describes something that handles the display of 
 /// `UITableView` cells in a give section
 
-public protocol SectionControllerType: class {
+public protocol SectionControllerType: class, HeaderFooterControllerDelegate {
 
     weak var delegate: SectionControllerDelegate? { get set }
 
@@ -75,6 +75,20 @@ public extension SectionControllerType {
     func didSelectCell(atIndex index: Int) { }
     func willDisplay(_ cell: UITableViewCell, atIndex index: Int) { }
     func didEndDisplaying(_ cell: UITableViewCell, atIndex index: Int) { }
+
+    // MARK: HeaderFooterControllerDelegate
+
+    func headerFooterControllerNeedsReload(_ headerFooterController: HeaderFooterControllerType) {
+        if headerFooterController === self.headerController {
+            self.delegate?.sectionControllerHeaderNeedsReload(self)
+        } else if headerFooterController === self.footerController {
+            self.delegate?.sectionControllerFooterNeedsReload(self)
+        }
+    }
+
+    func headerFooterControllerNeedsAnimatedHeightChange() {
+        self.delegate?.sectionControllerNeedsAnimatedHeightChange()
+    }
 
 }
 
