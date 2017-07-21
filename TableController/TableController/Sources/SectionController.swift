@@ -32,8 +32,15 @@ import UIKit
 /// `CellControllerTypes` in a given section of a `UITableView`
 
 open class SectionController: SectionControllerType {
-    
-    open var cellControllers: [CellControllerType]
+
+    open var delegate: SectionControllerDelegate?
+    open var cellControllers: [CellControllerType] {
+        didSet {
+            for cellController in cellControllers {
+                cellController.delegate = self
+            }
+        }
+    }
 
     open let headerController: HeaderFooterControllerType?
     open let footerController: HeaderFooterControllerType?
@@ -54,8 +61,14 @@ open class SectionController: SectionControllerType {
         self.cellControllers = cellControllers
         self.headerController = headerController
         self.footerController = footerController
+
+        for cellController in self.cellControllers {
+            cellController.delegate = self
+        }
+        self.headerController?.delegate = self
+        self.footerController?.delegate = self
     }
-    
+
     open func cellType(forIndexPath indexPath: IndexPath) -> TableReusableViewType {
         return self.cellControllers[indexPath.item].cellType
     }
@@ -87,4 +100,35 @@ open class SectionController: SectionControllerType {
     open func didEndDisplaying(_ cell: UITableViewCell, atIndex index: Int) {
         self.cellControllers[index].didEndDisplaying(cell)
     }
+}
+
+
+extension SectionController: CellControllerDelegate {
+
+    public func cellControllerNeedsReload(_ cellController: CellControllerType) {
+        if let index = self.cellControllers.index(where: { $0 === cellController }) {
+            self.delegate?.sectionControllerNeedsReload(self, atIndex: index)
+        }
+    }
+
+    public func cellControllerNeedsAnimatedHeightChange(_ cellController: CellControllerType) {
+        self.delegate?.sectionControllerNeedsAnimatedHeightChange()
+    }
+
+}
+
+extension SectionController: HeaderFooterControllerDelegate {
+
+    public func headerFooterControllerNeedsReload(_ headerFooterController: HeaderFooterControllerType) {
+        if self.headerController === headerFooterController {
+            self.delegate?.sectionControllerHeaderNeedsReload(self)
+        } else if self.footerController === headerFooterController {
+            self.delegate?.sectionControllerFooterNeedsReload(self)
+        }
+    }
+
+    public func headerFooterControllerNeedsAnimatedHeightChange() {
+        self.delegate?.sectionControllerNeedsAnimatedHeightChange()
+    }
+
 }
