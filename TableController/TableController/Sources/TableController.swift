@@ -31,7 +31,7 @@ open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource
     
     open var numberOfSections: Int { return self.sectionControllers.count }
     
-    public private(set) var sectionControllers: [SectionControllerType] {
+    public private(set) var sectionControllers: [SectionController] {
         didSet {
             self.visibleIndexPaths = Set<IndexPath>()
             self.visibleHeaders = NSMutableIndexSet()
@@ -49,7 +49,7 @@ open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource
     fileprivate let tableView: UITableView
     fileprivate var registeredCellTypes: [TableReusableViewType] = []
     
-    public init(sections: [SectionControllerType], tableView: UITableView) {
+    public init(sections: [SectionController], tableView: UITableView) {
         self.sectionControllers = sections
         self.tableView = tableView
         
@@ -61,6 +61,11 @@ open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource
         for sectionController in sectionControllers {
             sectionController.delegate = self
         }
+    }
+
+    deinit {
+        self.tableView.delegate = nil
+        self.tableView.dataSource = nil
     }
 
     open func update(cellAt indexPath: IndexPath) {
@@ -100,19 +105,19 @@ extension TableController {
 
 extension TableController: SectionControllerDelegate {
 
-    open func sectionControllerNeedsReload(_ sectionController: SectionControllerType, atIndex index: Int) {
+    open func sectionControllerNeedsReload(_ sectionController: SectionController, atIndex index: Int) {
         if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
             self.update(cellAt: IndexPath(row: index, section: section))
         }
     }
 
-    open func sectionControllerHeaderNeedsReload(_ sectionController: SectionControllerType) {
+    open func sectionControllerHeaderNeedsReload(_ sectionController: SectionController) {
         if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
             self.update(headerInSection: section)
         }
     }
 
-    open func sectionControllerFooterNeedsReload(_ sectionController: SectionControllerType) {
+    open func sectionControllerFooterNeedsReload(_ sectionController: SectionController) {
         if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
             self.update(footerInSection: section)
         }
