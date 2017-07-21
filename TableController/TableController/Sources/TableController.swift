@@ -64,8 +64,12 @@ open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource
     }
 
     deinit {
-        self.tableView.delegate = nil
-        self.tableView.dataSource = nil
+        if self.tableView.delegate === self {
+            self.tableView.delegate = nil
+        }
+        if self.tableView.dataSource === self {
+            self.tableView.dataSource = nil
+        }
     }
 
     open func update(cellAt indexPath: IndexPath) {
