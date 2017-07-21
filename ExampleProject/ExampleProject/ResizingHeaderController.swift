@@ -8,14 +8,17 @@
 
 import TableController
 
-class ResizingHeaderController: HeaderFooterControllerType {
+class ResizingHeaderController: HeaderFooterController {
 
-    weak var delegate: HeaderFooterControllerDelegate?
-    var type: TableReusableViewType = .class(viewClass: UITableViewHeaderFooterView.self, identifier: "ResizingHeaderView")
-    var height: CGFloat = 44.0
+    override init() {
+        super.init()
+        self.type = .class(viewClass: UITableViewHeaderFooterView.self, identifier: "ResizingHeaderView")
+        self.height = 44.0
+    }
 
-    func configure(view: UITableViewHeaderFooterView) {
+    override func configure(view: UITableViewHeaderFooterView) {
         view.textLabel?.text = "Tap to Resize"
+        view.contentView.backgroundColor = .red
         view.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(ResizingHeaderController.performSelectionAction)))
     }
 

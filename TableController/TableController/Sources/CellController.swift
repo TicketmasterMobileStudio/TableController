@@ -34,7 +34,9 @@ open class CellController {
     public init() { }
 
     // MARK: Cell Sizing
-    open var estimatedCellHeight: CGFloat = UITableViewAutomaticDimension
+    open var estimatedCellHeight: CGFloat {
+        return self.cellHeight
+    }
     open var cellHeight: CGFloat = UITableViewAutomaticDimension
     
     // MARK: Selection
@@ -45,7 +47,7 @@ open class CellController {
     }
     
     // MARK: Cell Configuration
-    open var cellType: TableReusableViewType = .class(viewClass: UITableViewCell.self, identifier: "Test")
+    open var cellType: TableReusableViewType = .class(viewClass: UITableViewCell.self, identifier: "CellController")
 
     open func configure(_ cell: UITableViewCell) { }
     open func willDisplay(_ cell: UITableViewCell) { }

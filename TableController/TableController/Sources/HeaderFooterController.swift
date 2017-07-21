@@ -1,5 +1,5 @@
 //
-//  HeaderFooterControllerType.swift
+//  HeaderFooterController.swift
 //  TableController
 //
 //  Created by Carmen Cerino on 7/21/16.
@@ -27,31 +27,28 @@
 
 import Foundation
 
-/// A `HeaderFooterControllerType` describes something that handles the display of
+/// A `HeaderFooterController` describes something that handles the display of
 /// of a single `UIView` that represents a `UITableView` header or footer.
-public protocol HeaderFooterControllerType: class {
+open class HeaderFooterController {
 
-    weak var delegate: HeaderFooterControllerDelegate? { get set }
+    public weak var delegate: HeaderFooterControllerDelegate?
 
     // MARK: Sizing
-    var estimatedHeight: CGFloat { get }
-    var height: CGFloat { get }
+    open var estimatedHeight: CGFloat {
+        return self.height
+    }
+    open var height: CGFloat = UITableViewAutomaticDimension
     
     // MARK: Configuration
-    var type: TableReusableViewType { get }
-    func configure(view: UITableViewHeaderFooterView)
-    func willDisplay(view: UITableViewHeaderFooterView)
-    func didEndDisplaying(view: UITableViewHeaderFooterView)
-}
+    open var type: TableReusableViewType = .class(viewClass: UITableViewHeaderFooterView.self, identifier: "HeaderFooterController")
+    open func configure(view: UITableViewHeaderFooterView) { }
+    open func willDisplay(view: UITableViewHeaderFooterView) { }
+    open func didEndDisplaying(view: UITableViewHeaderFooterView) { }
 
-public extension HeaderFooterControllerType {
-    var height: CGFloat { return UITableViewAutomaticDimension }
-    var estimatedHeight: CGFloat { return self.height }
-    func willDisplay(view: UITableViewHeaderFooterView) { }
-    func didEndDisplaying(view: UITableViewHeaderFooterView) { }
+    public init() { }
 }
 
 public protocol HeaderFooterControllerDelegate: class {
-    func headerFooterControllerNeedsReload(_ headerFooterController: HeaderFooterControllerType)
+    func headerFooterControllerNeedsReload(_ headerFooterController: HeaderFooterController)
     func headerFooterControllerNeedsAnimatedHeightChange()
 }

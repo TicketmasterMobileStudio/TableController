@@ -43,8 +43,8 @@ open class SectionController {
         }
     }
 
-    open let headerController: HeaderFooterControllerType?
-    open let footerController: HeaderFooterControllerType?
+    open let headerController: HeaderFooterController?
+    open let footerController: HeaderFooterController?
     
     open var cellTypes: Set<TableReusableViewType> {
         return Set<TableReusableViewType>(cellControllers.map { $0.cellType })
@@ -58,7 +58,7 @@ open class SectionController {
         self.init(cellControllers: [cellController])
     }
     
-    public init(cellControllers: [CellController], headerController: HeaderFooterControllerType? = nil, footerController: HeaderFooterControllerType? = nil) {
+    public init(cellControllers: [CellController], headerController: HeaderFooterController? = nil, footerController: HeaderFooterController? = nil) {
         self.cellControllers = cellControllers
         self.headerController = headerController
         self.footerController = footerController
@@ -102,6 +102,8 @@ open class SectionController {
         self.cellControllers[index].didEndDisplaying(cell)
     }
 
+    
+
 }
 
 public protocol SectionControllerDelegate: class {
@@ -127,7 +129,7 @@ extension SectionController: CellControllerDelegate {
 
 extension SectionController: HeaderFooterControllerDelegate {
 
-    public func headerFooterControllerNeedsReload(_ headerFooterController: HeaderFooterControllerType) {
+    public func headerFooterControllerNeedsReload(_ headerFooterController: HeaderFooterController) {
         if self.headerController === headerFooterController {
             self.delegate?.sectionControllerHeaderNeedsReload(self)
         } else if self.footerController === headerFooterController {

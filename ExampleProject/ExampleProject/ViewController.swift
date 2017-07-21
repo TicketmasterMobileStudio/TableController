@@ -29,11 +29,15 @@ class ViewController: UIViewController {
     }
 
 
-    lazy var sections: [SectionController] = {
+    lazy var sectionsForStandardTable: [SectionController] = {
         return [ self.firstSectionController, self.updatingSection ]
     }()
 
-    let firstSectionController: SectionController = {
+    lazy var sectionsForGroupedTable: [SectionController] = {
+        return [ self.firstSectionController, self.updatingSection ]
+    }()
+
+    var firstSectionController: SectionController {
         let basicItem1 = BasicCellController(title: "Item 1")
         let basicItem2 = BasicCellController(title: "Item 2")
         let basicItem3 = BasicCellController(title: "Item 3")
@@ -43,34 +47,32 @@ class ViewController: UIViewController {
 
         let nibItem1 = NibCellController()
 
-        let group = SectionController(cellControllers: [basicItem1, basicItem2, basicItem3, basicItem4, basicItem5, basicItem6, nibItem1])
+        let group = SectionController(cellControllers: [basicItem1, basicItem2, basicItem3, basicItem4, basicItem5, basicItem6, nibItem1], headerController: TestHeaderController())
         return group
-    }()
-    var updatingSection: SectionController = {
+    }
+
+    var updatingSection: SectionController {
         let countingItem = CountingCellController()
         let resizingItem = ResizingCellController()
         return SectionController(cellControllers: [countingItem, resizingItem], headerController: ResizingHeaderController(), footerController: nil)
-    }()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sectionedTableView.backgroundColor = UIColor.groupTableViewBackground
 
-        self.showSectionedTable()
+        self.tableController = TableController(sections: self.sectionsForStandardTable, tableView: self.sectionedTableView)
+        self.groupedController = TableController(sections: self.sectionsForGroupedTable, tableView: self.groupedTableView)
     }
     
     func showSectionedTable() {
         self.sectionedTableView.isHidden = false
         self.groupedTableView.isHidden = true
-
-        self.tableController = TableController(sections: self.sections, tableView: self.sectionedTableView)
     }
     
     func showGroupedTable() {
         self.sectionedTableView.isHidden = true
         self.groupedTableView.isHidden = false
-
-        self.tableController = TableController(sections: self.sections, tableView: self.groupedTableView)
     }
 
 }
@@ -108,14 +110,15 @@ class NibCellController: CellController {
     
 }
 
-class TestHeaderController: HeaderFooterControllerType {
+class TestHeaderController: HeaderFooterController {
 
-    weak var delegate: HeaderFooterControllerDelegate?
+    override init() {
+        super.init()
+        self.height = 30.0
+        self.type = .class(viewClass: TestHeaderView.self, identifier: "TestHeader")
+    }
 
-    let height: CGFloat = 30.0
-    let type: TableReusableViewType = .class(viewClass: TestHeaderView.self, identifier: "TestHeader")
-    
-    func configure(view: UITableViewHeaderFooterView) {
+    override func configure(view: UITableViewHeaderFooterView) {
         guard let header = view as? TestHeaderView else { return }
         
         header.primaryLabel.text = "Hi"

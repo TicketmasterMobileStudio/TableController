@@ -277,7 +277,7 @@ public extension TableController {
 // MARK: - Header/Footer Helpers
 private extension TableController {
     
-    func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterControllerType, inTableView tableView: UITableView) -> UITableViewHeaderFooterView? {
+    func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterController, inTableView tableView: UITableView) -> UITableViewHeaderFooterView? {
         if let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: controller.type.identifier) {
             controller.configure(view: view)
             return view
@@ -286,7 +286,7 @@ private extension TableController {
         return nil
     }
     
-    func headerFooterView(forController controller: HeaderFooterControllerType, in tableView: UITableView) -> UITableViewHeaderFooterView? {
+    func headerFooterView(forController controller: HeaderFooterController, in tableView: UITableView) -> UITableViewHeaderFooterView? {
         if let view = self.dequeue(reusableHeaderFooterViewForController: controller, inTableView: tableView) {
             return view
         }
