@@ -29,9 +29,9 @@ import UIKit
 
 /// A `CellControllerType` describes something that handles the display of
 /// of a single `UITableViewCell`
-open class CellController {
+open class CellController: NSObject {
 
-    public init() { }
+    public override init() { }
 
     // MARK: Cell Sizing
     open var estimatedCellHeight: CGFloat {

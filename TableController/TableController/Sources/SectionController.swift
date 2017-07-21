@@ -31,7 +31,7 @@ import UIKit
 /// A `SectionController` manages displaying a group of
 /// `CellControllers` in a given section of a `UITableView`
 
-open class SectionController {
+open class SectionController: NSObject {
 
     public weak var delegate: SectionControllerDelegate?
     
@@ -62,6 +62,8 @@ open class SectionController {
         self.cellControllers = cellControllers
         self.headerController = headerController
         self.footerController = footerController
+
+        super.init()
 
         for cellController in self.cellControllers {
             cellController.delegate = self

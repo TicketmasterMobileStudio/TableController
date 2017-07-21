@@ -29,7 +29,7 @@ import Foundation
 
 /// A `HeaderFooterController` describes something that handles the display of
 /// of a single `UIView` that represents a `UITableView` header or footer.
-open class HeaderFooterController {
+open class HeaderFooterController: NSObject {
 
     public weak var delegate: HeaderFooterControllerDelegate?
 
@@ -48,7 +48,6 @@ open class HeaderFooterController {
     open func willDisplay(view: UITableViewHeaderFooterView) { }
     open func didEndDisplaying(view: UITableViewHeaderFooterView) { }
 
-    public init() { }
 }
 
 public protocol HeaderFooterControllerDelegate: class {
