@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "TableController"
-  s.version      = "0.0.2"
+  s.version      = "0.0.4"
   s.summary      = "An object oriented approach at managing UITableViews."
 
   # This description is used to generate tags and improve search results.
