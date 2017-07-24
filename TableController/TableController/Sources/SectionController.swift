@@ -29,12 +29,13 @@ import Foundation
 import UIKit
 
 /// A `SectionController` manages displaying a group of
-/// `CellControllerTypes` in a given section of a `UITableView`
+/// `CellControllers` in a given section of a `UITableView`
 
-open class SectionController: SectionControllerType {
+open class SectionController: NSObject {
 
-    open var delegate: SectionControllerDelegate?
-    open var cellControllers: [CellControllerType] {
+    public weak var delegate: SectionControllerDelegate?
+    
+    open var cellControllers: [CellController] {
         didSet {
             for cellController in cellControllers {
                 cellController.delegate = self
@@ -42,8 +43,8 @@ open class SectionController: SectionControllerType {
         }
     }
 
-    open let headerController: HeaderFooterControllerType?
-    open let footerController: HeaderFooterControllerType?
+    open let headerController: HeaderFooterController?
+    open let footerController: HeaderFooterController?
     
     open var cellTypes: Set<TableReusableViewType> {
         return Set<TableReusableViewType>(cellControllers.map { $0.cellType })
@@ -53,14 +54,16 @@ open class SectionController: SectionControllerType {
         return self.cellControllers.count
     }
     
-    public convenience init(cellController: CellControllerType) {
+    public convenience init(cellController: CellController) {
         self.init(cellControllers: [cellController])
     }
     
-    public init(cellControllers: [CellControllerType], headerController: HeaderFooterControllerType? = nil, footerController: HeaderFooterControllerType? = nil) {
+    public init(cellControllers: [CellController], headerController: HeaderFooterController? = nil, footerController: HeaderFooterController? = nil) {
         self.cellControllers = cellControllers
         self.headerController = headerController
         self.footerController = footerController
+
+        super.init()
 
         for cellController in self.cellControllers {
             cellController.delegate = self
@@ -100,18 +103,27 @@ open class SectionController: SectionControllerType {
     open func didEndDisplaying(_ cell: UITableViewCell, atIndex index: Int) {
         self.cellControllers[index].didEndDisplaying(cell)
     }
+
+    
+
 }
 
+public protocol SectionControllerDelegate: class {
+    func sectionControllerNeedsReload(_ sectionController: SectionController, atIndex index: Int)
+    func sectionControllerHeaderNeedsReload(_ sectionController: SectionController)
+    func sectionControllerFooterNeedsReload(_ sectionController: SectionController)
+    func sectionControllerNeedsAnimatedHeightChange()
+}
 
 extension SectionController: CellControllerDelegate {
 
-    public func cellControllerNeedsReload(_ cellController: CellControllerType) {
+    public func cellControllerNeedsReload(_ cellController: CellController) {
         if let index = self.cellControllers.index(where: { $0 === cellController }) {
             self.delegate?.sectionControllerNeedsReload(self, atIndex: index)
         }
     }
 
-    public func cellControllerNeedsAnimatedHeightChange(_ cellController: CellControllerType) {
+    public func cellControllerNeedsAnimatedHeightChange(_ cellController: CellController) {
         self.delegate?.sectionControllerNeedsAnimatedHeightChange()
     }
 
@@ -119,7 +131,7 @@ extension SectionController: CellControllerDelegate {
 
 extension SectionController: HeaderFooterControllerDelegate {
 
-    public func headerFooterControllerNeedsReload(_ headerFooterController: HeaderFooterControllerType) {
+    public func headerFooterControllerNeedsReload(_ headerFooterController: HeaderFooterController) {
         if self.headerController === headerFooterController {
             self.delegate?.sectionControllerHeaderNeedsReload(self)
         } else if self.footerController === headerFooterController {

@@ -28,8 +28,16 @@ class ViewController: UIViewController {
         }
     }
 
-    let firstSectionController = BasicSectionController()
-    let secondSectionController: SectionController = {
+
+    lazy var sectionsForStandardTable: [SectionController] = {
+        return [ self.firstSectionController, self.updatingSection ]
+    }()
+
+    lazy var sectionsForGroupedTable: [SectionController] = {
+        return [ self.firstSectionController, self.updatingSection ]
+    }()
+
+    var firstSectionController: SectionController {
         let basicItem1 = BasicCellController(title: "Item 1")
         let basicItem2 = BasicCellController(title: "Item 2")
         let basicItem3 = BasicCellController(title: "Item 3")
@@ -39,24 +47,22 @@ class ViewController: UIViewController {
 
         let nibItem1 = NibCellController()
 
-        let group = SectionController(cellControllers: [basicItem1, basicItem2, basicItem3, basicItem4, basicItem5, basicItem6, nibItem1])
+        let group = SectionController(cellControllers: [basicItem1, basicItem2, basicItem3, basicItem4, basicItem5, basicItem6, nibItem1], headerController: TestHeaderController())
         return group
-    }()
-    var updatingSection: SectionController?
+    }
+
+    var updatingSection: SectionController {
+        let countingItem = CountingCellController()
+        let resizingItem = ResizingCellController()
+        return SectionController(cellControllers: [countingItem, resizingItem], headerController: ResizingHeaderController(), footerController: nil)
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.sectionedTableView.backgroundColor = UIColor.groupTableViewBackground
 
-        var sections: [SectionControllerType] = [ self.firstSectionController, self.secondSectionController ]
-
-        self.updatingSection = self.setupUpdatingSectionController()
-        if let updatingSection = self.updatingSection {
-            sections.append(updatingSection)
-        }
-
-        self.tableController = TableController(sections: sections, tableView: self.sectionedTableView)
-        self.groupedController = TableController(sections: sections, tableView: self.groupedTableView)
+        self.tableController = TableController(sections: self.sectionsForStandardTable, tableView: self.sectionedTableView)
+        self.groupedController = TableController(sections: self.sectionsForGroupedTable, tableView: self.groupedTableView)
     }
     
     func showSectionedTable() {
@@ -69,75 +75,55 @@ class ViewController: UIViewController {
         self.groupedTableView.isHidden = false
     }
 
-    func setupUpdatingSectionController() -> SectionController {
-        let countingItem = CountingCellController()
-        let resizingItem = ResizingCellController()
-        return SectionController(cellControllers: [countingItem, resizingItem], headerController: ResizingHeaderController(), footerController: nil)
-    }
-
 }
 
-class BasicCellController: CellControllerType {
+class BasicCellController: CellController {
     
     var title: String = "Default"
-    weak var delegate: CellControllerDelegate?
 
-    var cellType: TableReusableViewType = .class(viewClass: UITableViewCell.self, identifier: "BasicCell")
-    var cellHeight: CGFloat = 60.0
-    
     init(title: String) {
+        super.init()
+
         self.title = title
+        self.cellHeight = 60.0
+    }
+
+    override var cellType: TableReusableViewType {
+        return .class(viewClass: UITableViewCell.self, identifier: "BasicCell")
     }
     
-    func configure(_ cell: UITableViewCell) {
+    override func configure(_ cell: UITableViewCell) {
         cell.textLabel?.text = title
     }
     
 }
 
-class NibCellController: CellControllerType {
+class NibCellController: CellController {
     
     var title: String = "From Nib"
-    weak var delegate: CellControllerDelegate?
+
+    override var cellType: TableReusableViewType {
+        return .nib(nibName: "NibCell", bundle: Bundle.main, identifier: "NibCell")
+    }
     
-    var cellType: TableReusableViewType = .nib(nibName: "NibCell", bundle: Bundle.main, identifier: "NibCell")
-    
-    func configure(_ cell: UITableViewCell) {
+    override func configure(_ cell: UITableViewCell) {
         cell.textLabel?.text = title
     }
     
 }
 
-class BasicSectionController: SectionControllerType {
-    
-    let headerController: HeaderFooterControllerType? = TestHeaderController()
-    weak var delegate: SectionControllerDelegate?
-    
-    let basicCellType: TableReusableViewType = .class(viewClass: UITableViewCell.self, identifier: "BasicSectionCell")
-    
-    var cellTypes: Set<TableReusableViewType> {
-        return [ self.basicCellType ]
-    }
-    
-    var numberOfItems: Int = 4
-    
-    func configure(_ cell: UITableViewCell, atIndex index: Int) {
-        cell.textLabel?.text = "Basic Section Item: \(index)"
-    }
-    
-    func cellType(forIndexPath indexPath: IndexPath) -> TableReusableViewType {
-        return self.basicCellType
-    }
-}
+class TestHeaderController: HeaderFooterController {
 
-class TestHeaderController: HeaderFooterControllerType {
+    override init() {
+        super.init()
+        self.height = 30.0
+    }
 
-    weak var delegate: HeaderFooterControllerDelegate?
+    override var type: TableReusableViewType {
+        return .class(viewClass: TestHeaderView.self, identifier: "TestHeader")
+    }
 
-    let height: CGFloat = 30.0
-    let type: TableReusableViewType = .class(viewClass: TestHeaderView.self, identifier: "TestHeader")
-    
-    func configure(view: UITableViewHeaderFooterView) {
+    override func configure(view: UITableViewHeaderFooterView) {
         guard let header = view as? TestHeaderView else { return }
         
         header.primaryLabel.text = "Hi"

@@ -9,29 +9,32 @@
 import TableController
 
 
-class CountingCellController: CellControllerType {
-
-    weak var delegate: CellControllerDelegate?
+class CountingCellController: CellController {
 
     var count: Int = 0
 
-    var height: CGFloat = 44.0
+    override init() {
+        super.init()
+        self.cellHeight = 44.0
+    }
 
-    var cellType: TableReusableViewType = .nib(nibName: "CountingCell", bundle: Bundle.main, identifier: "CountingCell")
+    override var cellType: TableReusableViewType {
+        return .nib(nibName: "CountingCell", bundle: Bundle.main, identifier: "CountingCell")
+    }
 
-    func configure(_ cell: UITableViewCell) {
+    override func configure(_ cell: UITableViewCell) {
         guard let countingCell = cell as? CountingCell else { return }
 
         countingCell.countLabel.text = "Count: \(self.count)"
     }
 
-    func willDisplay(_ cell: UITableViewCell) {
+    override func willDisplay(_ cell: UITableViewCell) {
         guard let countingCell = cell as? CountingCell else { return }
 
         countingCell.incrementButton.addTarget(self, action: #selector(CountingCellController.incrementButtonWasTapped), for: .touchUpInside)
     }
 
-    func didEndDisplaying(_ cell: UITableViewCell) {
+    override func didEndDisplaying(_ cell: UITableViewCell) {
         guard let countingCell = cell as? CountingCell else { return }
 
         countingCell.incrementButton.addTarget(self, action: #selector(CountingCellController.incrementButtonWasTapped), for: .touchUpInside)

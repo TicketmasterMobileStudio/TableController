@@ -8,19 +8,24 @@
 
 import TableController
 
-class ResizingCellController: CellControllerType {
+class ResizingCellController: CellController {
 
-    var cellHeight: CGFloat = 44.0
-    var cellType: TableReusableViewType = .class(viewClass: UITableViewCell.self, identifier: "ResizingCellController")
-    var delegate: CellControllerDelegate?
+    override init() {
+        super.init()
+        self.cellHeight = 44.0
+    }
 
-    func configure(_ cell: UITableViewCell) {
+    override var cellType: TableReusableViewType {
+        return .class(viewClass: UITableViewCell.self, identifier: "ResizingCellController")
+    }
+
+    override func configure(_ cell: UITableViewCell) {
         cell.textLabel?.text = "Tap to Resize"
     }
 
     var expanded: Bool = false
 
-    func performSelectionAction() {
+    override func performSelectionAction() {
         self.expanded = !self.expanded
         self.cellHeight = self.expanded ? 88.0 : 44.0
         self.delegate?.cellControllerNeedsAnimatedHeightChange(self)

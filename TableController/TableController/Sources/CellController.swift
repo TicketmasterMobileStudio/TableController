@@ -1,5 +1,5 @@
 //
-//  CellControllerType.swift
+//  CellController.swift
 //  LiveNation
 //
 //  Created by Carmen Cerino on 2/2/16.
@@ -29,36 +29,37 @@ import UIKit
 
 /// A `CellControllerType` describes something that handles the display of
 /// of a single `UITableViewCell`
-public protocol CellControllerType: class {
+open class CellController: NSObject {
+
+    public override init() { }
 
     // MARK: Cell Sizing
-    var estimatedCellHeight: CGFloat { get }
-    var cellHeight: CGFloat { get }
+    open var estimatedCellHeight: CGFloat {
+        return self.cellHeight
+    }
+    open var cellHeight: CGFloat = UITableViewAutomaticDimension
     
     // MARK: Selection
-    var selectable: Bool { get }
-    func performSelectionAction()
+    open var selectable: Bool = true
+
+    open func performSelectionAction() {
+        // no-op
+    }
     
     // MARK: Cell Configuration
-    var cellType: TableReusableViewType { get }
-    func configure(_ cell: UITableViewCell)
-    func willDisplay(_ cell: UITableViewCell)
-    func didEndDisplaying(_ cell: UITableViewCell)
+    open var cellType: TableReusableViewType {
+        return .class(viewClass: UITableViewCell.self, identifier: "CellController")
+    }
+
+    open func configure(_ cell: UITableViewCell) { }
+    open func willDisplay(_ cell: UITableViewCell) { }
+    open func didEndDisplaying(_ cell: UITableViewCell) { }
 
     // MARK: Update/Animation Helpers
-    weak var delegate: CellControllerDelegate? { get set }
-}
-
-public extension CellControllerType {
-    var cellHeight: CGFloat { return UITableViewAutomaticDimension }
-    var estimatedCellHeight: CGFloat { return UITableViewAutomaticDimension }
-    var selectable: Bool { return true }
-    func performSelectionAction() { }
-    func willDisplay(_ cell: UITableViewCell) { }
-    func didEndDisplaying(_ cell: UITableViewCell) { }
+    public weak var delegate: CellControllerDelegate?
 }
 
 public protocol CellControllerDelegate: class {
-    func cellControllerNeedsReload(_ cellController: CellControllerType)
-    func cellControllerNeedsAnimatedHeightChange(_ cellController: CellControllerType)
+    func cellControllerNeedsReload(_ cellController: CellController)
+    func cellControllerNeedsAnimatedHeightChange(_ cellController: CellController)
 }

@@ -31,7 +31,7 @@ open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource
     
     open var numberOfSections: Int { return self.sectionControllers.count }
     
-    public private(set) var sectionControllers: [SectionControllerType] {
+    public private(set) var sectionControllers: [SectionController] {
         didSet {
             self.visibleIndexPaths = Set<IndexPath>()
             self.visibleHeaders = NSMutableIndexSet()
@@ -49,7 +49,7 @@ open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource
     fileprivate let tableView: UITableView
     fileprivate var registeredCellTypes: [TableReusableViewType] = []
     
-    public init(sections: [SectionControllerType], tableView: UITableView) {
+    public init(sections: [SectionController], tableView: UITableView) {
         self.sectionControllers = sections
         self.tableView = tableView
         
@@ -60,6 +60,15 @@ open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource
 
         for sectionController in sectionControllers {
             sectionController.delegate = self
+        }
+    }
+
+    deinit {
+        if self.tableView.delegate === self {
+            self.tableView.delegate = nil
+        }
+        if self.tableView.dataSource === self {
+            self.tableView.dataSource = nil
         }
     }
 
@@ -100,19 +109,19 @@ extension TableController {
 
 extension TableController: SectionControllerDelegate {
 
-    open func sectionControllerNeedsReload(_ sectionController: SectionControllerType, atIndex index: Int) {
+    open func sectionControllerNeedsReload(_ sectionController: SectionController, atIndex index: Int) {
         if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
             self.update(cellAt: IndexPath(row: index, section: section))
         }
     }
 
-    open func sectionControllerHeaderNeedsReload(_ sectionController: SectionControllerType) {
+    open func sectionControllerHeaderNeedsReload(_ sectionController: SectionController) {
         if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
             self.update(headerInSection: section)
         }
     }
 
-    open func sectionControllerFooterNeedsReload(_ sectionController: SectionControllerType) {
+    open func sectionControllerFooterNeedsReload(_ sectionController: SectionController) {
         if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
             self.update(footerInSection: section)
         }
@@ -272,7 +281,7 @@ public extension TableController {
 // MARK: - Header/Footer Helpers
 private extension TableController {
     
-    func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterControllerType, inTableView tableView: UITableView) -> UITableViewHeaderFooterView? {
+    func dequeue(reusableHeaderFooterViewForController controller: HeaderFooterController, inTableView tableView: UITableView) -> UITableViewHeaderFooterView? {
         if let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: controller.type.identifier) {
             controller.configure(view: view)
             return view
@@ -281,7 +290,7 @@ private extension TableController {
         return nil
     }
     
-    func headerFooterView(forController controller: HeaderFooterControllerType, in tableView: UITableView) -> UITableViewHeaderFooterView? {
+    func headerFooterView(forController controller: HeaderFooterController, in tableView: UITableView) -> UITableViewHeaderFooterView? {
         if let view = self.dequeue(reusableHeaderFooterViewForController: controller, inTableView: tableView) {
             return view
         }
