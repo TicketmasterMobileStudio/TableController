@@ -101,7 +101,9 @@ open class SectionController: NSObject {
     }
     
     open func didEndDisplaying(_ cell: UITableViewCell, atIndex index: Int) {
-        self.cellControllers[index].didEndDisplaying(cell)
+        if self.cellControllers.count > index {
+            self.cellControllers[index].didEndDisplaying(cell)
+        }
     }
 
 }
