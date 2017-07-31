@@ -104,8 +104,6 @@ open class SectionController: NSObject {
         self.cellControllers[index].didEndDisplaying(cell)
     }
 
-    
-
 }
 
 public protocol SectionControllerDelegate: class {

@@ -111,9 +111,7 @@ extension TableController: SectionControllerDelegate {
 
     open func sectionControllerNeedsReload(_ sectionController: SectionController) {
         if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
-            for i in 0..<self.sectionControllers[section].cellControllers.count {
-                self.update(cellAt: IndexPath(row: i, section: section))
-            }
+            self.tableView.reloadSections(IndexSet(integer: section), with: .none)
         }
     }
 
