@@ -109,6 +109,7 @@ open class SectionController: NSObject {
 }
 
 public protocol SectionControllerDelegate: class {
+    func sectionControllerNeedsReload(_ sectionController: SectionController)
     func sectionControllerNeedsReload(_ sectionController: SectionController, atIndex index: Int)
     func sectionControllerHeaderNeedsReload(_ sectionController: SectionController)
     func sectionControllerFooterNeedsReload(_ sectionController: SectionController)

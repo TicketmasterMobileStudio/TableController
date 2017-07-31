@@ -109,6 +109,14 @@ extension TableController {
 
 extension TableController: SectionControllerDelegate {
 
+    open func sectionControllerNeedsReload(_ sectionController: SectionController) {
+        if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
+            for i in 0..<self.sectionControllers[section].cellControllers.count {
+                self.update(cellAt: IndexPath(row: i, section: section))
+            }
+        }
+    }
+
     open func sectionControllerNeedsReload(_ sectionController: SectionController, atIndex index: Int) {
         if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
             self.update(cellAt: IndexPath(row: index, section: section))
@@ -159,6 +167,7 @@ public extension TableController {
         section.configure(cell, atIndex: indexPath.row)
         return cell
     }
+
 }
 
 // MARK: - UITableViewDelegate
