@@ -61,5 +61,5 @@ open class CellController: NSObject {
 
 public protocol CellControllerDelegate: class {
     func cellControllerNeedsReload(_ cellController: CellController)
-    func cellControllerNeedsAnimatedHeightChange(_ cellController: CellController)
+    func cellControllerNeedsAnimatedChanges(_ cellController: CellController, changes: ((Void) -> Void)?)
 }

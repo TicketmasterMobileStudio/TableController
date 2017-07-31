@@ -110,9 +110,7 @@ extension TableController {
 extension TableController: SectionControllerDelegate {
 
     open func sectionControllerNeedsReload(_ sectionController: SectionController) {
-        if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
-            self.tableView.reloadSections(IndexSet(integer: section), with: .none)
-        }
+        self.tableView.reloadData()
     }
 
     open func sectionControllerNeedsReload(_ sectionController: SectionController, atIndex index: Int) {
@@ -133,9 +131,10 @@ extension TableController: SectionControllerDelegate {
         }
     }
 
-    open func sectionControllerNeedsAnimatedHeightChange() {
+    open func sectionControllerNeedsAnimatedChanges(_ changes: ((Void) -> Void)?) {
         UIView.animate(withDuration: 0.2) { 
             self.tableView.beginUpdates()
+            changes?()
             self.tableView.endUpdates()
         }
     }
