@@ -111,6 +111,7 @@ extension TableController: SectionControllerDelegate {
 
     open func sectionControllerNeedsReload(_ sectionController: SectionController) {
         self.tableView.reloadData()
+        self.tableView.layoutIfNeeded()
     }
 
     open func sectionControllerNeedsReload(_ sectionController: SectionController, atIndex index: Int) {
