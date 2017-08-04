@@ -26,9 +26,10 @@ class ResizingCellController: CellController {
     var expanded: Bool = false
 
     override func performSelectionAction() {
-        self.expanded = !self.expanded
-        self.cellHeight = self.expanded ? 88.0 : 44.0
-        self.delegate?.cellControllerNeedsAnimatedHeightChange(self)
+        self.delegate?.cellControllerNeedsAnimatedChanges(self) {
+            self.expanded = !self.expanded
+            self.cellHeight = self.expanded ? 88.0 : 44.0
+        }
     }
 
 }

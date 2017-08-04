@@ -109,6 +109,11 @@ extension TableController {
 
 extension TableController: SectionControllerDelegate {
 
+    open func sectionControllerNeedsReload(_ sectionController: SectionController) {
+        self.tableView.reloadData()
+        self.tableView.layoutIfNeeded()
+    }
+
     open func sectionControllerNeedsReload(_ sectionController: SectionController, atIndex index: Int) {
         if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
             self.update(cellAt: IndexPath(row: index, section: section))
@@ -127,9 +132,10 @@ extension TableController: SectionControllerDelegate {
         }
     }
 
-    open func sectionControllerNeedsAnimatedHeightChange() {
+    open func sectionControllerNeedsAnimatedChanges(_ changes: ((Void) -> Void)?) {
         UIView.animate(withDuration: 0.2) { 
             self.tableView.beginUpdates()
+            changes?()
             self.tableView.endUpdates()
         }
     }
@@ -159,6 +165,7 @@ public extension TableController {
         section.configure(cell, atIndex: indexPath.row)
         return cell
     }
+
 }
 
 // MARK: - UITableViewDelegate
