@@ -28,16 +28,15 @@ class ViewController: UIViewController {
         }
     }
 
-
     lazy var sectionsForStandardTable: [SectionController] = {
-        return [ self.firstSectionController, self.updatingSection ]
+        return [ self.makeFirstSectionController(), self.makeUpdatingSection() ]
     }()
 
     lazy var sectionsForGroupedTable: [SectionController] = {
-        return [ self.firstSectionController, self.updatingSection ]
+        return [ self.makeFirstSectionController(), self.makeUpdatingSection() ]
     }()
 
-    var firstSectionController: SectionController {
+    func makeFirstSectionController() -> SectionController {
         let basicItem1 = BasicCellController(title: "Item 1")
         let basicItem2 = BasicCellController(title: "Item 2")
         let basicItem3 = BasicCellController(title: "Item 3")
@@ -51,7 +50,7 @@ class ViewController: UIViewController {
         return group
     }
 
-    var updatingSection: SectionController {
+    func makeUpdatingSection() -> SectionController {
         let countingItem = CountingCellController()
         let resizingItem = ResizingCellController()
         return SectionController(cellControllers: [countingItem, resizingItem], headerController: ResizingHeaderController(), footerController: nil)
@@ -120,11 +119,11 @@ class TestHeaderController: HeaderFooterController {
     }
 
     override var type: TableReusableViewType {
-        return .class(viewClass: TestHeaderView.self, identifier: "TestHeader")
+        return .class(viewClass: ExampleHeaderView.self, identifier: "TestHeader")
     }
 
     override func configure(view: UITableViewHeaderFooterView) {
-        guard let header = view as? TestHeaderView else { return }
+        guard let header = view as? ExampleHeaderView else { return }
         
         header.primaryLabel.text = "Hi"
         header.secondaryLabel.text = "Bye"

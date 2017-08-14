@@ -1,5 +1,5 @@
 //
-//  TestHeaderView.swift
+//  ExampleHeaderView.swift
 //  ExampleProject
 //
 //  Created by Carmen Cerino on 7/21/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TestHeaderView: UITableViewHeaderFooterView {
+class ExampleHeaderView: UITableViewHeaderFooterView {
 
     let primaryLabel: UILabel = {
         let label = UILabel()
