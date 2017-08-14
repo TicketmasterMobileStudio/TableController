@@ -9,7 +9,7 @@
 import TableController
 
 
-class CountingCellController: CellController {
+class SelfUpdatingCellController: CellController {
 
     var count: Int = 0
 
@@ -31,13 +31,13 @@ class CountingCellController: CellController {
     override func willDisplay(_ cell: UITableViewCell) {
         guard let countingCell = cell as? CountingCell else { return }
 
-        countingCell.incrementButton.addTarget(self, action: #selector(CountingCellController.incrementButtonWasTapped), for: .touchUpInside)
+        countingCell.incrementButton.addTarget(self, action: #selector(SelfUpdatingCellController.incrementButtonWasTapped), for: .touchUpInside)
     }
 
     override func didEndDisplaying(_ cell: UITableViewCell) {
         guard let countingCell = cell as? CountingCell else { return }
 
-        countingCell.incrementButton.addTarget(self, action: #selector(CountingCellController.incrementButtonWasTapped), for: .touchUpInside)
+        countingCell.incrementButton.addTarget(self, action: #selector(SelfUpdatingCellController.incrementButtonWasTapped), for: .touchUpInside)
     }
 
     @objc func incrementButtonWasTapped() {

@@ -28,8 +28,8 @@ class ResizingHeaderController: HeaderFooterController {
     var expanded: Bool = false
 
     @objc func performSelectionAction() {
+        self.expanded = !self.expanded
         self.delegate?.headerFooterControllerNeedsAnimatedChanges {
-            self.expanded = !self.expanded
             self.height = self.expanded ? 88.0 : 44.0
         }
     }
