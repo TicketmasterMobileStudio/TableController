@@ -57,6 +57,10 @@ open class CellController: NSObject {
 
     // MARK: Update/Animation Helpers
     public weak var delegate: CellControllerDelegate?
+
+    // MARK: Prefetching
+    open func beginPrefetching() { }
+    open func cancelPrefetching() { }
 }
 
 public protocol CellControllerDelegate: class {

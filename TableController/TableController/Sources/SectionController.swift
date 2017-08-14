@@ -108,6 +108,22 @@ open class SectionController: NSObject {
 
 }
 
+extension SectionController {
+
+    open func prefetchRows(atIndexes rows: [Int]) {
+        rows.forEach { index in
+            self.cellControllers[index].beginPrefetching()
+        }
+    }
+
+    open func cancelPrefetchingRows(atIndexes rows: [Int]) {
+        rows.forEach { index in
+            self.cellControllers[index].cancelPrefetching()
+        }
+    }
+
+}
+
 public protocol SectionControllerDelegate: class {
     func sectionControllerNeedsReload(_ sectionController: SectionController)
     func sectionControllerNeedsReload(_ sectionController: SectionController, atIndex index: Int)

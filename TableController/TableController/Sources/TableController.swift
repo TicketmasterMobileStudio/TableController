@@ -27,7 +27,7 @@
 
 import UIKit
 
-open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource {
+open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource, UITableViewDataSourcePrefetching {
     
     open var numberOfSections: Int { return self.sectionControllers.count }
     
@@ -57,6 +57,7 @@ open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        self.tableView.prefetchDataSource = self
 
         for sectionController in sectionControllers {
             sectionController.delegate = self
@@ -164,6 +165,26 @@ public extension TableController {
         
         section.configure(cell, atIndex: indexPath.row)
         return cell
+    }
+
+}
+
+// MARK: - UITableViewDataSourcePrefetching
+
+public extension TableController {
+
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        indexPaths.rowsGroupedBySection.forEach { (sectionIndex, rows) in
+            let section = self.sectionControllers[sectionIndex]
+            section.prefetchRows(atIndexes: rows)
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cancelPrefetchingForRowsAt indexPaths: [IndexPath]) {
+        indexPaths.rowsGroupedBySection.forEach { (sectionIndex, rows) in
+            let section = self.sectionControllers[sectionIndex]
+            section.cancelPrefetchingRows(atIndexes: rows)
+        }
     }
 
 }
