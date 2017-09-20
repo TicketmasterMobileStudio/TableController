@@ -7,4 +7,5 @@ framework module TableController {
 
 module TableController.Swift {
     header "TableController-Swift.h"
+    requires objc
 }

@@ -52,5 +52,5 @@ open class HeaderFooterController: NSObject {
 
 public protocol HeaderFooterControllerDelegate: class {
     func headerFooterControllerNeedsReload(_ headerFooterController: HeaderFooterController)
-    func headerFooterControllerNeedsAnimatedChanges(_ changes: ((Void) -> Void)?)
+    func headerFooterControllerNeedsAnimatedChanges(_ changes: (() -> Void)?)
 }
