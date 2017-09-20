@@ -132,7 +132,7 @@ extension TableController: SectionControllerDelegate {
         }
     }
 
-    open func sectionControllerNeedsAnimatedChanges(_ changes: ((Void) -> Void)?) {
+    open func sectionControllerNeedsAnimatedChanges(_ changes: (() -> Void)?) {
         UIView.animate(withDuration: 0.2) { 
             self.tableView.beginUpdates()
             changes?()

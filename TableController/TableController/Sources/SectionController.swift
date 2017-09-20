@@ -113,7 +113,7 @@ public protocol SectionControllerDelegate: class {
     func sectionControllerNeedsReload(_ sectionController: SectionController, atIndex index: Int)
     func sectionControllerHeaderNeedsReload(_ sectionController: SectionController)
     func sectionControllerFooterNeedsReload(_ sectionController: SectionController)
-    func sectionControllerNeedsAnimatedChanges(_ changes: ((Void) -> Void)?)
+    func sectionControllerNeedsAnimatedChanges(_ changes: (() -> Void)?)
 }
 
 extension SectionController: CellControllerDelegate {
@@ -124,7 +124,7 @@ extension SectionController: CellControllerDelegate {
         }
     }
 
-    public func cellControllerNeedsAnimatedChanges(_ cellController: CellController, changes: ((Void) -> Void)?) {
+    public func cellControllerNeedsAnimatedChanges(_ cellController: CellController, changes: (() -> Void)?) {
         self.delegate?.sectionControllerNeedsAnimatedChanges(changes)
     }
 
@@ -140,7 +140,7 @@ extension SectionController: HeaderFooterControllerDelegate {
         }
     }
 
-    public func headerFooterControllerNeedsAnimatedChanges(_ changes: ((Void) -> Void)?) {
+    public func headerFooterControllerNeedsAnimatedChanges(_ changes: (() -> Void)?) {
         self.delegate?.sectionControllerNeedsAnimatedChanges(changes)
     }
 
