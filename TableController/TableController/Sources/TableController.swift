@@ -33,7 +33,6 @@ open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource
     
     public private(set) var sectionControllers: [SectionController] {
         didSet {
-            self.visibleIndexPaths = Set<IndexPath>()
             self.visibleHeaders = NSMutableIndexSet()
             self.visibleFooters = NSMutableIndexSet()
 
@@ -43,7 +42,9 @@ open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource
         }
     }
     
-    fileprivate var visibleIndexPaths = Set<IndexPath>()
+    fileprivate var visibleIndexPaths: Set<IndexPath> {
+        return Set(self.tableView.indexPathsForVisibleRows ?? [])
+    }
     fileprivate var visibleHeaders = NSMutableIndexSet()
     fileprivate var visibleFooters = NSMutableIndexSet()
     fileprivate let tableView: UITableView
@@ -94,6 +95,13 @@ open class TableController: NSObject, UITableViewDelegate, UITableViewDataSource
         }
     }
 
+    private func insert(cellsAt indexPaths: [IndexPath], with animation: UITableViewRowAnimation = .automatic) {
+        self.tableView.insertRows(at: indexPaths, with: animation)
+    }
+    
+    private func delete(cellsAt indexPaths: [IndexPath], with animation: UITableViewRowAnimation = .automatic) {
+        self.tableView.deleteRows(at: indexPaths, with: animation)
+    }
 }
 
 // MARK: - Cell Registration
@@ -110,6 +118,33 @@ extension TableController {
 
 extension TableController: SectionControllerDelegate {
 
+    public func sectionControllerNeedsBeginUpdates(_ sectionController: SectionController) {
+        self.tableView.beginUpdates()
+    }
+    
+    public func sectionControllerNeedsEndUpdates(_ sectionController: SectionController) {
+        self.tableView.endUpdates()
+    }
+    
+    @available(iOS 11.0, *)
+    public func sectionController(_ sectionController: SectionController, needsBatchUpdates updates: () -> Void, completion: ((Bool) -> Void)?) {
+        self.tableView.performBatchUpdates(updates, completion: completion)
+    }
+    
+    public func sectionController(_ sectionController: SectionController, needsInsertRowsAt indices: Set<Int>, with animation: UITableViewRowAnimation) {
+        if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
+            let indexPaths = indices.map { IndexPath(row: $0, section: section) }
+            self.insert(cellsAt: indexPaths, with: animation)
+        }
+    }
+    
+    public func sectionController(_ sectionController: SectionController, needsDeleteRowsAt indices: Set<Int>, with animation: UITableViewRowAnimation) {
+        if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
+            let indexPaths = indices.map { IndexPath(row: $0, section: section) }
+            self.delete(cellsAt: indexPaths, with: animation)
+        }
+    }
+    
     open func sectionControllerNeedsReload(_ sectionController: SectionController) {
         self.tableView.reloadData()
         self.tableView.layoutIfNeeded()
@@ -210,14 +245,11 @@ public extension TableController {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let section = self.sectionControllers[indexPath.section]
         section.willDisplay(cell, atIndex: indexPath.item)
-        self.visibleIndexPaths.insert(indexPath)
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard self.visibleIndexPaths.contains(indexPath) else { return }
         let section = self.sectionControllers[indexPath.section]
         section.didEndDisplaying(cell, atIndex: indexPath.item)
-        self.visibleIndexPaths.remove(indexPath)
     }
     
     // MARK: Cell Height
