@@ -29,29 +29,28 @@ class ViewController: UIViewController {
     }
 
     lazy var sectionsForStandardTable: [SectionController] = {
-        return [ self.makeFirstSectionController(), self.makeUpdatingSection() ]
+        return [ self.makeUpdatingSection(),
+                 self.makeFirstSectionController() ]
     }()
 
     lazy var sectionsForGroupedTable: [SectionController] = {
-        return [ self.makeFirstSectionController(), self.makeUpdatingSection() ]
+        return [ self.makeUpdatingSection(),
+                 self.makeFirstSectionController() ]
     }()
 
     func makeFirstSectionController() -> SectionController {
-        let basicItem1 = BasicCellController(title: "Item 1")
-        let basicItem2 = BasicCellController(title: "Item 2")
-        let basicItem3 = BasicCellController(title: "Item 3")
-        let basicItem4 = BasicCellController(title: "Item 4")
-        let basicItem5 = BasicCellController(title: "Item 5")
-        let basicItem6 = BasicCellController(title: "Item 6")
+        let basicItem1 = SimpleCellController(title: "Item 1")
+        let basicItem2 = SimpleCellController(title: "Item 2")
+        let basicItem3 = SimpleCellController(title: "Item 3")
 
         let nibItem1 = NibCellController()
 
-        let group = SectionController(cellControllers: [basicItem1, basicItem2, basicItem3, basicItem4, basicItem5, basicItem6, nibItem1], headerController: TestHeaderController())
+        let group = SectionController(cellControllers: [basicItem1, basicItem2, basicItem3, nibItem1], headerController: ExampleHeaderController())
         return group
     }
 
     func makeUpdatingSection() -> SectionController {
-        let countingItem = CountingCellController()
+        let countingItem = SelfUpdatingCellController()
         let resizingItem = ResizingCellController()
         return SectionController(cellControllers: [countingItem, resizingItem], headerController: ResizingHeaderController(), footerController: nil)
     }
@@ -74,58 +73,4 @@ class ViewController: UIViewController {
         self.groupedTableView.isHidden = false
     }
 
-}
-
-class BasicCellController: CellController {
-    
-    var title: String = "Default"
-
-    init(title: String) {
-        super.init()
-
-        self.title = title
-        self.cellHeight = 60.0
-    }
-
-    override var cellType: TableReusableViewType {
-        return .class(viewClass: UITableViewCell.self, identifier: "BasicCell")
-    }
-    
-    override func configure(_ cell: UITableViewCell) {
-        cell.textLabel?.text = title
-    }
-    
-}
-
-class NibCellController: CellController {
-    
-    var title: String = "From Nib"
-
-    override var cellType: TableReusableViewType {
-        return .nib(nibName: "NibCell", bundle: Bundle.main, identifier: "NibCell")
-    }
-    
-    override func configure(_ cell: UITableViewCell) {
-        cell.textLabel?.text = title
-    }
-    
-}
-
-class TestHeaderController: HeaderFooterController {
-
-    override init() {
-        super.init()
-        self.height = 30.0
-    }
-
-    override var type: TableReusableViewType {
-        return .class(viewClass: ExampleHeaderView.self, identifier: "TestHeader")
-    }
-
-    override func configure(view: UITableViewHeaderFooterView) {
-        guard let header = view as? ExampleHeaderView else { return }
-        
-        header.primaryLabel.text = "Hi"
-        header.secondaryLabel.text = "Bye"
-    }
 }

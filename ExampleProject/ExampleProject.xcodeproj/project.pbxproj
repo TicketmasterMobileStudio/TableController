@@ -13,11 +13,15 @@
 		130908031D3D2FDA007DB5D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 130908021D3D2FDA007DB5D8 /* Assets.xcassets */; };
 		130908061D3D2FDA007DB5D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 130908041D3D2FDA007DB5D8 /* LaunchScreen.storyboard */; };
 		13F2C8E21DCA679400CB0FC8 /* NibCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13F2C8E11DCA679400CB0FC8 /* NibCell.xib */; };
-		DE65884B1F41F02B007F771E /* CountingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE6588471F41F02B007F771E /* CountingCell.xib */; };
-		DE65884C1F41F02B007F771E /* CountingCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6588481F41F02B007F771E /* CountingCellController.swift */; };
-		DE65884D1F41F02B007F771E /* ResizingCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6588491F41F02B007F771E /* ResizingCellController.swift */; };
-		DE65884E1F41F02B007F771E /* ResizingHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE65884A1F41F02B007F771E /* ResizingHeaderController.swift */; };
+		DE5CB3951F2290C8000169C3 /* TableController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DE5CB3941F2290C8000169C3 /* TableController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DE6588511F41F191007F771E /* ExampleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6588501F41F191007F771E /* ExampleHeaderView.swift */; };
+		DE6588531F41F2B4007F771E /* SimpleCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6588521F41F2B4007F771E /* SimpleCellController.swift */; };
+		DE6588551F41F5AC007F771E /* NibCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6588541F41F5AC007F771E /* NibCellController.swift */; };
+		DE6588571F41F674007F771E /* ExampleHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6588561F41F674007F771E /* ExampleHeaderController.swift */; };
+		DE65885E1F41FB67007F771E /* ResizingCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE6588591F41FB67007F771E /* ResizingCellController.swift */; };
+		DE65885F1F41FB67007F771E /* ResizingHeaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE65885A1F41FB67007F771E /* ResizingHeaderController.swift */; };
+		DE6588601F41FB67007F771E /* CountingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DE65885C1F41FB67007F771E /* CountingCell.xib */; };
+		DE6588611F41FB67007F771E /* SelfUpdatingCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE65885D1F41FB67007F771E /* SelfUpdatingCellController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -42,12 +46,15 @@
 		130908051D3D2FDA007DB5D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		130908071D3D2FDA007DB5D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		13F2C8E11DCA679400CB0FC8 /* NibCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NibCell.xib; sourceTree = "<group>"; };
-		DE6588471F41F02B007F771E /* CountingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountingCell.xib; sourceTree = "<group>"; };
-		DE6588481F41F02B007F771E /* CountingCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountingCellController.swift; sourceTree = "<group>"; };
-		DE6588491F41F02B007F771E /* ResizingCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingCellController.swift; sourceTree = "<group>"; };
-		DE65884A1F41F02B007F771E /* ResizingHeaderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingHeaderController.swift; sourceTree = "<group>"; };
+		DE5CB3941F2290C8000169C3 /* TableController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TableController.framework; sourceTree = "<group>"; };
 		DE6588501F41F191007F771E /* ExampleHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleHeaderView.swift; sourceTree = "<group>"; };
-		DE7950831F72C04700E85DAE /* TableController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = TableController.framework; sourceTree = "<group>"; };
+		DE6588521F41F2B4007F771E /* SimpleCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleCellController.swift; sourceTree = "<group>"; };
+		DE6588541F41F5AC007F771E /* NibCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibCellController.swift; sourceTree = "<group>"; };
+		DE6588561F41F674007F771E /* ExampleHeaderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExampleHeaderController.swift; sourceTree = "<group>"; };
+		DE6588591F41FB67007F771E /* ResizingCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingCellController.swift; sourceTree = "<group>"; };
+		DE65885A1F41FB67007F771E /* ResizingHeaderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResizingHeaderController.swift; sourceTree = "<group>"; };
+		DE65885C1F41FB67007F771E /* CountingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CountingCell.xib; sourceTree = "<group>"; };
+		DE65885D1F41FB67007F771E /* SelfUpdatingCellController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelfUpdatingCellController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,11 +101,12 @@
 		DE6588461F41F02B007F771E /* Cell Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				DE6588521F41F2B4007F771E /* SimpleCellController.swift */,
+				DE6588541F41F5AC007F771E /* NibCellController.swift */,
+				DE6588561F41F674007F771E /* ExampleHeaderController.swift */,
 				DE6588501F41F191007F771E /* ExampleHeaderView.swift */,
-				DE6588471F41F02B007F771E /* CountingCell.xib */,
-				DE6588481F41F02B007F771E /* CountingCellController.swift */,
-				DE6588491F41F02B007F771E /* ResizingCellController.swift */,
-				DE65884A1F41F02B007F771E /* ResizingHeaderController.swift */,
+				DE6588581F41FB67007F771E /* Resizing Example */,
+				DE65885B1F41FB67007F771E /* Self Updating Example */,
 			);
 			path = "Cell Controllers";
 			sourceTree = "<group>";
@@ -111,6 +119,24 @@
 				130908071D3D2FDA007DB5D8 /* Info.plist */,
 			);
 			name = Info;
+			sourceTree = "<group>";
+		};
+		DE6588581F41FB67007F771E /* Resizing Example */ = {
+			isa = PBXGroup;
+			children = (
+				DE6588591F41FB67007F771E /* ResizingCellController.swift */,
+				DE65885A1F41FB67007F771E /* ResizingHeaderController.swift */,
+			);
+			path = "Resizing Example";
+			sourceTree = "<group>";
+		};
+		DE65885B1F41FB67007F771E /* Self Updating Example */ = {
+			isa = PBXGroup;
+			children = (
+				DE65885C1F41FB67007F771E /* CountingCell.xib */,
+				DE65885D1F41FB67007F771E /* SelfUpdatingCellController.swift */,
+			);
+			path = "Self Updating Example";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -177,7 +203,7 @@
 				130908061D3D2FDA007DB5D8 /* LaunchScreen.storyboard in Resources */,
 				13F2C8E21DCA679400CB0FC8 /* NibCell.xib in Resources */,
 				130908031D3D2FDA007DB5D8 /* Assets.xcassets in Resources */,
-				DE65884B1F41F02B007F771E /* CountingCell.xib in Resources */,
+				DE6588601F41FB67007F771E /* CountingCell.xib in Resources */,
 				130908011D3D2FDA007DB5D8 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -189,12 +215,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DE65885E1F41FB67007F771E /* ResizingCellController.swift in Sources */,
+				DE65885F1F41FB67007F771E /* ResizingHeaderController.swift in Sources */,
 				130907FE1D3D2FDA007DB5D8 /* ViewController.swift in Sources */,
-				DE65884C1F41F02B007F771E /* CountingCellController.swift in Sources */,
-				DE65884D1F41F02B007F771E /* ResizingCellController.swift in Sources */,
+				DE6588571F41F674007F771E /* ExampleHeaderController.swift in Sources */,
 				130907FC1D3D2FDA007DB5D8 /* AppDelegate.swift in Sources */,
 				DE6588511F41F191007F771E /* ExampleHeaderView.swift in Sources */,
-				DE65884E1F41F02B007F771E /* ResizingHeaderController.swift in Sources */,
+				DE6588531F41F2B4007F771E /* SimpleCellController.swift in Sources */,
+				DE6588611F41FB67007F771E /* SelfUpdatingCellController.swift in Sources */,
+				DE6588551F41F5AC007F771E /* NibCellController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +355,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RFY6G73KJD;
 				INFOPLIST_FILE = ExampleProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tms.ExampleProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -339,6 +369,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = RFY6G73KJD;
 				INFOPLIST_FILE = ExampleProject/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tms.ExampleProject;
 				PRODUCT_NAME = "$(TARGET_NAME)";
