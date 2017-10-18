@@ -106,18 +106,50 @@ open class SectionController: NSObject {
         }
     }
 
+    open func insertCellControllers(_ cellControllers: [CellController], at indices: [Int], with animation: UITableViewRowAnimation = .automatic) {
+        guard cellControllers.count == indices.count else {
+            assertionFailure("Number of section controllers being inserted must be equal to the number of indices they are being inserted into")
+            return
+        }
+        for (cellController, index) in zip(cellControllers, indices) {
+            self.cellControllers.insert(cellController, at: index)
+        }
+        self.delegate?.sectionController(self, needsInsertRowsAt: Set(indices), with: animation)
+    }
+    
+    open func deleteCellControllers(at indices: [Int], with animation: UITableViewRowAnimation = .automatic) {
+        
+        for index in indices {
+            self.cellControllers.remove(at: index)
+        }
+        self.delegate?.sectionController(self, needsDeleteRowsAt: Set(indices), with: animation)
+    }
+    
+    open func beginUpdates() {
+        self.delegate?.sectionControllerNeedsBeginUpdates(self)
+    }
+    
+    open func endUpdates() {
+        self.delegate?.sectionControllerNeedsEndUpdates(self)
+    }
+    
+    @available(iOS 11.0, *)
+    open func performBatchUpdates(_ updates: () -> Void, completion: ((Bool)->Void)?) {
+        self.delegate?.sectionController(self, needsBatchUpdates:updates, completion: completion)
+    }
+
 }
 
 extension SectionController {
 
     open func prefetchRows(atIndexes rows: [Int]) {
-        rows.forEach { index in
+        for index in rows where index < self.cellControllers.count {
             self.cellControllers[index].beginPrefetching()
         }
     }
 
     open func cancelPrefetchingRows(atIndexes rows: [Int]) {
-        rows.forEach { index in
+        for index in rows where index < self.cellControllers.count {
             self.cellControllers[index].cancelPrefetching()
         }
     }
@@ -130,12 +162,21 @@ public protocol SectionControllerDelegate: class {
     func sectionControllerHeaderNeedsReload(_ sectionController: SectionController)
     func sectionControllerFooterNeedsReload(_ sectionController: SectionController)
     func sectionControllerNeedsAnimatedChanges(_ changes: (() -> Void)?)
+
+    func sectionController(_ sectionController: SectionController, needsInsertRowsAt indices: Set<Int>, with animation: UITableViewRowAnimation)
+    func sectionController(_ sectionController: SectionController, needsDeleteRowsAt indices: Set<Int>, with animation: UITableViewRowAnimation)
+    
+    func sectionControllerNeedsBeginUpdates(_ sectionController: SectionController)
+    func sectionControllerNeedsEndUpdates(_ sectionController: SectionController)
+    
+    @available(iOS 11.0, *)
+    func sectionController(_ sectionController: SectionController, needsBatchUpdates: () -> Void, completion: ((Bool)->Void)?)
 }
 
 extension SectionController: CellControllerDelegate {
 
     public func cellControllerNeedsReload(_ cellController: CellController) {
-        if let index = self.cellControllers.index(where: { $0 === cellController }) {
+        if let index = self.cellControllers.index(of: cellController) {
             self.delegate?.sectionControllerNeedsReload(self, atIndex: index)
         }
     }
