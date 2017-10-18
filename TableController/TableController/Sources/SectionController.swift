@@ -172,7 +172,7 @@ public protocol SectionControllerDelegate: class {
 extension SectionController: CellControllerDelegate {
 
     public func cellControllerNeedsReload(_ cellController: CellController) {
-        if let index = self.cellControllers.index(where: { $0 === cellController }) {
+        if let index = self.cellControllers.index(of: cellController) {
             self.delegate?.sectionControllerNeedsReload(self, atIndex: index)
         }
     }

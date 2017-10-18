@@ -132,14 +132,14 @@ extension TableController: SectionControllerDelegate {
     }
     
     public func sectionController(_ sectionController: SectionController, needsInsertRowsAt indices: Set<Int>, with animation: UITableViewRowAnimation) {
-        if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
+        if let section = self.sectionControllers.index(of: sectionController) {
             let indexPaths = indices.map { IndexPath(row: $0, section: section) }
             self.insert(cellsAt: indexPaths, with: animation)
         }
     }
     
     public func sectionController(_ sectionController: SectionController, needsDeleteRowsAt indices: Set<Int>, with animation: UITableViewRowAnimation) {
-        if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
+        if let section = self.sectionControllers.index(of: sectionController) {
             let indexPaths = indices.map { IndexPath(row: $0, section: section) }
             self.delete(cellsAt: indexPaths, with: animation)
         }
@@ -151,19 +151,19 @@ extension TableController: SectionControllerDelegate {
     }
 
     open func sectionControllerNeedsReload(_ sectionController: SectionController, atIndex index: Int) {
-        if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
+        if let section = self.sectionControllers.index(of: sectionController) {
             self.update(cellAt: IndexPath(row: index, section: section))
         }
     }
 
     open func sectionControllerHeaderNeedsReload(_ sectionController: SectionController) {
-        if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
+        if let section = self.sectionControllers.index(of: sectionController) {
             self.update(headerInSection: section)
         }
     }
 
     open func sectionControllerFooterNeedsReload(_ sectionController: SectionController) {
-        if let section = self.sectionControllers.index(where: { $0 === sectionController }) {
+        if let section = self.sectionControllers.index(of: sectionController) {
             self.update(footerInSection: section)
         }
     }
