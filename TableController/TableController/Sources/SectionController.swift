@@ -107,6 +107,10 @@ open class SectionController: NSObject {
     }
 
     open func insertCellControllers(_ cellControllers: [CellController], at indices: [Int], with animation: UITableViewRowAnimation = .automatic) {
+        guard cellControllers.count == indices.count else {
+            assertionFailure("Number of section controllers being inserted must be equal to the number of indices they are being inserted into")
+            return
+        }
         for (cellController, index) in zip(cellControllers, indices) {
             self.cellControllers.insert(cellController, at: index)
         }
