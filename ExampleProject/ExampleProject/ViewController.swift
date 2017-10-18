@@ -36,7 +36,7 @@ class ViewController: UIViewController {
             activeSectionController = self.sectionsForGroupedTable[1]
         }
         let index = activeSectionController.cellControllers.count
-        let newCellController = SimpleCellController(title: "Item \(index)")
+        let newCellController = SimpleCellController(title: "Item \(index)", deletionBlock: deleteCellAction)
         activeSectionController.beginUpdates()
         activeSectionController.insertCellControllers([newCellController], at: [index - 1], with: .top)
         activeSectionController.endUpdates()
@@ -51,11 +51,24 @@ class ViewController: UIViewController {
         return [ self.makeUpdatingSection(),
                  self.makeFirstSectionController() ]
     }()
+    
+    private func deleteCellAction(cellController: SimpleCellController) {
+        
+        for sectionController in [self.sectionsForGroupedTable, self.sectionsForStandardTable].flatMap({$0}).joined() {
+            if let index = sectionController.cellControllers.index(of: cellController) {
+                sectionController.beginUpdates()
+                sectionController.deleteCellControllers(at: [index], with: .top)
+                sectionController.endUpdates()
+            }
+            
+        }
+    }
 
     func makeFirstSectionController() -> SectionController {
-        let basicItem1 = SimpleCellController(title: "Item 1")
-        let basicItem2 = SimpleCellController(title: "Item 2")
-        let basicItem3 = SimpleCellController(title: "Item 3")
+        
+        let basicItem1 = SimpleCellController(title: "Item 1", deletionBlock: deleteCellAction)
+        let basicItem2 = SimpleCellController(title: "Item 2", deletionBlock: deleteCellAction)
+        let basicItem3 = SimpleCellController(title: "Item 3", deletionBlock: deleteCellAction)
 
         let nibItem1 = NibCellController()
 
