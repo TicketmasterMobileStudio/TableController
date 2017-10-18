@@ -27,6 +27,20 @@ class ViewController: UIViewController {
             break
         }
     }
+    
+    @IBAction func handleAddButton(_ sender: Any?) {
+        let activeSectionController: SectionController
+        if !sectionedTableView.isHidden {
+            activeSectionController = self.sectionsForStandardTable[1]
+        } else {
+            activeSectionController = self.sectionsForGroupedTable[1]
+        }
+        let index = activeSectionController.cellControllers.count
+        let newCellController = SimpleCellController(title: "Item \(index)")
+        activeSectionController.beginUpdates()
+        activeSectionController.insertCellControllers([newCellController], at: [index - 1], with: .top)
+        activeSectionController.endUpdates()
+    }
 
     lazy var sectionsForStandardTable: [SectionController] = {
         return [ self.makeUpdatingSection(),
