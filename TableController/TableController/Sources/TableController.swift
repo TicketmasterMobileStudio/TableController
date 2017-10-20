@@ -248,6 +248,7 @@ public extension TableController {
     }
     
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard indexPath.section < self.sectionControllers.count else { return }
         let section = self.sectionControllers[indexPath.section]
         section.didEndDisplaying(cell, atIndex: indexPath.item)
     }
