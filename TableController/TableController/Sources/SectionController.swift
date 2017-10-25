@@ -119,7 +119,7 @@ open class SectionController: NSObject {
     
     open func deleteCellControllers(at indices: [Int], with animation: UITableViewRowAnimation = .automatic) {
         
-        for index in indices {
+        for index in indices.sorted().reversed() {
             self.cellControllers.remove(at: index)
         }
         self.delegate?.sectionController(self, needsDeleteRowsAt: Set(indices), with: animation)
